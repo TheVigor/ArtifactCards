@@ -1,0 +1,102 @@
+package com.noble.activity.artifactcards
+
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.support.v4.app.Fragment
+import android.support.v4.view.ViewPager
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import kotlinx.android.synthetic.main.artifact_frag_home.*
+
+class ArtifactHomeFragment : Fragment() {
+
+    companion object {
+
+        @JvmStatic
+        fun newInstance() = ArtifactHomeFragment()
+    }
+
+    private lateinit var artifactHomeAdapter: ArtifactHomeAdapter
+
+    private var onFragmentLoadListener: OnFragmentLoadListener? = null
+
+    private val fragmentLoadTask: FragmentLoadTask = FragmentLoadTask()
+    private val handler: Handler = Handler(Looper.getMainLooper())
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.artifact_frag_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //title_tv.typeface = FontHelper.get().getBoldTypeface()
+        title_tv.text = "Cards" //resources.getString(R.string.awaker_article_news_title)
+        setToolbar(toolbar)
+
+        val titleList = getTitleList()
+
+        artifactHomeAdapter = ArtifactHomeAdapter(childFragmentManager, titleList)
+        view_pager.adapter = artifactHomeAdapter
+
+        tabs.tabMode = android.support.design.widget.TabLayout.MODE_SCROLLABLE
+        tabs.setupWithViewPager(view_pager)
+
+        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                handler.removeCallbacks(fragmentLoadTask)
+                onFragmentLoadListener = artifactHomeAdapter.getOnFragmentLoadListener(position)
+                handler.postDelayed(fragmentLoadTask, 600)
+            }
+        })
+    }
+
+    private fun getTitleList(): List<String> {
+        val titleArr = ArrayList<String>()
+        titleArr.add("Heroes")
+        titleArr.add("Spells")
+        titleArr.add("Abilities")
+        titleArr.add("Passive Abilities")
+        titleArr.add("Items")
+        titleArr.add("Improvements")
+        titleArr.add("Creeps")
+
+        return titleArr
+    }
+
+    private fun setToolbar(toolbar: Toolbar) {
+        val activity = activity as AppCompatActivity
+        activity.setSupportActionBar(toolbar)
+    }
+
+    inner class FragmentLoadTask : Runnable {
+
+        private var position: Int = 0
+
+        fun setPosition(pos: Int) {
+            position = pos
+        }
+
+        override fun run() {
+            onFragmentLoadListener?.startLoadData()
+        }
+    }
+
+    override fun onDestroy() {
+        handler.removeCallbacks(fragmentLoadTask)
+        super.onDestroy()
+    }
+}

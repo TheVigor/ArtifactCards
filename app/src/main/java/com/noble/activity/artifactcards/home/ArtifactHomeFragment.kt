@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.OnFragmentLoadListener
 import com.noble.activity.artifactcards.R
+import com.ruzhan.lion.helper.FontHelper
 import kotlinx.android.synthetic.main.artifact_frag_home.*
 
 class ArtifactHomeFragment : Fragment() {
@@ -36,8 +37,8 @@ class ArtifactHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //title_tv.typeface = FontHelper.get().getBoldTypeface()
-        title_tv.text = "Cards" //resources.getString(R.string.awaker_article_news_title)
+        title_tv.typeface = FontHelper.get().getBoldTypeface()
+        title_tv.text = "Artifact Cards" //resources.getString(R.string.awaker_article_news_title)
         setToolbar(toolbar)
 
         val titleList = getTitleList()

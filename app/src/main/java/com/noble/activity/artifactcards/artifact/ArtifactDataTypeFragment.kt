@@ -51,6 +51,11 @@ class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
 
         otherArticleNewAllViewModel = ViewModelProviders.of(this).get(ArtifactDataTypeViewModel::class.java)
         initLiveData()
+
+        otherArticleNewAllViewModel.loadLocalOtherNews(newId.toString())
+        otherArticleNewAllViewModel.getOtherNewsList(RequestStatus.REFRESH, newId.toString())
+
+
     }
 
     private fun initRecyclerView() {

@@ -1,8 +1,11 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.artifact
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import com.noble.activity.artifactcards.ArtifactRepository
+import com.noble.activity.artifactcards.utils.TOKEN
+import com.noble.activity.artifactcards.model.Card
 import com.ruzhan.lion.model.LoadStatus
 import com.ruzhan.lion.model.RequestStatus
 import com.ruzhan.lion.rx.Subscriber
@@ -60,7 +63,8 @@ class ArtifactDataTypeViewModel(app: Application) : AndroidViewModel(app) {
 
         page = if (RequestStatus.REFRESH == requestStatus.refreshStatus) 1 else (++page)
 
-        ArtifactRepository.get().getCardsList(TOKEN, page, newId.toInt())
+        ArtifactRepository.get()
+            .getCardsList(TOKEN, page, newId.toInt())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError {}
             .doOnSubscribe {

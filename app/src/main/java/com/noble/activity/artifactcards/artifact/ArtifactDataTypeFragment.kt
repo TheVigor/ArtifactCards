@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.artifact
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -8,7 +8,9 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
+import com.noble.activity.artifactcards.OnFragmentLoadListener
+import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.model.Card
 import com.ruzhan.lion.helper.OnRefreshHelper
 import com.ruzhan.lion.listener.OnItemClickListener
 import com.ruzhan.lion.model.LoadStatus
@@ -52,14 +54,15 @@ class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
     }
 
     private fun initRecyclerView() {
-        articleNewAllAdapter = ArtifactDataTypeAdapter(object : OnItemClickListener<Card> {
-            override fun onItemClick(position: Int, bean: Card, itemView: View) {
-                activity?.let {
-                    val url = if (bean.cover_url == null) "" else bean.cover_url.ori
-                    //ArticleNewDetailActivity.launch(it, bean.id, bean.title, url)
-                }
-            }
-        })
+        articleNewAllAdapter =
+                ArtifactDataTypeAdapter(object : OnItemClickListener<Card> {
+                    override fun onItemClick(position: Int, bean: Card, itemView: View) {
+                        activity?.let {
+                            val url = if (bean.cover_url == null) "" else bean.cover_url.ori
+                            //ArticleNewDetailActivity.launch(it, bean.id, bean.title, url)
+                        }
+                    }
+                })
 
         recycler_view.adapter = articleNewAllAdapter
 

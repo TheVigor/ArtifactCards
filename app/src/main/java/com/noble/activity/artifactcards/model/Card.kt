@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.model
 
 import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity

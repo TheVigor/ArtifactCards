@@ -1,5 +1,9 @@
 package com.noble.activity.artifactcards
 
+import com.noble.activity.artifactcards.db.ArtifactAppDatabase
+import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.network.ArtifactClient
+import com.noble.activity.artifactcards.source.remote.IRemoteDataSource
 import com.ruzhan.lion.model.HttpResult
 import io.reactivex.Flowable
 

@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.model
 
 data class CoverUrl constructor(
     var ori: String = "",

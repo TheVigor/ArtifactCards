@@ -1,14 +1,14 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.db
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
-import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import android.support.annotation.VisibleForTesting
-import com.ruzhan.lion.db.converter.RoomDataConverter
+import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.db.dao.CardDao
 
 @Database(entities = [Card::class], version = 1, exportSchema = false)
 abstract class ArtifactAppDatabase : RoomDatabase() {
@@ -38,7 +38,9 @@ abstract class ArtifactAppDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(ArtifactAppDatabase::class.java) {
                     if (INSTANCE == null) {
-                        INSTANCE = Room.databaseBuilder(context, ArtifactAppDatabase::class.java, DATABASE_NAME)
+                        INSTANCE = Room.databaseBuilder(context, ArtifactAppDatabase::class.java,
+                            DATABASE_NAME
+                        )
                             .build()
                         INSTANCE!!.updateDatabaseCreated(context)
                     }

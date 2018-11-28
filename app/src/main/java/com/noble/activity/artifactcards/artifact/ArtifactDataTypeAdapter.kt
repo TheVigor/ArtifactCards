@@ -1,8 +1,11 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.artifact
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.noble.activity.artifactcards.utils.PAGE_SIZE
+import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.model.Card
 import com.ruzhan.lion.listener.OnItemClickListener
 import com.ruzhan.lion.ui.LoadMoreHolder
 import java.util.ArrayList
@@ -52,9 +55,15 @@ class ArtifactDataTypeAdapter(private var listener: OnItemClickListener<Card>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         lateinit var viewHolder: RecyclerView.ViewHolder
         when (viewType) {
-            TYPE_NORMAL -> viewHolder = ArtifactDataTypeHolder(
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.artifact_item_new_list_grid, parent, false), listener)
+            TYPE_NORMAL -> viewHolder =
+                    ArtifactDataTypeHolder(
+                        LayoutInflater.from(parent.context)
+                            .inflate(
+                                R.layout.artifact_item_new_list_grid,
+                                parent,
+                                false
+                            ), listener
+                    )
 
             TYPE_LOAD_MORE -> viewHolder = LoadMoreHolder(
                 LayoutInflater.from(parent.context)

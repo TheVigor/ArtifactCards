@@ -1,9 +1,10 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.db.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
+import com.noble.activity.artifactcards.model.Card
 import io.reactivex.Flowable
 
 @Dao

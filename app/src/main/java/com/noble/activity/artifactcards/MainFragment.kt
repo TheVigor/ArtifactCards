@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.frag_main.*
+import com.noble.activity.artifactcards.home.ArtifactHomeFragment
 
 class MainFragment : Fragment() {
 

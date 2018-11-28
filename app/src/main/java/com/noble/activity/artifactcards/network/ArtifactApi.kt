@@ -1,8 +1,8 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.network
 
+import com.noble.activity.artifactcards.model.Card
 import com.ruzhan.lion.model.HttpResult
 import io.reactivex.Flowable
-import io.reactivex.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

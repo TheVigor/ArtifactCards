@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.network
 
 import okhttp3.OkHttpClient
 
@@ -18,7 +18,8 @@ class HttpClient private constructor() {
             if (httpClient == null) {
                 synchronized(HttpClient::class.java) {
                     if (httpClient == null) {
-                        httpClient = HttpClient()
+                        httpClient =
+                                HttpClient()
                     }
                 }
             }

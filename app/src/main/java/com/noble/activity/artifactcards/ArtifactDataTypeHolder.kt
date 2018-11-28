@@ -2,6 +2,7 @@ package com.noble.activity.artifactcards
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.noble.activity.artifactcards.imageloader.ImageLoader
 import com.ruzhan.lion.helper.FontHelper
 import com.ruzhan.lion.listener.OnItemClickListener
 import kotlinx.android.synthetic.main.artifact_item_new_list_grid.view.*
@@ -31,8 +32,8 @@ class ArtifactDataTypeHolder(itemView: View, private var listener: OnItemClickLi
 
         itemView.comment_tv.text = "LOL"
 
-        //card.url?.let {
-        //    ImageLoader.get().load(itemView.icon_iv, it.ori)
-        //}
+        card.cover_url?.let {
+            ImageLoader.get().load(itemView.icon_iv, it.ori)
+        }
     }
 }

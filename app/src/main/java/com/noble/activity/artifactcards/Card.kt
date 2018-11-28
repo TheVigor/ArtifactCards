@@ -1,5 +1,6 @@
 package com.noble.activity.artifactcards
 
+import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import io.reactivex.annotations.NonNull
@@ -10,6 +11,7 @@ data class Card constructor(
     @PrimaryKey
     var id: String,
     var title: String = "",
-    var description: String = "",
-    var url: String = ""
+    @Embedded(prefix = "cover_url")
+    var cover_url: CoverUrl,
+    var description: String = ""
 )

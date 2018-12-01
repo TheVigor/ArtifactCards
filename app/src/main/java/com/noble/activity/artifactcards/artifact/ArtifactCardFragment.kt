@@ -59,23 +59,15 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
     }
 
     private fun initRecyclerView() {
-        artifactCardAdapter =
-                ArtifactCardAdapter(object : OnItemClickListener<Card> {
-                    override fun onItemClick(position: Int, bean: Card, itemView: View) {
-                        activity?.let {
-                            //val url = if (bean.cover_url == null) "" else bean.cover_url.ori
-                            //ArticleNewDetailActivity.launch(it, bean.id, bean.title, url)
-                        }
-                    }
-                })
+        artifactCardAdapter = ArtifactCardAdapter()
 
         recycler_view.adapter = artifactCardAdapter
 
-        val manager = GridLayoutManager(activity, 2)
+        val manager = GridLayoutManager(activity, 3)
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
 
             override fun getSpanSize(position: Int): Int {
-                return artifactCardAdapter.getSpanSize(position)
+                return 1
             }
         }
         recycler_view.layoutManager = manager
@@ -101,10 +93,10 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                 }
             })
 
-        artifactCardViewModel.requestStatusLiveData.observe(this@ArtifactCardFragment,
+        artifactCardViewModel.requestStatusLiveData.observe(viewLifecycleOwner,
             Observer { requestStatus ->
                 requestStatus?.let {
-                     artifactCardAdapter.setRefreshData(requestStatus.data)
+                     artifactCardAdapter.submitList(requestStatus.data)
                 }
             })
     }

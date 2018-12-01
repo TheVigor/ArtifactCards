@@ -27,10 +27,6 @@ class ArtifactCardHolder(itemView: View, private var listener: OnItemClickListen
         itemView.title_tv.text = card.cardName?.russian
         itemView.category_tv.text = card.cardText?.russian
 
-        //val commentStr = String.format(itemView.resources
-        //    .getString(R.string.awaker_article_comment_count), bean.comment)
-
-
         itemView.comment_tv.text = card.rarity
 
         card.miniImage?.default?.let {

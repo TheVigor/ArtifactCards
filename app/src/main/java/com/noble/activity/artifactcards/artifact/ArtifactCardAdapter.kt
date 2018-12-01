@@ -1,68 +1,67 @@
 package com.noble.activity.artifactcards.artifact
 
+import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.utils.PAGE_SIZE
 import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.R.id.title_tv
+import com.noble.activity.artifactcards.databinding.ArtifactItemNewListGridBinding
+import com.noble.activity.artifactcards.imageloader.ImageLoader
 import com.noble.activity.artifactcards.model.Card
 import com.ruzhan.lion.listener.OnItemClickListener
 import com.ruzhan.lion.ui.LoadMoreHolder
+import kotlinx.android.synthetic.main.artifact_item_new_list_grid.view.*
 import java.util.ArrayList
 
-class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ArtifactCardAdapter : ListAdapter<Card,
+        ArtifactCardAdapter.ViewHolder>(ArtifactCardDiffCallback()) {
 
-    companion object {
-        private const val TYPE_NORMAL = 1000
-    }
-
-    private val dataList = ArrayList<Any>()
-
-    fun setRefreshData(list: List<Card>) {
-        if (list.isNotEmpty()) {
-            dataList.clear()
-            dataList.addAll(list)
-            notifyDataSetChanged()
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val card = getItem(position)
+        holder.apply {
+            bind(createOnClickListener(card.cardId), card)
+            //itemView.tag = plant
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return  TYPE_NORMAL
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            ArtifactItemNewListGridBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        lateinit var viewHolder: RecyclerView.ViewHolder
-        when (viewType) {
-            TYPE_NORMAL -> viewHolder =
-                    ArtifactCardHolder(
-                        LayoutInflater.from(parent.context)
-                            .inflate(
-                                R.layout.artifact_item_new_list_grid,
-                                parent,
-                                false
-                            ), listener
-                    )
-
-        }
-        return viewHolder
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (getItemViewType(position)) {
-            TYPE_NORMAL -> (holder as ArtifactCardHolder).bind(dataList[position] as Card)
+    private fun createOnClickListener(cardId: Int): View.OnClickListener {
+        return View.OnClickListener {
         }
     }
 
-    override fun getItemCount(): Int {
-        return dataList.size
+
+    class ViewHolder(
+        private val binding: ArtifactItemNewListGridBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(listener: View.OnClickListener, item: Card) {
+            binding.apply {
+                clickListener = listener
+                card = item
+
+                binding.titleTv.text = item.cardName?.russian
+                binding.categoryTv.text = item.cardText?.russian
+                binding.commentTv.text = item.rarity
+
+                item.miniImage?.default?.let {
+                    ImageLoader.get().load(binding.iconIv, it)
+                }
+
+                executePendingBindings()
+            }
+        }
     }
 
-    fun getSpanSize(position: Int): Int {
-        var spanSize = 1
-        when (getItemViewType(position)) {
-            TYPE_NORMAL -> spanSize = 1
-        }
-        return spanSize
-    }
 }

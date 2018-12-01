@@ -13,5 +13,4 @@ interface IRemoteDataSource {
 
     fun getCardSet(url: String): Flowable<CardSets>
 
-    abstract fun getCardsList(token: String, page: Int, id: Int): Flowable<HttpResult<List<Card>>>
 }

@@ -22,11 +22,7 @@ class RemoteDataSourceImpl(private val artifactApi: ArtifactApi) :
             .subscribeOn(Schedulers.io())
     }
 
-    override fun getCardsList(token: String, page: Int, id: Int): Flowable<HttpResult<List<Card>>> {
-        return artifactApi.getCardsList(token, page, id)
-            .subscribeOn(Schedulers.io())
-    }
-
+    
 
 
 }

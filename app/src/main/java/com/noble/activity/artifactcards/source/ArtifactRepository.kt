@@ -6,7 +6,6 @@ import com.noble.activity.artifactcards.model.CardSetInfo
 import com.noble.activity.artifactcards.model.CardSets
 import com.noble.activity.artifactcards.network.ArtifactClient
 import com.noble.activity.artifactcards.source.remote.IRemoteDataSource
-import com.ruzhan.lion.model.HttpResult
 import io.reactivex.Flowable
 
 class ArtifactRepository private constructor() : IRemoteDataSource {
@@ -27,16 +26,12 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
         return remoteDataSource.getCardSet(url)
     }
 
-    fun loadNewsList(): Flowable<List<Card>> {
-        return artifactAppDatabase.cardDao().loadNewsList()
+    fun loadArtifactCardList(): Flowable<List<Card>> {
+        return artifactAppDatabase.cardDao().loadArtifactCardList()
     }
 
-    fun insertNewsList(newsList: List<Card>) {
-        artifactAppDatabase.cardDao().insertNewsList(newsList)
-    }
-
-    override fun getCardsList(token: String, page: Int, id: Int): Flowable<HttpResult<List<Card>>> {
-        return remoteDataSource.getCardsList(token, page, id)
+    fun insertArtifactCardList(newsList: List<Card>) {
+        artifactAppDatabase.cardDao().insertArtifactCardList(newsList)
     }
 
     companion object {

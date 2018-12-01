@@ -39,14 +39,14 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
         if (requestStatusLiveData.value != null) {
             return
         }
-        disposable = ArtifactRepository.get().loadNewsList()
+        disposable = ArtifactRepository.get().loadArtifactCardList()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError(Throwable::printStackTrace)
-            .doOnNext { newsEntity ->
+            .doOnNext { cardList ->
                 if (requestStatusLiveData.value == null) {
                     requestStatus.refreshStatus = RequestStatus.REFRESH
-                    requestStatus.data = newsEntity
+                    requestStatus.data = cardList
                     requestStatusLiveData.value = requestStatus
                 }
                 disposable?.dispose()
@@ -78,9 +78,9 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe(Subscriber.create())
     }
 
-    private fun setOtherNewsToLocalDb(localNewsList: List<Card>) {
+    private fun saveArtifactCardsToLocalDb(localNewsList: List<Card>) {
         Flowable.create<Any>({ e ->
-            ArtifactRepository.get().insertNewsList(localNewsList)
+            ArtifactRepository.get().insertArtifactCardList(localNewsList)
             e.onComplete()
 
         }, BackpressureStrategy.LATEST)
@@ -109,7 +109,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
                 Log.d("Шляпа2", "Шляпа2 ${cardSets.cardSet.version} $url")
                 requestStatus.data = cardSets.cardSet.cardList
                 requestStatusLiveData.value = requestStatus
-                cardSets.cardSet.cardList?.let { setOtherNewsToLocalDb(it) }
+                cardSets.cardSet.cardList?.let { saveArtifactCardsToLocalDb(it) }
             }
             .subscribe(Subscriber.create())
     }
@@ -124,33 +124,10 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
 
         requestStatus.refreshStatus = refreshStatus
         requestStatus.setPage(refreshStatus)
+        
+        //getCardSetDestById("00")
+        getCardSetDestById("01")
 
-        page = if (RequestStatus.REFRESH == requestStatus.refreshStatus) 1 else (++page)
-
-        getCardSetDestById("00")
-        //getCardSetDestById("01")
-
-//        ArtifactRepository.get()
-//            .getArtifactCardsList(TOKEN, page, newId.toInt())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnError {}
-//            .doOnSubscribe {
-//                if (RequestStatus.REFRESH == requestStatus.refreshStatus) {
-//                    loadStatusLiveData.value = LoadStatus.LOADING
-//                }
-//            }
-//            .map { result -> result.data }
-//            .doFinally {
-//                loadStatusLiveData.value = LoadStatus.LOADED
-//                requestStatus.isNetworkRequest = false
-//            }
-//            .doOnNext { newsList ->
-//                requestStatus.data = newsList
-//                requestStatusLiveData.value = requestStatus
-//
-//                newsList?.let { setOtherNewsToLocalDb(newsList, newId) }
-//            }
-//            .subscribe(Subscriber.create())
     }
 
 }

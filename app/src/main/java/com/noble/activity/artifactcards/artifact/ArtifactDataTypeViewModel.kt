@@ -78,6 +78,19 @@ class ArtifactDataTypeViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe(Subscriber.create())
     }
 
+    private fun setOtherNewsToLocalDb(localNewsList: List<Card>) {
+        Flowable.create<Any>({ e ->
+            ArtifactRepository.get().insertNewsList(localNewsList)
+            e.onComplete()
+
+        }, BackpressureStrategy.LATEST)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnError(Throwable::printStackTrace)
+            .doOnComplete { }
+            .subscribe(Subscriber.create())
+    }
+
     fun getCardSetByUrl(url: String) {
         ArtifactRepository.get()
             .getCardSet(url)
@@ -96,13 +109,13 @@ class ArtifactDataTypeViewModel(app: Application) : AndroidViewModel(app) {
                 Log.d("Шляпа2", "Шляпа2 ${cardSets.cardSet.version} $url")
                 requestStatus.data = cardSets.cardSet.cardList
                 requestStatusLiveData.value = requestStatus
-                //cardSets.cardSet.cardList?.let { setOtherNewsToLocalDb(newsList, newId)
+                cardSets.cardSet.cardList?.let { setOtherNewsToLocalDb(it) }
             }
             .subscribe(Subscriber.create())
     }
 
 
-    fun getOtherNewsList(refreshStatus: Int, newId: String) {
+    fun getArtifactCardsList(refreshStatus: Int, newId: String) {
         if (requestStatus.isNetworkRequest) return
 
         Log.d("ШляПа", "ШляПа")
@@ -115,10 +128,10 @@ class ArtifactDataTypeViewModel(app: Application) : AndroidViewModel(app) {
         page = if (RequestStatus.REFRESH == requestStatus.refreshStatus) 1 else (++page)
 
         getCardSetDestById("00")
-        getCardSetDestById("01")
+        //getCardSetDestById("01")
 
 //        ArtifactRepository.get()
-//            .getCardsList(TOKEN, page, newId.toInt())
+//            .getArtifactCardsList(TOKEN, page, newId.toInt())
 //            .observeOn(AndroidSchedulers.mainThread())
 //            .doOnError {}
 //            .doOnSubscribe {
@@ -140,16 +153,4 @@ class ArtifactDataTypeViewModel(app: Application) : AndroidViewModel(app) {
 //            .subscribe(Subscriber.create())
     }
 
-    private fun setOtherNewsToLocalDb(localNewsList: List<Card>, newId: String) {
-        Flowable.create<Any>({ e ->
-            ArtifactRepository.get().insertNewsList(localNewsList)
-            e.onComplete()
-
-        }, BackpressureStrategy.LATEST)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError(Throwable::printStackTrace)
-            .doOnComplete { }
-            .subscribe(Subscriber.create())
-    }
 }

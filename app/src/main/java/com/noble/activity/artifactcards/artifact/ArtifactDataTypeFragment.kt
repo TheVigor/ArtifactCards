@@ -53,7 +53,7 @@ class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
         initLiveData()
 
         otherArticleNewAllViewModel.loadLocalOtherNews(newId.toString())
-        otherArticleNewAllViewModel.getOtherNewsList(RequestStatus.REFRESH, newId.toString())
+        otherArticleNewAllViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
 
 
     }
@@ -84,11 +84,11 @@ class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
             OnRefreshHelper.OnRefreshStatusListener {
 
             override fun onRefresh() {
-                otherArticleNewAllViewModel.getOtherNewsList(RequestStatus.REFRESH, newId.toString())
+                otherArticleNewAllViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
             }
 
             override fun onLoadMore() {
-                otherArticleNewAllViewModel.getOtherNewsList(RequestStatus.LOAD_MORE, newId.toString())
+                //otherArticleNewAllViewModel.getArtifactCardsList(RequestStatus.LOAD_MORE, newId.toString())
             }
         })
     }
@@ -114,6 +114,6 @@ class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
 
     override fun startLoadData() {
         otherArticleNewAllViewModel.loadLocalOtherNews(newId.toString())
-        otherArticleNewAllViewModel.getOtherNewsList(RequestStatus.REFRESH, newId.toString())
+        otherArticleNewAllViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
     }
 }

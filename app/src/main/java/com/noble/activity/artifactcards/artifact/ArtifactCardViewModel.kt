@@ -18,13 +18,7 @@ import io.reactivex.schedulers.Schedulers
 
 class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
 
-    companion object {
-
-        const val NEW_ID: Int = 0
-    }
-
     private val requestStatus: RequestStatus<List<Card>> = RequestStatus()
-    private var page: Int = 1
 
     val loadStatusLiveData: MutableLiveData<LoadStatus> = MutableLiveData()
     val requestStatusLiveData: MutableLiveData<RequestStatus<List<Card>>> = MutableLiveData()
@@ -56,7 +50,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getCardSetDestById(cardSetId : String) {
         ArtifactRepository.get()
-            .getCardSetInfo(cardSetId)
+            .getRemoteCardSetInfo(cardSetId)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError {}
             .doOnSubscribe {
@@ -93,7 +87,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getCardSetByUrl(url: String) {
         ArtifactRepository.get()
-            .getCardSet(url)
+            .getRemoteCardSet(url)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError {}
             .doOnSubscribe {
@@ -124,7 +118,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
 
         requestStatus.refreshStatus = refreshStatus
         requestStatus.setPage(refreshStatus)
-        
+
         //getCardSetDestById("00")
         getCardSetDestById("01")
 

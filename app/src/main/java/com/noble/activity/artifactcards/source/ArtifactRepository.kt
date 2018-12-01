@@ -18,12 +18,12 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
         artifactAppDatabase = ArtifactAppDatabase.get(App.get())
     }
 
-    override fun getCardSetInfo(cardSetId: String): Flowable<CardSetInfo> {
-        return remoteDataSource.getCardSetInfo(cardSetId)
+    override fun getRemoteCardSetInfo(cardSetId: String): Flowable<CardSetInfo> {
+        return remoteDataSource.getRemoteCardSetInfo(cardSetId)
     }
 
-    override fun getCardSet(url: String): Flowable<CardSets> {
-        return remoteDataSource.getCardSet(url)
+    override fun getRemoteCardSet(url: String): Flowable<CardSets> {
+        return remoteDataSource.getRemoteCardSet(url)
     }
 
     fun loadArtifactCardList(): Flowable<List<Card>> {

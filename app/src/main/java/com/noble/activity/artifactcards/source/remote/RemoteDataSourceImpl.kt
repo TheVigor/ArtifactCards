@@ -12,17 +12,17 @@ import io.reactivex.schedulers.Schedulers
 class RemoteDataSourceImpl(private val artifactApi: ArtifactApi) :
     IRemoteDataSource {
 
-    override fun getCardSet(url: String): Flowable<CardSets> {
+    override fun getRemoteCardSet(url: String): Flowable<CardSets> {
         return artifactApi.getCardSet(url)
             .subscribeOn(Schedulers.io())
     }
 
-    override fun getCardSetInfo(cardSetId: String): Flowable<CardSetInfo> {
+    override fun getRemoteCardSetInfo(cardSetId: String): Flowable<CardSetInfo> {
         return artifactApi.getCardSetInfo(cardSetId)
             .subscribeOn(Schedulers.io())
     }
 
-    
+
 
 
 }

@@ -8,12 +8,13 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import android.support.annotation.VisibleForTesting
+import com.noble.activity.artifactcards.converter.MiniImageConverter
 import com.noble.activity.artifactcards.converter.ReferenceConverter
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.db.dao.CardDao
 
 @Database(entities = [Card::class], version = 1, exportSchema = false)
-@TypeConverters(ReferenceConverter::class)
+@TypeConverters(ReferenceConverter::class,MiniImageConverter::class)
 abstract class ArtifactAppDatabase : RoomDatabase() {
 
     private val isDatabaseCreated = MutableLiveData<Boolean>()

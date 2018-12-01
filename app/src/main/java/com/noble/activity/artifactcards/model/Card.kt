@@ -12,91 +12,69 @@ data class Card constructor(
 
     @SerializedName("card_id")
     @PrimaryKey
-    @Expose
     var cardId: Int,
 
     @SerializedName("base_card_id")
-    @Expose
     var baseCardId: Int,
 
     @SerializedName("card_type")
-    @Expose
     var cardType: String,
 
     @SerializedName("card_name")
-    @Expose
     @Embedded(prefix = "card_name")
     var cardName: CardName,
 
     @SerializedName("card_text")
-    @Expose
     @Embedded(prefix = "card_text")
-    var cardText: CardText? = null,
+    var cardText: CardText,
 
     @SerializedName("mini_image")
-    @Expose
-    @Embedded(prefix = "mini_image")
-    var miniImage: MiniImage? = null,
+    var miniImage: MiniImage,
 
     @SerializedName("large_image")
-    @Expose
     @Embedded(prefix = "large_image")
-    var largeImage: LargeImage? = null,
+    var largeImage: LargeImage,
 
     @SerializedName("ingame_image")
-    @Expose
     @Embedded(prefix = "ingame_image")
-    var ingameImage: IngameImage? = null,
+    var ingameImage: IngameImage,
 
     @SerializedName("hit_points")
-    @Expose
-    var hitPoints: Int? = null,
+    var hitPoints: Int,
 
     @SerializedName("references")
-    @Expose
     var references: List<Reference>,
 
     @SerializedName("illustrator")
-    @Expose
-    var illustrator: String? = null,
+    var illustrator: String?,
 
     @SerializedName("rarity")
-    @Expose
-    var rarity: String? = null,
+    var rarity: String?,
 
     @SerializedName("item_def")
-    @Expose
-    var itemDef: Int? = null,
+    var itemDef: Int?,
 
     @SerializedName("mana_cost")
-    @Expose
-    var manaCost: Int? = null,
+    var manaCost: Int?,
 
     @SerializedName("attack")
-    @Expose
-    var attack: Int? = null,
+    var attack: Int?,
 
     @SerializedName("sub_type")
-    @Expose
-    var subType: String? = null,
+    var subType: String?,
 
     @SerializedName("gold_cost")
-    @Expose
-    var goldCost: Int? = null,
+    var goldCost: Int?,
 
     @SerializedName("is_black")
-    @Expose
     var isBlack: Boolean? = false,
 
     @SerializedName("is_blue")
-    @Expose
     var isBlue: Boolean? = false,
 
     @SerializedName("is_green")
-    @Expose
     var isGreen: Boolean? = false,
 
     @SerializedName("is_red")
-    @Expose
     var isRed: Boolean? = false
 )

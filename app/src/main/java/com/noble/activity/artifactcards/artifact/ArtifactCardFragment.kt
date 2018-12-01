@@ -52,7 +52,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
         artifactCardViewModel = ViewModelProviders.of(this).get(ArtifactCardViewModel::class.java)
         initLiveData()
 
-        artifactCardViewModel.loadLocalOtherNews(newId.toString())
+        artifactCardViewModel.loadLocalArtifactCards(newId.toString())
         artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
 
 
@@ -110,7 +110,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
     }
 
     override fun startLoadData() {
-        artifactCardViewModel.loadLocalOtherNews(newId.toString())
+        artifactCardViewModel.loadLocalArtifactCards(newId.toString())
         artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
     }
 }

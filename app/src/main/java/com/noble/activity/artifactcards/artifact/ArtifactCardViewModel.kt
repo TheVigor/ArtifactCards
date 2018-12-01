@@ -35,7 +35,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
         requestStatusLiveData.value = null
     }
 
-    fun loadLocalOtherNews(newId: String) {
+    fun loadLocalArtifactCards(newId: String) {
         if (requestStatusLiveData.value != null) {
             return
         }

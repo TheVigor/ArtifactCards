@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 @Dao
 interface CardDao {
 
-    @Query("SELECT * FROM cards ORDER BY id DESC")
+    @Query("SELECT * FROM cards ORDER BY cardId DESC")
     fun loadNewsList(): Flowable<List<Card>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

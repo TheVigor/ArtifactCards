@@ -15,7 +15,7 @@ import com.ruzhan.lion.helper.OnRefreshHelper
 import com.ruzhan.lion.listener.OnItemClickListener
 import com.ruzhan.lion.model.LoadStatus
 import com.ruzhan.lion.model.RequestStatus
-import kotlinx.android.synthetic.main.artifact_frag_data_type.*
+import kotlinx.android.synthetic.main.artifact_frag_card.*
 
 class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
@@ -35,11 +35,11 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
     private var newId: Int? = null
 
-    private lateinit var otherArticleNewAllViewModel: ArtifactCardViewModel
-    private lateinit var articleNewAllAdapter: ArtifactCardAdapter
+    private lateinit var artifactCardViewModel: ArtifactCardViewModel
+    private lateinit var artifactCardAdapter: ArtifactCardAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.artifact_frag_data_type, container, false)
+        return inflater.inflate(R.layout.artifact_frag_card, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,17 +49,17 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
         initRecyclerView()
 
-        otherArticleNewAllViewModel = ViewModelProviders.of(this).get(ArtifactCardViewModel::class.java)
+        artifactCardViewModel = ViewModelProviders.of(this).get(ArtifactCardViewModel::class.java)
         initLiveData()
 
-        otherArticleNewAllViewModel.loadLocalOtherNews(newId.toString())
-        otherArticleNewAllViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
+        artifactCardViewModel.loadLocalOtherNews(newId.toString())
+        artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
 
 
     }
 
     private fun initRecyclerView() {
-        articleNewAllAdapter =
+        artifactCardAdapter =
                 ArtifactCardAdapter(object : OnItemClickListener<Card> {
                     override fun onItemClick(position: Int, bean: Card, itemView: View) {
                         activity?.let {
@@ -69,13 +69,13 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                     }
                 })
 
-        recycler_view.adapter = articleNewAllAdapter
+        recycler_view.adapter = artifactCardAdapter
 
         val manager = GridLayoutManager(activity, 2)
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
 
             override fun getSpanSize(position: Int): Int {
-                return articleNewAllAdapter.getSpanSize(position)
+                return artifactCardAdapter.getSpanSize(position)
             }
         }
         recycler_view.layoutManager = manager
@@ -84,36 +84,33 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
             OnRefreshHelper.OnRefreshStatusListener {
 
             override fun onRefresh() {
-                otherArticleNewAllViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
+                artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
             }
 
             override fun onLoadMore() {
-                //otherArticleNewAllViewModel.getArtifactCardsList(RequestStatus.LOAD_MORE, newId.toString())
+                //artifactCardViewModel.getArtifactCardsList(RequestStatus.LOAD_MORE, newId.toString())
             }
         })
     }
 
     private fun initLiveData() {
-        otherArticleNewAllViewModel.loadStatusLiveData.observe(this@ArtifactCardFragment,
+        artifactCardViewModel.loadStatusLiveData.observe(this@ArtifactCardFragment,
             Observer { loadStatus ->
                 loadStatus?.let {
                     swipe_refresh.isRefreshing = LoadStatus.LOADING == loadStatus
                 }
             })
 
-        otherArticleNewAllViewModel.requestStatusLiveData.observe(this@ArtifactCardFragment,
+        artifactCardViewModel.requestStatusLiveData.observe(this@ArtifactCardFragment,
             Observer { requestStatus ->
                 requestStatus?.let {
-                    when (requestStatus.refreshStatus) {
-                        RequestStatus.REFRESH -> articleNewAllAdapter.setRefreshData(requestStatus.data)
-                        RequestStatus.LOAD_MORE -> articleNewAllAdapter.setLoadMoreData(requestStatus.data)
-                    }
+                     artifactCardAdapter.setRefreshData(requestStatus.data)
                 }
             })
     }
 
     override fun startLoadData() {
-        otherArticleNewAllViewModel.loadLocalOtherNews(newId.toString())
-        otherArticleNewAllViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
+        artifactCardViewModel.loadLocalOtherNews(newId.toString())
+        artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
     }
 }

@@ -2,6 +2,8 @@ package com.noble.activity.artifactcards
 
 import com.noble.activity.artifactcards.db.ArtifactAppDatabase
 import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.model.CardSetInfo
+import com.noble.activity.artifactcards.model.CardSets
 import com.noble.activity.artifactcards.network.ArtifactClient
 import com.noble.activity.artifactcards.source.remote.IRemoteDataSource
 import com.ruzhan.lion.model.HttpResult
@@ -15,6 +17,14 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
     init {
         remoteDataSource = RemoteDataSourceImpl(ArtifactClient.get()!!)
         artifactAppDatabase = ArtifactAppDatabase.get(App.get())
+    }
+
+    override fun getCardSetInfo(cardSetId: String): Flowable<CardSetInfo> {
+        return remoteDataSource.getCardSetInfo(cardSetId)
+    }
+
+    override fun getCardSet(url: String): Flowable<CardSets> {
+        return remoteDataSource.getCardSet(url)
     }
 
     fun loadNewsList(): Flowable<List<Card>> {

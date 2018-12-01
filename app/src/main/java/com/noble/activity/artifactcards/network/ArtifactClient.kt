@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ArtifactClient {
 
-    private val HOST = "http://www.awaker.cn/api/"
+    private val HOST = "https://playartifact.com/cardset/"
 
     private var api: ArtifactApi? = null
 

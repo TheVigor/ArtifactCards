@@ -3,8 +3,9 @@ package com.noble.activity.artifactcards.artifact
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import android.text.TextUtils
+import android.util.Log
 import com.noble.activity.artifactcards.ArtifactRepository
-import com.noble.activity.artifactcards.utils.TOKEN
 import com.noble.activity.artifactcards.model.Card
 import com.ruzhan.lion.model.LoadStatus
 import com.ruzhan.lion.model.RequestStatus
@@ -53,8 +54,58 @@ class ArtifactDataTypeViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe({ }, { })
     }
 
+    fun getCardSetDestById(cardSetId : String) {
+        ArtifactRepository.get()
+            .getCardSetInfo(cardSetId)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnError {}
+            .doOnSubscribe {
+                if (RequestStatus.REFRESH == requestStatus.refreshStatus) {
+                    loadStatusLiveData.value = LoadStatus.LOADING
+                }
+            }
+            .doFinally {
+                loadStatusLiveData.value = LoadStatus.LOADED
+                requestStatus.isNetworkRequest = false
+            }
+            .doOnNext { cardSet ->
+                if (!TextUtils.isEmpty(cardSet.cdn_root) && !TextUtils.isEmpty(cardSet.url)) {
+                    Log.d("Шляпа", "Шляпа $cardSetId")
+
+                    getCardSetByUrl(cardSet.cdn_root + cardSet.url)
+                }
+            }
+            .subscribe(Subscriber.create())
+    }
+
+    fun getCardSetByUrl(url: String) {
+        ArtifactRepository.get()
+            .getCardSet(url)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnError {}
+            .doOnSubscribe {
+                if (RequestStatus.REFRESH == requestStatus.refreshStatus) {
+                    loadStatusLiveData.value = LoadStatus.LOADING
+                }
+            }
+            .doFinally {
+                loadStatusLiveData.value = LoadStatus.LOADED
+                requestStatus.isNetworkRequest = false
+            }
+            .doOnNext { cardSets ->
+                Log.d("Шляпа2", "Шляпа2 ${cardSets.cardSet.version} $url")
+                requestStatus.data = cardSets.cardSet.cardList
+                requestStatusLiveData.value = requestStatus
+                //cardSets.cardSet.cardList?.let { setOtherNewsToLocalDb(newsList, newId)
+            }
+            .subscribe(Subscriber.create())
+    }
+
+
     fun getOtherNewsList(refreshStatus: Int, newId: String) {
         if (requestStatus.isNetworkRequest) return
+
+        Log.d("ШляПа", "ШляПа")
 
         requestStatus.isNetworkRequest = true
 
@@ -63,27 +114,30 @@ class ArtifactDataTypeViewModel(app: Application) : AndroidViewModel(app) {
 
         page = if (RequestStatus.REFRESH == requestStatus.refreshStatus) 1 else (++page)
 
-        ArtifactRepository.get()
-            .getCardsList(TOKEN, page, newId.toInt())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError {}
-            .doOnSubscribe {
-                if (RequestStatus.REFRESH == requestStatus.refreshStatus) {
-                    loadStatusLiveData.value = LoadStatus.LOADING
-                }
-            }
-            .map { result -> result.data }
-            .doFinally {
-                loadStatusLiveData.value = LoadStatus.LOADED
-                requestStatus.isNetworkRequest = false
-            }
-            .doOnNext { newsList ->
-                requestStatus.data = newsList
-                requestStatusLiveData.value = requestStatus
+        getCardSetDestById("00")
+        getCardSetDestById("01")
 
-                newsList?.let { setOtherNewsToLocalDb(newsList, newId) }
-            }
-            .subscribe(Subscriber.create())
+//        ArtifactRepository.get()
+//            .getCardsList(TOKEN, page, newId.toInt())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .doOnError {}
+//            .doOnSubscribe {
+//                if (RequestStatus.REFRESH == requestStatus.refreshStatus) {
+//                    loadStatusLiveData.value = LoadStatus.LOADING
+//                }
+//            }
+//            .map { result -> result.data }
+//            .doFinally {
+//                loadStatusLiveData.value = LoadStatus.LOADED
+//                requestStatus.isNetworkRequest = false
+//            }
+//            .doOnNext { newsList ->
+//                requestStatus.data = newsList
+//                requestStatusLiveData.value = requestStatus
+//
+//                newsList?.let { setOtherNewsToLocalDb(newsList, newId) }
+//            }
+//            .subscribe(Subscriber.create())
     }
 
     private fun setOtherNewsToLocalDb(localNewsList: List<Card>, newId: String) {

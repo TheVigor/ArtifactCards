@@ -24,8 +24,8 @@ class ArtifactDataTypeHolder(itemView: View, private var listener: OnItemClickLi
     fun bind(bean: Card) {
         card = bean
 
-        itemView.title_tv.text = card.title
-        itemView.category_tv.text = card.description
+        itemView.title_tv.text = card.cardName.russian
+        itemView.category_tv.text = card.cardText.russian
 
         //val commentStr = String.format(itemView.resources
         //    .getString(R.string.awaker_article_comment_count), bean.comment)
@@ -33,8 +33,8 @@ class ArtifactDataTypeHolder(itemView: View, private var listener: OnItemClickLi
 
         itemView.comment_tv.text = "LOL"
 
-        card.cover_url?.let {
-            ImageLoader.get().load(itemView.icon_iv, it.ori)
+        card.miniImage.default?.let {
+            ImageLoader.get().load(itemView.icon_iv, it)
         }
     }
 }

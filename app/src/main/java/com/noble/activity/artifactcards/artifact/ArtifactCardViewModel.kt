@@ -16,7 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class ArtifactDataTypeViewModel(app: Application) : AndroidViewModel(app) {
+class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
 
     companion object {
 

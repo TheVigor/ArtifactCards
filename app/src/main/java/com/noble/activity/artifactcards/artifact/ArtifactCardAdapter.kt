@@ -10,7 +10,7 @@ import com.ruzhan.lion.listener.OnItemClickListener
 import com.ruzhan.lion.ui.LoadMoreHolder
 import java.util.ArrayList
 
-class ArtifactDataTypeAdapter(private var listener: OnItemClickListener<Card>)
+class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -56,7 +56,7 @@ class ArtifactDataTypeAdapter(private var listener: OnItemClickListener<Card>)
         lateinit var viewHolder: RecyclerView.ViewHolder
         when (viewType) {
             TYPE_NORMAL -> viewHolder =
-                    ArtifactDataTypeHolder(
+                    ArtifactCardHolder(
                         LayoutInflater.from(parent.context)
                             .inflate(
                                 R.layout.artifact_item_new_list_grid,
@@ -74,7 +74,7 @@ class ArtifactDataTypeAdapter(private var listener: OnItemClickListener<Card>)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            TYPE_NORMAL -> (holder as ArtifactDataTypeHolder).bind(dataList[position] as Card)
+            TYPE_NORMAL -> (holder as ArtifactCardHolder).bind(dataList[position] as Card)
             TYPE_LOAD_MORE -> (holder as LoadMoreHolder).bind(isLoadMore)
         }
     }

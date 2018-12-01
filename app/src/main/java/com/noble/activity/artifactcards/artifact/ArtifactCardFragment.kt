@@ -17,17 +17,17 @@ import com.ruzhan.lion.model.LoadStatus
 import com.ruzhan.lion.model.RequestStatus
 import kotlinx.android.synthetic.main.artifact_frag_data_type.*
 
-class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
+class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
     companion object {
 
         private const val NEW_ID = "NEW_ID"
 
         @JvmStatic
-        fun newInstance(newId: Int): ArtifactDataTypeFragment {
+        fun newInstance(newId: Int): ArtifactCardFragment {
             val args = Bundle()
             args.putInt(NEW_ID, newId)
-            val frag = ArtifactDataTypeFragment()
+            val frag = ArtifactCardFragment()
             frag.arguments = args
             return frag
         }
@@ -35,8 +35,8 @@ class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
 
     private var newId: Int? = null
 
-    private lateinit var otherArticleNewAllViewModel: ArtifactDataTypeViewModel
-    private lateinit var articleNewAllAdapter: ArtifactDataTypeAdapter
+    private lateinit var otherArticleNewAllViewModel: ArtifactCardViewModel
+    private lateinit var articleNewAllAdapter: ArtifactCardAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.artifact_frag_data_type, container, false)
@@ -49,7 +49,7 @@ class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
 
         initRecyclerView()
 
-        otherArticleNewAllViewModel = ViewModelProviders.of(this).get(ArtifactDataTypeViewModel::class.java)
+        otherArticleNewAllViewModel = ViewModelProviders.of(this).get(ArtifactCardViewModel::class.java)
         initLiveData()
 
         otherArticleNewAllViewModel.loadLocalOtherNews(newId.toString())
@@ -60,7 +60,7 @@ class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
 
     private fun initRecyclerView() {
         articleNewAllAdapter =
-                ArtifactDataTypeAdapter(object : OnItemClickListener<Card> {
+                ArtifactCardAdapter(object : OnItemClickListener<Card> {
                     override fun onItemClick(position: Int, bean: Card, itemView: View) {
                         activity?.let {
                             //val url = if (bean.cover_url == null) "" else bean.cover_url.ori
@@ -94,14 +94,14 @@ class ArtifactDataTypeFragment : Fragment(), OnFragmentLoadListener {
     }
 
     private fun initLiveData() {
-        otherArticleNewAllViewModel.loadStatusLiveData.observe(this@ArtifactDataTypeFragment,
+        otherArticleNewAllViewModel.loadStatusLiveData.observe(this@ArtifactCardFragment,
             Observer { loadStatus ->
                 loadStatus?.let {
                     swipe_refresh.isRefreshing = LoadStatus.LOADING == loadStatus
                 }
             })
 
-        otherArticleNewAllViewModel.requestStatusLiveData.observe(this@ArtifactDataTypeFragment,
+        otherArticleNewAllViewModel.requestStatusLiveData.observe(this@ArtifactCardFragment,
             Observer { requestStatus ->
                 requestStatus?.let {
                     when (requestStatus.refreshStatus) {

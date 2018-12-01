@@ -8,7 +8,7 @@ import com.ruzhan.lion.helper.FontHelper
 import com.ruzhan.lion.listener.OnItemClickListener
 import kotlinx.android.synthetic.main.artifact_item_new_list_grid.view.*
 
-class ArtifactDataTypeHolder(itemView: View, private var listener: OnItemClickListener<Card>)
+class ArtifactCardHolder(itemView: View, private var listener: OnItemClickListener<Card>)
     : RecyclerView.ViewHolder(itemView) {
 
     private lateinit var card: Card

@@ -80,26 +80,9 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
         }
         recycler_view.layoutManager = manager
 
-        OnRefreshHelper.setOnRefreshStatusListener(swipe_refresh, recycler_view, object :
-            OnRefreshHelper.OnRefreshStatusListener {
-
-            override fun onRefresh() {
-                artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
-            }
-
-            override fun onLoadMore() {
-                //artifactCardViewModel.getArtifactCardsList(RequestStatus.LOAD_MORE, newId.toString())
-            }
-        })
     }
 
     private fun initLiveData() {
-        artifactCardViewModel.loadStatusLiveData.observe(this@ArtifactCardFragment,
-            Observer { loadStatus ->
-                loadStatus?.let {
-                    swipe_refresh.isRefreshing = LoadStatus.LOADING == loadStatus
-                }
-            })
 
         artifactCardViewModel.requestStatusLiveData.observe(this@ArtifactCardFragment,
             Observer { requestStatus ->

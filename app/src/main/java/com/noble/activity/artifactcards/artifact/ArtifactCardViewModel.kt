@@ -48,7 +48,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe({ }, { })
     }
 
-    fun getCardSetDestById(cardSetId : String) {
+    fun getCardSetDestById(cardSetId : String, type: String) {
         ArtifactRepository.get()
             .getRemoteCardSetInfo(cardSetId)
             .observeOn(AndroidSchedulers.mainThread())
@@ -66,7 +66,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
                 if (!TextUtils.isEmpty(cardSet.cdn_root) && !TextUtils.isEmpty(cardSet.url)) {
                     Log.d("Шляпа", "Шляпа $cardSetId")
 
-                    getCardSetByUrl(cardSet.cdn_root + cardSet.url)
+                    getCardSetByUrl(cardSet.cdn_root + cardSet.url, type)
                 }
             }
             .subscribe(Subscriber.create())
@@ -85,7 +85,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe(Subscriber.create())
     }
 
-    fun getCardSetByUrl(url: String) {
+    fun getCardSetByUrl(url: String, type: String) {
         ArtifactRepository.get()
             .getRemoteCardSet(url)
             .observeOn(AndroidSchedulers.mainThread())
@@ -101,7 +101,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             }
             .doOnNext { cardSets ->
                 Log.d("Шляпа2", "Шляпа2 ${cardSets.cardSet.version} $url")
-                requestStatus.data = cardSets.cardSet.cardList
+                requestStatus.data = cardSets.cardSet.cardList.filter { it.cardType == type }
                 requestStatusLiveData.value = requestStatus
                 cardSets.cardSet.cardList?.let { saveArtifactCardsToLocalDb(it) }
             }
@@ -109,7 +109,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
     }
 
 
-    fun getArtifactCardsList(refreshStatus: Int, newId: String) {
+    fun getArtifactCardsList(refreshStatus: Int, type: String) {
         if (requestStatus.isNetworkRequest) return
 
         Log.d("ШляПа", "ШляПа")
@@ -119,8 +119,8 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
         requestStatus.refreshStatus = refreshStatus
         requestStatus.setPage(refreshStatus)
 
-        //getCardSetDestById("00")
-        getCardSetDestById("01")
+        //getCardSetDestById("00", type)
+        getCardSetDestById("01", type)
 
     }
 

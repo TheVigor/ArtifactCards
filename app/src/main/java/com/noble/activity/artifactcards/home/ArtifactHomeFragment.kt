@@ -71,8 +71,6 @@ class ArtifactHomeFragment : Fragment() {
         val titleArr = ArrayList<String>()
         titleArr.add("Heroes")
         titleArr.add("Spells")
-        titleArr.add("Abilities")
-        titleArr.add("Passive Abilities")
         titleArr.add("Items")
         titleArr.add("Improvements")
         titleArr.add("Creeps")

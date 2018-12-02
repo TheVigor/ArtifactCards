@@ -29,11 +29,11 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
         requestStatusLiveData.value = null
     }
 
-    fun loadLocalArtifactCards(newId: String) {
+    fun loadLocalArtifactCards(type: String) {
         if (requestStatusLiveData.value != null) {
             return
         }
-        disposable = ArtifactRepository.get().loadArtifactCardList()
+        disposable = ArtifactRepository.get().loadArtifactCardListByType(type)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError(Throwable::printStackTrace)

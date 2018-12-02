@@ -26,8 +26,12 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
         return remoteDataSource.getRemoteCardSet(url)
     }
 
-    fun loadArtifactCardList(): Flowable<List<Card>> {
-        return artifactAppDatabase.cardDao().loadArtifactCardList()
+    fun loadAllArtifactCardList(): Flowable<List<Card>> {
+        return artifactAppDatabase.cardDao().loadAllArtifactCardList()
+    }
+
+    fun loadArtifactCardListByType(type: String): Flowable<List<Card>> {
+        return artifactAppDatabase.cardDao().loadArtifactCardListByType(type)
     }
 
     fun insertArtifactCardList(newsList: List<Card>) {

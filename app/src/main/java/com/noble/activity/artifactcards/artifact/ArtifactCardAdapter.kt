@@ -3,11 +3,9 @@ package com.noble.activity.artifactcards.artifact
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.noble.activity.artifactcards.utils.PAGE_SIZE
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.model.Card
 import com.ruzhan.lion.listener.OnItemClickListener
-import com.ruzhan.lion.ui.LoadMoreHolder
 import java.util.ArrayList
 
 class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)

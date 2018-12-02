@@ -11,29 +11,27 @@ import android.view.ViewGroup
 import com.noble.activity.artifactcards.OnFragmentLoadListener
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.model.Card
-import com.ruzhan.lion.helper.OnRefreshHelper
+import com.noble.activity.artifactcards.utils.HERO_CARD_TYPE
 import com.ruzhan.lion.listener.OnItemClickListener
-import com.ruzhan.lion.model.LoadStatus
-import com.ruzhan.lion.model.RequestStatus
 import kotlinx.android.synthetic.main.artifact_frag_card.*
 
 class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
     companion object {
 
-        private const val NEW_ID = "NEW_ID"
+        private const val CARD_TYPE = "CARD_TYPE"
 
         @JvmStatic
-        fun newInstance(newId: Int): ArtifactCardFragment {
+        fun newInstance(type: String): ArtifactCardFragment {
             val args = Bundle()
-            args.putInt(NEW_ID, newId)
+            args.putString(CARD_TYPE, type)
             val frag = ArtifactCardFragment()
             frag.arguments = args
             return frag
         }
     }
 
-    private var newId: Int? = null
+    private var cardType: String = HERO_CARD_TYPE
 
     private lateinit var artifactCardViewModel: ArtifactCardViewModel
     private lateinit var artifactCardAdapter: ArtifactCardAdapter
@@ -45,15 +43,15 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.let { newId = it.getInt(NEW_ID) }
+        arguments?.let { cardType = it.getString(CARD_TYPE) }
 
         initRecyclerView()
 
         artifactCardViewModel = ViewModelProviders.of(this).get(ArtifactCardViewModel::class.java)
         initLiveData()
 
-        artifactCardViewModel.loadLocalArtifactCards(newId.toString())
-        artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
+        artifactCardViewModel.loadLocalArtifactCards(cardType)
+        //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
 
 
     }
@@ -71,7 +69,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
         recycler_view.adapter = artifactCardAdapter
 
-        val manager = GridLayoutManager(activity, 2)
+        val manager = GridLayoutManager(activity, 3)
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
 
             override fun getSpanSize(position: Int): Int {
@@ -93,7 +91,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
     }
 
     override fun startLoadData() {
-        artifactCardViewModel.loadLocalArtifactCards(newId.toString())
-        artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
+        artifactCardViewModel.loadLocalArtifactCards(cardType.toString())
+        //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, newId.toString())
     }
 }

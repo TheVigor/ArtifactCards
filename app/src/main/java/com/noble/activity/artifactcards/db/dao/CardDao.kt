@@ -11,7 +11,10 @@ import io.reactivex.Flowable
 interface CardDao {
 
     @Query("SELECT * FROM cards ORDER BY cardId DESC")
-    fun loadArtifactCardList(): Flowable<List<Card>>
+    fun loadAllArtifactCardList(): Flowable<List<Card>>
+
+    @Query("SELECT * FROM cards WHERE cardType = :type ORDER BY cardId DESC")
+    fun loadArtifactCardListByType(type: String): Flowable<List<Card>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertArtifactCardList(newsList: List<Card>)

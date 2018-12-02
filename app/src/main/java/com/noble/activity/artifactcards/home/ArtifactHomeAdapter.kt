@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.noble.activity.artifactcards.OnFragmentLoadListener
 import com.noble.activity.artifactcards.artifact.ArtifactCardFragment
+import com.noble.activity.artifactcards.utils.*
 import java.lang.ref.WeakReference
 
 class ArtifactHomeAdapter(fm: FragmentManager, private val titleList: List<String>)
@@ -15,13 +16,13 @@ class ArtifactHomeAdapter(fm: FragmentManager, private val titleList: List<Strin
     override fun getItem(position: Int): Fragment {
         lateinit var frag: Fragment
         when (position) {
-            0 -> frag = ArtifactCardFragment.newInstance(0) //
-            1 -> frag = ArtifactCardFragment.newInstance(1) // 每周热读
-            2 -> frag = ArtifactCardFragment.newInstance(2) // 每周热评
-            3 -> frag = ArtifactCardFragment.newInstance(3) // 灵性觉醒
-            4 -> frag = ArtifactCardFragment.newInstance(4) // 科学探索
-            5 -> frag = ArtifactCardFragment.newInstance(5) // UFO
-            6 -> frag = ArtifactCardFragment.newInstance(6) // 自由能源
+            0 -> frag = ArtifactCardFragment.newInstance(HERO_CARD_TYPE) // Heroes
+            1 -> frag = ArtifactCardFragment.newInstance(SPELL_CARD_TYPE) // Spells
+            2 -> frag = ArtifactCardFragment.newInstance(ABILITY_CARD_TYPE) // Abilities
+            3 -> frag = ArtifactCardFragment.newInstance(PASSIVE_ABILITY_CARD_TYPE) // Passive Abilities
+            4 -> frag = ArtifactCardFragment.newInstance(ITEM_CARD_TYPE) // Items
+            5 -> frag = ArtifactCardFragment.newInstance(IMPROVEMENT_CARD_TYPE) // Improvements
+            6 -> frag = ArtifactCardFragment.newInstance(CREEP_CARD_TYPE) // Creeps
         }
         if (frag is OnFragmentLoadListener) {
             fragMap[position] = WeakReference<OnFragmentLoadListener>(frag)

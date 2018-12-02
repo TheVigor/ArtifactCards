@@ -53,7 +53,8 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
         initLiveData()
 
         artifactCardViewModel.loadLocalArtifactCards(cardType)
-        artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
+        artifactCardViewModel.getAllCards(cardType)
+        //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
 
 
     }
@@ -106,6 +107,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
     override fun startLoadData() {
         artifactCardViewModel.loadLocalArtifactCards(cardType)
-        artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
+        artifactCardViewModel.getAllCards(cardType)
+        //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
     }
 }

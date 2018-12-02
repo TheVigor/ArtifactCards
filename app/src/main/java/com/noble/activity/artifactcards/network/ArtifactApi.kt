@@ -11,18 +11,12 @@ import retrofit2.http.*
 interface ArtifactApi {
 
     @GET("{cardset_id}")
-    fun getCardSetInfo(@Path("cardset_id") cardSetId: String): Flowable<CardSetInfo>
+    fun getCardSetInfo(@Path("cardset_id") cardSetId: String): Single<CardSetInfo>
 
     @GET
-    fun getCardSet(@Url url: String): Flowable<CardSets>
+    fun getCardSet(@Url url: String): Single<CardSets>
 
 
-    @FormUrlEncoded
-    @POST("news/getNewsAll")
-    fun getCardsList(
-        @Field("access_token") token: String,
-        @Field("page") page: Int, @Field("id") id: Int
-    ): Flowable<HttpResult<List<Card>>>
 
 
 }

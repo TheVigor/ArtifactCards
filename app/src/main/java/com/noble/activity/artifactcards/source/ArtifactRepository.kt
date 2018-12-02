@@ -7,6 +7,7 @@ import com.noble.activity.artifactcards.model.CardSets
 import com.noble.activity.artifactcards.network.ArtifactClient
 import com.noble.activity.artifactcards.source.remote.IRemoteDataSource
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 class ArtifactRepository private constructor() : IRemoteDataSource {
 
@@ -18,11 +19,11 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
         artifactAppDatabase = ArtifactAppDatabase.get(App.get())
     }
 
-    override fun getRemoteCardSetInfo(cardSetId: String): Flowable<CardSetInfo> {
+    override fun getRemoteCardSetInfo(cardSetId: String): Single<CardSetInfo> {
         return remoteDataSource.getRemoteCardSetInfo(cardSetId)
     }
 
-    override fun getRemoteCardSet(url: String): Flowable<CardSets> {
+    override fun getRemoteCardSet(url: String): Single<CardSets> {
         return remoteDataSource.getRemoteCardSet(url)
     }
 

@@ -9,8 +9,8 @@ import io.reactivex.Single
 
 interface IRemoteDataSource {
 
-    fun getRemoteCardSetInfo(cardSetId: String): Flowable<CardSetInfo>
+    fun getRemoteCardSetInfo(cardSetId: String): Single<CardSetInfo>
 
-    fun getRemoteCardSet(url: String): Flowable<CardSets>
+    fun getRemoteCardSet(url: String): Single<CardSets>
 
 }

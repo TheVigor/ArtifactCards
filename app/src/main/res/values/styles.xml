@@ -51,9 +51,5 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="Artifact.Home.CommentEditText" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">@color/artifact_grey_zan</item>
-        <item name="colorControlActivated">@color/artifact_grey_zan</item>
-    </style>
 
 </resources>

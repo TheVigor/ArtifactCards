@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 soulwolf:datumRatio="datumWidth"
-                soulwolf:heightRatio="9"
+                soulwolf:heightRatio="16"
                 soulwolf:widthRatio="16">
 
             <ImageView
@@ -41,11 +41,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 soulwolf:datumRatio="datumWidth"
-                soulwolf:heightRatio="7.5"
+                soulwolf:heightRatio="12"
                 soulwolf:widthRatio="16">
 
             <TextView
-                    android:id="@+id/title_tv"
+                    android:id="@+id/card_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -60,19 +60,20 @@
                     android:textSize="13sp" />
 
             <LinearLayout
+                    android:id="@+id/card_stats_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                 <TextView
-                        android:id="@+id/category_tv"
-                        android:layout_width="0dp"
+                        android:id="@+id/card_color"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="4dp"
                         android:layout_weight="2"
                         android:ellipsize="end"
                         android:letterSpacing="0.09"
@@ -81,17 +82,19 @@
                         android:textSize="11sp" />
 
                 <TextView
-                        android:id="@+id/comment_tv"
-                        android:layout_width="0dp"
+                        android:id="@+id/card_rarity"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="end"
                         android:letterSpacing="0.09"
                         android:maxLines="1"
-                        android:textColor="#99383838"
+                        android:textColor="@color/artifact_text_color"
                         android:textSize="11sp" />
             </LinearLayout>
         </net.soulwolf.widget.ratiolayout.widget.RatioRelativeLayout>

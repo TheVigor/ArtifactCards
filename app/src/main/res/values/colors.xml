@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFF5F5F5</color>
+    <color name="colorPrimary">#EEFAFAFA</color>
     <color name="colorPrimaryDark">#66757575</color>
-    <color name="colorAccent">#FF1E88E5</color>
+    <color name="colorAccent">#FFFFAB40</color>
 
-    <color name="artifact_color">#FF2196F3</color>
+    <color name="artifact_color">#FFFFAB40</color>
 
-    <color name="artifact_white">#FFFFFFFF</color>
-    <color name="artifact_white_f5">#FFF5F5F5</color>
-    <color name="artifact_text_white_87">#DEFFFFFF</color>
-    <color name="artifact_text_white_50">#80FFFFFF</color>
+    <color name="artifact_white">#FF212121</color>
+    <color name="artifact_white_f5">#FF424242</color>
 
-    <color name="artifact_text_color">#EE383838</color>
+    <color name="artifact_text_color">#EEFAFAFA</color>
 
-    <color name="artifact_text_grey">#99757575</color>
-    <color name="artifact_text_grey33">#33757575</color>
+    <color name="artifact_text_grey">#99FF0000</color>
+    <color name="artifact_text_grey33">#330000FF</color>
 
-    <color name="artifact_themePrimaryDark">#FFFD5044</color>
-
-    <color name="artifact_blue_zan">#FF3BB9FF</color>
-    <color name="artifact_grey_zan">#FFB6B6B4</color>
-    <color name="artifact_black12">#1F000000</color>
 
     <color name="artifact_image_mark">#FFE0E0E0</color>
     <color name="artifact_normal_grey">#FF757575</color>

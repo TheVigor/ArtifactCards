@@ -93,7 +93,7 @@ data class Card constructor(
             return "Red"
         }
 
-        return "Unknown"
+        return ""
     }
 
     fun getTextColor(): Int {
@@ -107,7 +107,7 @@ data class Card constructor(
             return  Color.parseColor("#2E7D32")
         }
         if (isRed != null) {
-            return Color.parseColor("#FF5252")
+            return Color.parseColor("#FF0000")
         }
 
         return Color.parseColor("#000000")

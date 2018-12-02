@@ -85,12 +85,6 @@ class ArtifactHomeFragment : Fragment() {
 
     inner class FragmentLoadTask : Runnable {
 
-        private var position: Int = 0
-
-        fun setPosition(pos: Int) {
-            position = pos
-        }
-
         override fun run() {
             onFragmentLoadListener?.startLoadData()
         }

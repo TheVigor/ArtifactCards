@@ -13,6 +13,7 @@ import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.utils.HERO_CARD_TYPE
 import com.ruzhan.lion.listener.OnItemClickListener
+import com.ruzhan.lion.model.LoadStatus
 import com.ruzhan.lion.model.RequestStatus
 import kotlinx.android.synthetic.main.artifact_frag_card.*
 
@@ -82,6 +83,18 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
     }
 
     private fun initLiveData() {
+
+        artifactCardViewModel.loadStatusLiveData.observe(this@ArtifactCardFragment,
+            Observer { loadStatus ->
+                loadStatus?.let {
+
+                    loadingProgressBar.visibility = if (LoadStatus.LOADING == loadStatus) {
+                        View.VISIBLE
+                    } else {
+                        View.GONE
+                    }
+                }
+            })
 
         artifactCardViewModel.requestStatusLiveData.observe(this@ArtifactCardFragment,
             Observer { requestStatus ->

@@ -3,6 +3,7 @@ package com.noble.activity.artifactcards.model
 import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import android.graphics.Color
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import io.reactivex.annotations.NonNull
@@ -77,4 +78,41 @@ data class Card constructor(
 
     @SerializedName("is_red")
     var isRed: Boolean? = false
-)
+) {
+    fun getColorName(): String {
+        if (isBlack != null){
+            return "Black"
+        }
+        if (isBlue != null) {
+            return "Blue"
+        }
+        if (isGreen != null) {
+            return  "Green"
+        }
+        if (isRed != null) {
+            return "Red"
+        }
+
+        return "Unknown"
+    }
+
+    fun getTextColor(): Int {
+        if (isBlack != null){
+            return Color.parseColor("#000000")
+        }
+        if (isBlue != null) {
+            return Color.parseColor("#448AFF")
+        }
+        if (isGreen != null) {
+            return  Color.parseColor("#2E7D32")
+        }
+        if (isRed != null) {
+            return Color.parseColor("#FF5252")
+        }
+
+        return Color.parseColor("#000000")
+
+    }
+
+
+}

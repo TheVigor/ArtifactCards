@@ -37,8 +37,8 @@ class ArtifactHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        title_tv.typeface = FontHelper.get().getBoldTypeface()
-        title_tv.text = "Artifact Cards" //resources.getString(R.string.awaker_article_news_title)
+        card_name.typeface = FontHelper.get().getBoldTypeface()
+        card_name.text = "Artifact Cards" //resources.getString(R.string.awaker_article_news_title)
         setToolbar(toolbar)
 
         val titleList = getTitleList()

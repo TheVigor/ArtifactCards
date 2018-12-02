@@ -14,7 +14,6 @@ import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.utils.HERO_CARD_TYPE
 import com.ruzhan.lion.listener.OnItemClickListener
 import com.ruzhan.lion.model.LoadStatus
-import com.ruzhan.lion.model.RequestStatus
 import kotlinx.android.synthetic.main.artifact_frag_card.*
 
 class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
@@ -52,7 +51,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
         artifactCardViewModel = ViewModelProviders.of(this).get(ArtifactCardViewModel::class.java)
         initLiveData()
 
-        artifactCardViewModel.loadLocalArtifactCards(cardType)
+        artifactCardViewModel.loadLocalDbArtifactCards(cardType)
         artifactCardViewModel.getAllCards(cardType)
         //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
 
@@ -106,7 +105,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
     }
 
     override fun startLoadData() {
-        artifactCardViewModel.loadLocalArtifactCards(cardType)
+        artifactCardViewModel.loadLocalDbArtifactCards(cardType)
         artifactCardViewModel.getAllCards(cardType)
         //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
     }

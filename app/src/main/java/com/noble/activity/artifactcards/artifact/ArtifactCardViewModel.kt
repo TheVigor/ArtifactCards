@@ -1,9 +1,9 @@
 package com.noble.activity.artifactcards.artifact
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import android.text.TextUtils
 import android.util.Log
 import com.noble.activity.artifactcards.ArtifactRepository
 import com.noble.activity.artifactcards.model.*
@@ -31,6 +31,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
         requestStatusLiveData.value = null
     }
 
+    @SuppressLint("CheckResult")
     fun getAllCards(type: String) {
         loadStatusLiveData.value = LoadStatus.LOADING
         getAllCardsFromRemote()
@@ -44,17 +45,17 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
                 cardSets.cardSet.cardList?.let { saveArtifactCardsToLocalDb(it) }
             },
             {
-                    error ->
+                error ->
                 loadStatusLiveData.value = LoadStatus.LOADED
                 Log.d("Шляпа", "Ошибка")
             })
     }
 
 
-    fun getAllCardsFromRemote(): Single<CardSets> {
+    private fun getAllCardsFromRemote(): Single<CardSets> {
         return Single.zip(
-            getCardSet("00"),
-            getCardSet("01"),
+            getCardSetById("00"),
+            getCardSetById("01"),
             BiFunction<CardSets, CardSets, CardSets>
             {
                 first, second ->
@@ -74,16 +75,16 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
 
     }
 
-    fun getCardSet(id: String): Single<CardSets> {
+    private fun getCardSetById(id: String): Single<CardSets> {
         return ArtifactRepository.get().getRemoteCardSetInfo(id)
             .flatMap { cardSetInfo -> mapCardSetInfoToCardSet(cardSetInfo.cdn_root + cardSetInfo.url) }
     }
 
-    fun mapCardSetInfoToCardSet(url: String): Single<CardSets> {
+    private fun mapCardSetInfoToCardSet(url: String): Single<CardSets> {
         return ArtifactRepository.get().getRemoteCardSet(url)
     }
 
-    fun loadLocalArtifactCards(type: String) {
+    fun loadLocalDbArtifactCards(type: String) {
         if (requestStatusLiveData.value != null) {
             return
         }
@@ -102,30 +103,6 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe({ }, { })
     }
 
-//    fun getCardSetDestById(cardSetId : String, type: String) {
-//        ArtifactRepository.get()
-//            .getRemoteCardSetInfo(cardSetId)
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnError {}
-//            .doOnSubscribe {
-//                if (RequestStatus.REFRESH == requestStatus.refreshStatus) {
-//                    loadStatusLiveData.value = LoadStatus.LOADING
-//                }
-//            }
-//            .doFinally {
-//                loadStatusLiveData.value = LoadStatus.LOADED
-//                requestStatus.isNetworkRequest = false
-//            }
-//            .doOnNext { cardSet ->
-//                if (!TextUtils.isEmpty(cardSet.cdn_root) && !TextUtils.isEmpty(cardSet.url)) {
-//                    Log.d("Шляпа", "Шляпа $cardSetId")
-//
-//                    getCardSetByUrl(cardSet.cdn_root + cardSet.url, type)
-//                }
-//            }
-//            .subscribe(Subscriber.create())
-//    }
-
     private fun saveArtifactCardsToLocalDb(localNewsList: List<Card>) {
         Flowable.create<Any>({ e ->
             ArtifactRepository.get().insertArtifactCardList(localNewsList)
@@ -137,45 +114,6 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .doOnError(Throwable::printStackTrace)
             .doOnComplete { }
             .subscribe(Subscriber.create())
-    }
-
-//    fun getCardSetByUrl(url: String, type: String) {
-//        ArtifactRepository.get()
-//            .getRemoteCardSet(url)
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnError {}
-//            .doOnSubscribe {
-//                if (RequestStatus.REFRESH == requestStatus.refreshStatus) {
-//                    loadStatusLiveData.value = LoadStatus.LOADING
-//                }
-//            }
-//            .doFinally {
-//                loadStatusLiveData.value = LoadStatus.LOADED
-//                requestStatus.isNetworkRequest = false
-//            }
-//            .doOnNext { cardSets ->
-//                Log.d("Шляпа2", "Шляпа2 ${cardSets.cardSet.version} $url")
-//                requestStatus.data = cardSets.cardSet.cardList.filter { it.cardType == type }
-//                requestStatusLiveData.value = requestStatus
-//                cardSets.cardSet.cardList?.let { saveArtifactCardsToLocalDb(it) }
-//            }
-//            .subscribe(Subscriber.create())
-//    }
-
-
-    fun getArtifactCardsList(refreshStatus: Int, type: String) {
-        if (requestStatus.isNetworkRequest) return
-
-        Log.d("ШляПа", "ШляПа")
-
-        requestStatus.isNetworkRequest = true
-
-        requestStatus.refreshStatus = refreshStatus
-        requestStatus.setPage(refreshStatus)
-
-        //getCardSetDestById("00", type)
-        //getCardSetDestById("01", type)
-
     }
 
 }

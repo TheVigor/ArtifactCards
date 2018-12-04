@@ -106,7 +106,6 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
                     if (LoadStatus.LOADING == loadStatus) {
                         loadingProgressBar.visibility = View.VISIBLE
-                        App.get()?.showToast("Downloading cards database from API...")
                         progressDialog?.show()
                     } else {
                         progressDialog?.dismiss()

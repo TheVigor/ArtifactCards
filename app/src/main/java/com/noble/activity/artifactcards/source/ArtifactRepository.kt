@@ -16,7 +16,7 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
 
     init {
         remoteDataSource = RemoteDataSourceImpl(ArtifactClient.get()!!)
-        artifactAppDatabase = ArtifactAppDatabase.get(App.get())
+        artifactAppDatabase = ArtifactAppDatabase.get(App.get()!!)
     }
 
     override fun getRemoteCardSetInfo(cardSetId: String): Single<CardSetInfo> {

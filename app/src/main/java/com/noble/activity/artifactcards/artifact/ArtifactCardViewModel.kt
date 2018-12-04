@@ -7,6 +7,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.noble.activity.artifactcards.ArtifactRepository
 import com.noble.activity.artifactcards.model.*
+import com.noble.activity.artifactcards.refreshPrefs
 import com.ruzhan.lion.model.LoadStatus
 import com.ruzhan.lion.model.RequestStatus
 import com.ruzhan.lion.rx.Subscriber
@@ -112,7 +113,9 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError(Throwable::printStackTrace)
-            .doOnComplete { }
+            .doOnComplete {
+                refreshPrefs.updateRefreshDay()
+            }
             .subscribe(Subscriber.create())
     }
 

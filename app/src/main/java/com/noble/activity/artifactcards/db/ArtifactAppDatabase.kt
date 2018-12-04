@@ -8,6 +8,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import android.support.annotation.VisibleForTesting
+import com.noble.activity.artifactcards.App
 import com.noble.activity.artifactcards.converter.MiniImageConverter
 import com.noble.activity.artifactcards.converter.ReferenceConverter
 import com.noble.activity.artifactcards.model.Card
@@ -38,7 +39,7 @@ abstract class ArtifactAppDatabase : RoomDatabase() {
         private var INSTANCE: ArtifactAppDatabase? = null
 
 
-        operator fun get(context: Context): ArtifactAppDatabase {
+        operator fun get(context: App): ArtifactAppDatabase {
             if (INSTANCE == null) {
                 synchronized(ArtifactAppDatabase::class.java) {
                     if (INSTANCE == null) {

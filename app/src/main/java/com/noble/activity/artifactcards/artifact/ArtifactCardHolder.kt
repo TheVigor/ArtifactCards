@@ -1,8 +1,10 @@
 package com.noble.activity.artifactcards.artifact
 
 import android.graphics.Color
+import android.support.v4.os.ConfigurationCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.noble.activity.artifactcards.App
 import com.noble.activity.artifactcards.imageloader.ImageLoader
 import com.noble.activity.artifactcards.model.Card
 import com.ruzhan.lion.helper.FontHelper
@@ -24,6 +26,8 @@ class ArtifactCardHolder(itemView: View, private var listener: OnItemClickListen
 
     fun bind(bean: Card) {
         card = bean
+
+        //val currentLocale = ConfigurationCompat.getLocales(App.get().resources.configuration)[0]
 
         itemView.card_name.text = card.cardName.russian
 

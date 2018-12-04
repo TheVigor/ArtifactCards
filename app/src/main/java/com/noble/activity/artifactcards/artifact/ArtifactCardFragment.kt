@@ -8,13 +8,18 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.noble.activity.artifactcards.OnFragmentLoadListener
-import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.*
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.utils.HERO_CARD_TYPE
+import com.noble.activity.artifactcards.utils.showToast
 import com.ruzhan.lion.listener.OnItemClickListener
 import com.ruzhan.lion.model.LoadStatus
 import kotlinx.android.synthetic.main.artifact_frag_card.*
+import android.content.DialogInterface
+import android.content.DialogInterface.BUTTON_POSITIVE
+import android.app.ProgressDialog
+import android.view.WindowManager
+
 
 class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
@@ -37,6 +42,8 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
     private lateinit var artifactCardViewModel: ArtifactCardViewModel
     private lateinit var artifactCardAdapter: ArtifactCardAdapter
 
+    private lateinit var progressDialog: ProgressDialog
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.artifact_frag_card, container, false)
     }
@@ -52,7 +59,10 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
         initLiveData()
 
         artifactCardViewModel.loadLocalDbArtifactCards(cardType)
-        artifactCardViewModel.getAllCards(cardType)
+
+        if (refreshPrefs.isRefreshNeeded()) {
+            artifactCardViewModel.getAllCards(cardType)
+        }
         //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
 
 
@@ -84,15 +94,25 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
     private fun initLiveData() {
 
+        progressDialog = ProgressDialog(activity, R.style.DownloadDialog)
+        progressDialog.max = 100
+        progressDialog.setMessage("Loading...")
+        progressDialog.setTitle("Downloading cards database from official API")
+        progressDialog.setCancelable(false)
+
         artifactCardViewModel.loadStatusLiveData.observe(this@ArtifactCardFragment,
             Observer { loadStatus ->
                 loadStatus?.let {
 
-                    loadingProgressBar.visibility = if (LoadStatus.LOADING == loadStatus) {
-                        View.VISIBLE
+                    if (LoadStatus.LOADING == loadStatus) {
+                        loadingProgressBar.visibility = View.VISIBLE
+                        App.get()?.showToast("Downloading cards database from API...")
+                        progressDialog?.show()
                     } else {
-                        View.GONE
+                        progressDialog?.dismiss()
+                        loadingProgressBar.visibility = View.GONE
                     }
+
                 }
             })
 
@@ -106,7 +126,8 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
     override fun startLoadData() {
         artifactCardViewModel.loadLocalDbArtifactCards(cardType)
-        artifactCardViewModel.getAllCards(cardType)
-        //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
+//        if (refreshPrefs.isRefreshNeeded()) {
+//            artifactCardViewModel.getAllCards(cardType)
+//        }
     }
 }

@@ -60,7 +60,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
         artifactCardViewModel.loadLocalDbArtifactCards(cardType)
 
-        if (refreshPrefs.isRefreshNeeded()) {
+        if (refreshPrefs.isRefreshNeeded() && cardType == HERO_CARD_TYPE) {
             artifactCardViewModel.getAllCards(cardType)
         }
         //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
@@ -126,8 +126,8 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
     override fun startLoadData() {
         artifactCardViewModel.loadLocalDbArtifactCards(cardType)
-//        if (refreshPrefs.isRefreshNeeded()) {
-//            artifactCardViewModel.getAllCards(cardType)
-//        }
+        if (refreshPrefs.isRefreshNeeded() && cardType == HERO_CARD_TYPE) {
+            artifactCardViewModel.getAllCards(cardType)
+        }
     }
 }

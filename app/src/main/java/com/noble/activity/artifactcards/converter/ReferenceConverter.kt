@@ -8,14 +8,14 @@ class ReferenceConverter {
 
     @TypeConverter
     fun fromRefs(refs: List<Reference>): String {
-        val res = refs.joinToString(transform = {it.cardId.toString()}, separator = SEP)
-        return res
+        return refs.joinToString(transform = {it.cardId.toString()}, separator = SEP)
     }
 
     @TypeConverter
     fun toRefs(data: String): List<Reference> {
-        val res = data.split(SEP).map { Reference(it.toInt(), "", 0) }
-        return res
+        if (data.isNullOrEmpty())
+            return listOf()
+        return data.split(SEP).map { Reference(it.toInt(), "", 0) }
     }
 
 }

@@ -64,9 +64,9 @@
                     android:layout_height="match_parent">
 
                 <ImageView
-                        android:id="@+id/card_large_image"
+                        android:id="@+id/card_image"
                         android:layout_width="300dp"
-                        android:layout_height="900dp"
+                        android:layout_height="500dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="16dp"
@@ -76,31 +76,69 @@
                         app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
-                        android:id="@+id/plant_watering"
+                        android:id="@+id/card_type"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@{viewModel.card.cardType}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_large_image"
-                        tools:text="Watering needs: every 7 days"/>
+                        app:layout_constraintTop_toBottomOf="@id/card_image"/>
 
                 <TextView
-                        android:id="@+id/plant_detail"
-                        style="?android:attr/textAppearanceMedium"
+                        android:id="@+id/card_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:text="@{viewModel.card.cardText.russian}"
+                        app:textFromHtml="@{viewModel.card.cardText.russian}"
                         android:textIsSelectable="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/plant_watering"
-                        tools:text="Details about the plant" />
+                        app:layout_constraintTop_toBottomOf="@+id/card_type"/>
+
+                <TextView
+                        android:id="@+id/card_illustrator"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:textFromHtml="@{viewModel.card.illustrator}"
+                        android:textIsSelectable="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_text"/>
+
+                <TextView
+                        android:id="@+id/card_rarity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:textFromHtml="@{viewModel.card.rarity}"
+                        android:textIsSelectable="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_illustrator"/>
+
+                <TextView
+                        android:id="@+id/card_color"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:textFromHtml="@{viewModel.card.getColorName()}"
+                        android:textIsSelectable="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_rarity"/>
+
 
             </android.support.constraint.ConstraintLayout>
 

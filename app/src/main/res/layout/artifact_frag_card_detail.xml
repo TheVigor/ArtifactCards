@@ -30,7 +30,7 @@
                     app:title="@{viewModel.card.getNameByLocale(viewModel.locale)}"
                     app:contentScrim="@color/artifact_white"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                    app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Display2"
+                    app:expandedTitleTextAppearance="@style/StormSpirit"
                     app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
                     app:toolbarId="@+id/toolbar">
 

@@ -6,14 +6,16 @@ import com.noble.activity.artifactcards.ArtifactRepository
 
 class ArtifactCardDetailViewModelFactory(
     private val artifactRepository: ArtifactRepository,
-    private val cardId: String
+    private val cardId: String,
+    private val locale: String
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return ArtifactCardDetailViewModel(
             artifactRepository,
-            cardId
+            cardId,
+            locale
         ) as T
     }
 }

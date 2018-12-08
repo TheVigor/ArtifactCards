@@ -14,6 +14,13 @@ val CREEP_CARD_TYPE = "Creep"
 
 val SEP = ";;;"
 
+val LOCALE_RU = "ru"
+val LOCALE_EN = "en"
+
+val RARITY_COMMON = "Common"
+val RARITY_UNCOMMON = "Uncommon"
+val RARITY_RARE = "Rare"
+
 fun Context.showToast(text: String, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, text, duration).show()
 }

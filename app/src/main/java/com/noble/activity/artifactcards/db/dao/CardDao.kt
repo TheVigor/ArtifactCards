@@ -1,5 +1,6 @@
 package com.noble.activity.artifactcards.db.dao
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
@@ -18,4 +19,7 @@ interface CardDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertArtifactCardList(newsList: List<Card>)
+
+    @Query("SELECT * FROM cards WHERE cardId = :cardId")
+    fun getCardById(cardId: String): LiveData<Card>
 }

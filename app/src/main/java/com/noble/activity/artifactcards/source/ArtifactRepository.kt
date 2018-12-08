@@ -39,6 +39,10 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
         artifactAppDatabase.cardDao().insertArtifactCardList(newsList)
     }
 
+    fun getCardById(cardId: String) =
+        artifactAppDatabase.cardDao().getCardById(cardId)
+
+
     companion object {
 
         private var INSTANCE: ArtifactRepository? = null

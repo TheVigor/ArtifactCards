@@ -82,6 +82,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="5dp"
                         android:text="@{viewModel.card.getTypeByLocale()}"
+                        android:textColor="@color/artifact_text_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_image"/>
@@ -94,7 +95,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         app:textFromHtml="@{viewModel.card.getTextByLocale(viewModel.locale)}"
-                        android:textIsSelectable="true"
+                        android:textColor="@color/artifact_text_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_type"/>
@@ -107,7 +108,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         app:textFromHtml="@{viewModel.card.illustrator}"
-                        android:textIsSelectable="true"
+                        android:textColor="@color/artifact_text_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_text"/>
@@ -120,7 +121,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         app:textFromHtml="@{viewModel.card.getRarityByLocale()}"
-                        android:textIsSelectable="true"
+                        android:textColor="@color/artifact_text_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_illustrator"/>
@@ -133,7 +134,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         app:textFromHtml="@{viewModel.card.getColorName()}"
-                        android:textIsSelectable="true"
+                        android:textColor="@color/artifact_text_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_rarity"/>

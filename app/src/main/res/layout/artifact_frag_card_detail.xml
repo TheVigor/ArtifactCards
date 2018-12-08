@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:fitsSystemWindows="true"
+                android:background="@color/artifact_white"
                 android:theme="@style/Artifact.Home">
 
             <android.support.design.widget.CollapsingToolbarLayout
@@ -27,8 +28,10 @@
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
                     app:title="@{viewModel.card.getNameByLocale(viewModel.locale)}"
-                    app:contentScrim="?attr/colorPrimary"
+                    app:contentScrim="@color/artifact_white"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Display2"
+                    app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
                     app:toolbarId="@+id/toolbar">
 
                 <ImageView

@@ -22,22 +22,18 @@ data class Card constructor(
     var cardType: String,
 
     @SerializedName("card_name")
-    @Embedded(prefix = "card_name")
     var cardName: CardName,
 
     @SerializedName("card_text")
-    @Embedded(prefix = "card_text")
     var cardText: CardText,
 
     @SerializedName("mini_image")
     var miniImage: MiniImage,
 
     @SerializedName("large_image")
-    @Embedded(prefix = "large_image")
     var largeImage: LargeImage,
 
     @SerializedName("ingame_image")
-    @Embedded(prefix = "ingame_image")
     var ingameImage: IngameImage,
 
     @SerializedName("hit_points")
@@ -111,8 +107,5 @@ data class Card constructor(
         }
 
         return Color.parseColor("#000000")
-
     }
-
-
 }

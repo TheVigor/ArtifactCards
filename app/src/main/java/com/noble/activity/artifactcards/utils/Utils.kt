@@ -12,6 +12,8 @@ val ITEM_CARD_TYPE = "Item"
 val IMPROVEMENT_CARD_TYPE = "Improvement"
 val CREEP_CARD_TYPE = "Creep"
 
+val SEP = ";;;"
+
 fun Context.showToast(text: String, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, text, duration).show()
 }

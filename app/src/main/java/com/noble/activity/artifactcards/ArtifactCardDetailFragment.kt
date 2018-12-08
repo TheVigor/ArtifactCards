@@ -85,12 +85,15 @@ class ArtifactCardDetailFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//
-//
-//    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        detail_toolbar.title = title
+        setToolbar(detail_toolbar)
+
+
+
+    }
 
     private fun setToolbar(toolbar: Toolbar?) {
         if (toolbar == null) {

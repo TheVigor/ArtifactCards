@@ -19,14 +19,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:fitsSystemWindows="true"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                android:theme="@style/Artifact.Home">
 
             <android.support.design.widget.CollapsingToolbarLayout
                     android:id="@+id/toolbar_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
-                    app:title="@{viewModel.card.cardText.russian}"
+                    app:title="@{viewModel.card.cardName.russian}"
                     app:contentScrim="?attr/colorPrimary"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:toolbarId="@+id/toolbar">
@@ -38,6 +38,7 @@
                         android:contentDescription="LOL"
                         android:fitsSystemWindows="true"
                         android:scaleType="centerCrop"
+                        app:imageFromUrl="@{viewModel.card.ingameImage.russian}"
                         app:layout_collapseMode="parallax" />
 
                 <android.support.v7.widget.Toolbar
@@ -45,7 +46,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         app:layout_collapseMode="pin"
-                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                        app:titleTextColor="@color/artifact_color"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -61,6 +63,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                <ImageView
+                        android:id="@+id/card_large_image"
+                        android:layout_width="300dp"
+                        android:layout_height="900dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        app:imageFromUrl="@{viewModel.card.largeImage.russian}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
                 <TextView
                         android:id="@+id/plant_watering"
                         android:layout_width="0dp"
@@ -70,7 +84,7 @@
                         android:layout_marginTop="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/card_large_image"
                         tools:text="Watering needs: every 7 days"/>
 
                 <TextView

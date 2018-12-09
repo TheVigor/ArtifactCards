@@ -7,6 +7,7 @@ import android.view.View
 import com.noble.activity.artifactcards.App
 import com.noble.activity.artifactcards.imageloader.ImageLoader
 import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.utils.setTextFromHtml
 import com.ruzhan.lion.helper.FontHelper
 import com.ruzhan.lion.listener.OnItemClickListener
 import kotlinx.android.synthetic.main.artifact_item_new_list_grid.view.*
@@ -24,21 +25,17 @@ class ArtifactCardHolder(itemView: View, private var listener: OnItemClickListen
         itemView.root_cv.setOnClickListener { listener.onItemClick(adapterPosition, card, itemView) }
     }
 
-    fun bind(bean: Card) {
+    fun bind(bean: Card, locale: String) {
         card = bean
 
-        //val currentLocale = ConfigurationCompat.getLocales(App.get().resources.configuration)[0]
-
-        itemView.card_name.text = card.cardName.russian
+        itemView.card_name.setTextFromHtml(card.getNameByLocale(locale))
 
         itemView.card_color.text = card.getColorName()
         itemView.card_color.setTextColor(card.getTextColor())
 
+        itemView.card_rarity.text = card.getRarityByLocale()
 
-        itemView.card_rarity.text = card.rarity
-
-
-        card.miniImage?.default?.let {
+        card.getMiniImageByLocale()?.let {
             ImageLoader.get().load(itemView.icon_iv, it)
         }
     }

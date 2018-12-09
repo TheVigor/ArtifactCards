@@ -1,6 +1,9 @@
 package com.noble.activity.artifactcards.utils
 
 import android.content.Context
+import android.os.Build
+import android.text.Html
+import android.widget.TextView
 import android.widget.Toast
 
 
@@ -23,4 +26,14 @@ val RARITY_RARE = "Rare"
 
 fun Context.showToast(text: String, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, text, duration).show()
+}
+
+fun TextView.setTextFromHtml(htmlText: String?) {
+    if (!htmlText.isNullOrEmpty()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            this.text = Html.fromHtml(htmlText, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            this.text = Html.fromHtml(htmlText)
+        }
+    }
 }

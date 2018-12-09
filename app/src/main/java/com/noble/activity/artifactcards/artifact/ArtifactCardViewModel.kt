@@ -123,7 +123,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
                 App.get()!!.showToast("Error updating db...")
             }
             .doOnComplete {
-                refreshPrefs.updateRefreshDay()
+                refreshPrefs.updateRefreshDay(localNewsList.size)
                 loadStatusLiveData.value = LoadStatus.LOADED
             }
             .subscribe(Subscriber.create())

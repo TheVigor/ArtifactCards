@@ -38,7 +38,7 @@ class ArtifactHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         card_name.typeface = FontHelper.get().getBoldTypeface()
-        card_name.text = "Artifact Cards" //resources.getString(R.string.awaker_article_news_title)
+        card_name.text = resources.getString(R.string.app_name)
         setToolbar(toolbar)
 
         val titleList = getTitleList()
@@ -67,15 +67,12 @@ class ArtifactHomeFragment : Fragment() {
         })
     }
 
-    private fun getTitleList(): List<String> {
-        val titleArr = ArrayList<String>()
-        titleArr.add("Heroes")
-        titleArr.add("Spells")
-        titleArr.add("Items")
-        titleArr.add("Improvements")
-        titleArr.add("Creeps")
-
-        return titleArr
+    private fun getTitleList() = ArrayList<String>().apply {
+        add(getString(R.string.heroes))
+        add(getString(R.string.spells))
+        add(getString(R.string.items))
+        add(getString(R.string.improvements))
+        add(getString(R.string.creeps))
     }
 
     private fun setToolbar(toolbar: Toolbar) {

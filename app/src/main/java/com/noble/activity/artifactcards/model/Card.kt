@@ -9,6 +9,7 @@ import android.support.v4.os.ConfigurationCompat
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.noble.activity.artifactcards.App
+import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.utils.*
 import io.reactivex.annotations.NonNull
 
@@ -81,37 +82,37 @@ data class Card constructor(
 ) {
     fun getColorName(): String {
         if (isBlack != null){
-            return "Black"
+            return App.get()!!.getString(R.string.black_color)
         }
         if (isBlue != null) {
-            return "Blue"
+            return App.get()!!.getString(R.string.blue_color)
         }
         if (isGreen != null) {
-            return  "Green"
+            return  App.get()!!.getString(R.string.green_color)
         }
         if (isRed != null) {
-            return "Red"
+            return App.get()!!.getString(R.string.red_color)
         }
 
         return ""
     }
 
     fun getTypeByLocale() = when(cardType) {
-        HERO_CARD_TYPE -> "Hero"
-        SPELL_CARD_TYPE ->"Spell"
-        ABILITY_CARD_TYPE -> "Ability"
-        PASSIVE_ABILITY_CARD_TYPE -> "Passive Ability"
-        ITEM_CARD_TYPE -> "Item"
-        IMPROVEMENT_CARD_TYPE -> "Improvement"
-        CREEP_CARD_TYPE -> "Creep"
-        else -> "Default"
+        HERO_CARD_TYPE -> App.get()!!.getString(R.string.hero_type)
+        SPELL_CARD_TYPE -> App.get()!!.getString(R.string.spell_type)
+        ABILITY_CARD_TYPE -> App.get()!!.getString(R.string.ability_type)
+        PASSIVE_ABILITY_CARD_TYPE -> App.get()!!.getString(R.string.passive_ability_type)
+        ITEM_CARD_TYPE -> App.get()!!.getString(R.string.item_type)
+        IMPROVEMENT_CARD_TYPE -> App.get()!!.getString(R.string.improvement_type)
+        CREEP_CARD_TYPE -> App.get()!!.getString(R.string.creep_type)
+        else -> ""
     }
 
     fun getRarityByLocale() = when(rarity) {
-        RARITY_COMMON -> "Common"
-        RARITY_UNCOMMON -> "Uncommon"
-        RARITY_RARE -> "Rare"
-        else -> "Default"
+        RARITY_COMMON -> App.get()!!.getString(R.string.common_rarity)
+        RARITY_UNCOMMON -> App.get()!!.getString(R.string.uncommon_rarity)
+        RARITY_RARE -> App.get()!!.getString(R.string.rare_rarity)
+        else -> ""
     }
 
 

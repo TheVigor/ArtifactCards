@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">ArtifactCards</string>
+
+    <string name="black_color">Black</string>
+    <string name="blue_color">Blue</string>
+    <string name="green_color">Green</string>
+    <string name="red_color">Red</string>
+
+    <string name="common_rarity">Common</string>
+    <string name="uncommon_rarity">Uncommon</string>
+    <string name="rare_rarity">Rare</string>
+    <string name="base">Default</string>
+
+    <string name="hero_type">Hero</string>
+    <string name="spell_type">Spell</string>
+    <string name="ability_type">Ability</string>
+    <string name="passive_ability_type">Passive Ability</string>
+    <string name="item_type">Item</string>
+    <string name="improvement_type">Improvement</string>
+    <string name="creep_type">Creep</string>
+
+    <string name="heroes">Heroes</string>
+    <string name="spells">Spells</string>
+    <string name="items">Items</string>
+    <string name="improvements">Improvements</string>
+    <string name="creeps">Creeps</string>
 </resources>

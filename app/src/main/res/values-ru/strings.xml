@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ArtifactCards</string>
+
+    <string name="black_color">Черная</string>
+    <string name="blue_color">Синяя</string>
+    <string name="green_color">Зеленая</string>
+    <string name="red_color">Красная</string>
+
+    <string name="common_rarity">Обычная</string>
+    <string name="uncommon_rarity">Необычная</string>
+    <string name="rare_rarity">Редкая</string>
+    <string name="base">Базовая</string>
+
+    <string name="hero_type">Герой</string>
+    <string name="spell_type">Заклинание</string>
+    <string name="ability_type">Способность</string>
+    <string name="passive_ability_type">Пассивная Способность</string>
+    <string name="item_type">Предмет</string>
+    <string name="improvement_type">Улучшение</string>
+    <string name="creep_type">Крип</string>
+
+    <string name="heroes">Герои</string>
+    <string name="spells">Заклинания</string>
+    <string name="items">Предметы</string>
+    <string name="improvements">Улучшения</string>
+    <string name="creeps">Крипы</string>
+</resources>

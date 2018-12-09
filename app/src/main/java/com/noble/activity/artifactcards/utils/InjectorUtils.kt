@@ -8,9 +8,18 @@ import com.noble.activity.artifactcards.viewmodels.ArtifactCardDetailViewModelFa
 
 object InjectorUtils {
     fun provideArtifactCardDetailViewModelFactory(
-        cardId: String
+        cardId: String,
+        firstRefId: String,
+        secondRefId: String,
+        thirdRefId: String
     ): ArtifactCardDetailViewModelFactory {
         val locale = ConfigurationCompat.getLocales(App.get()?.resources?.configuration)[0]
-        return ArtifactCardDetailViewModelFactory(ArtifactRepository.get(), cardId, locale.language)
+        return ArtifactCardDetailViewModelFactory(
+            ArtifactRepository.get(),
+            cardId,
+            firstRefId,
+            secondRefId,
+            thirdRefId,
+            locale.language)
     }
 }

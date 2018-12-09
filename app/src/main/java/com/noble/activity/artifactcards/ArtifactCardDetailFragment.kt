@@ -5,29 +5,13 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.noble.activity.artifactcards.databinding.ArtifactFragCardDetailBinding
 import com.noble.activity.artifactcards.utils.InjectorUtils
 import com.noble.activity.artifactcards.viewmodels.ArtifactCardDetailViewModel
-import com.ruzhan.lion.helper.FontHelper
-import com.ruzhan.lion.helper.OnRefreshHelper
-import com.ruzhan.lion.listener.OnItemClickListener
-import com.ruzhan.lion.model.LoadStatus
-import com.ruzhan.lion.model.RequestStatus
-import com.ruzhan.lion.rx.Subscriber
-import com.ruzhan.movie.ImageListModel
-import com.ruzhan.movie.detail.ImageDetailActivity
-import com.ruzhan.movie.video.WebVideoActivity
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.artifact_frag_card_detail.*
 
 
@@ -36,16 +20,27 @@ class ArtifactCardDetailFragment : Fragment() {
     companion object {
 
         private const val NEW_ID = "newId"
-        private const val NEW_TITLE = "newTitle"
+
+        private const val NEW_FIRST_REF = "firstRef"
+        private const val NEW_SECOND_REF = "secondRef"
+        private const val NEW_THIRD_REF = "thirdRef"
+
         private const val NEW_URL = "newUrl"
 
         private const val RESET_EDIT_VALUE = 30
 
         @JvmStatic
-        fun newInstance(newId: String, title: String, imageUrl: String): ArtifactCardDetailFragment {
+        fun newInstance(newId: String,
+                        firstRefId: String,
+                        secondRefId: String,
+                        thirdRefId: String,
+                        imageUrl: String): ArtifactCardDetailFragment {
             val args = Bundle()
             args.putString(NEW_ID, newId)
-            args.putString(NEW_TITLE, title)
+            args.putString(NEW_FIRST_REF, firstRefId)
+            args.putString(NEW_SECOND_REF, secondRefId)
+            args.putString(NEW_THIRD_REF, thirdRefId)
+
             args.putString(NEW_URL, imageUrl)
             val frag = ArtifactCardDetailFragment()
             frag.arguments = args
@@ -54,7 +49,11 @@ class ArtifactCardDetailFragment : Fragment() {
     }
 
     private lateinit var newId: String
-    private lateinit var title: String
+
+    private lateinit var firstRefId: String
+    private lateinit var secondRefId: String
+    private lateinit var thirdRefId: String
+
     private lateinit var imageUrl: String
 
     //private val header: Header = Header()
@@ -67,11 +66,13 @@ class ArtifactCardDetailFragment : Fragment() {
 
         arguments?.let {
             newId = it.getString(NEW_ID)
-            title = it.getString(NEW_TITLE)
+            firstRefId = it.getString(NEW_FIRST_REF)
+            secondRefId = it.getString(NEW_SECOND_REF)
+            thirdRefId = it.getString(NEW_THIRD_REF)
             imageUrl = it.getString(NEW_URL)
         }
 
-        val factory = InjectorUtils.provideArtifactCardDetailViewModelFactory(newId)
+        val factory = InjectorUtils.provideArtifactCardDetailViewModelFactory(newId, firstRefId, secondRefId, thirdRefId)
         val artifactCardDetailViewModel = ViewModelProviders.of(this, factory)
             .get(ArtifactCardDetailViewModel::class.java)
 
@@ -88,7 +89,7 @@ class ArtifactCardDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        detail_toolbar.title = title
+        detail_toolbar.title = firstRefId
         setToolbar(detail_toolbar)
 
 
@@ -117,7 +118,7 @@ class ArtifactCardDetailFragment : Fragment() {
 //                override fun onItemClick(position: Int, bean: NewEle, itemView: View) {
 //                    val imageUrlList = articleNewDetailAdapter.getImageUrlList()
 //                    val imageUrl = bean.imgUrl
-//                    val imageListModel = ImageListModel(title, imageUrlList.indexOf(imageUrl),
+//                    val imageListModel = ImageListModel(firstRefId, imageUrlList.indexOf(imageUrl),
 //                        imageUrl, imageUrlList)
 //
 //                    activity?.let {
@@ -261,7 +262,7 @@ class ArtifactCardDetailFragment : Fragment() {
 //            header.userUrl = user.avatar128
 //        }
 //
-//        header.title = newDetail.title
+//        header.firstRefId = newDetail.firstRefId
 //
 //        newDetail.cover_url?.let {
 //            header.url = newDetail.cover_url.ori

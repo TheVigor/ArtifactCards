@@ -77,9 +77,31 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                     override fun onItemClick(position: Int, bean: Card, itemView: View) {
                         activity?.let {
                             //val url = if (bean.cover_url == null) "" else bean.cover_url.ori
+
+                            var firstRefId = 0
+                            var secondRefId = 0
+                            var thirdRefId = 0
+
+                            if (bean.references.size >= 3) {
+                                firstRefId = bean.references[0].cardId
+                                secondRefId = bean.references[1].cardId
+                                thirdRefId = bean.references[2].cardId
+                            }
+
+                            if (bean.references.size == 2) {
+                                firstRefId = bean.references[0].cardId
+                                secondRefId = bean.references[1].cardId
+                            }
+
+                            if (bean.references.size == 1) {
+                                firstRefId = bean.references[0].cardId
+                            }
+
                             ArtifactCardDetailActivity.launch(it,
                                 bean.cardId.toString(),
-                                bean.cardId.toString(),
+                                firstRefId.toString(),
+                                secondRefId.toString(),
+                                thirdRefId.toString(),
                                 bean.cardId.toString())
                         }
                     }

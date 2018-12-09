@@ -51,18 +51,21 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.let { cardType = it.getString(CARD_TYPE) }
+        arguments?.let {
+            cardType = it.getString(CARD_TYPE)
+        }
 
         initRecyclerView()
 
         artifactCardViewModel = ViewModelProviders.of(this).get(ArtifactCardViewModel::class.java)
         initLiveData()
 
-        artifactCardViewModel.loadLocalDbArtifactCards(cardType)
-
         if (refreshPrefs.isRefreshNeeded() && cardType == HERO_CARD_TYPE) {
             artifactCardViewModel.getAllCards(cardType)
         }
+
+        artifactCardViewModel.loadLocalDbArtifactCards(cardType)
+
         //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
 
 
@@ -124,12 +127,15 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                      artifactCardAdapter.setRefreshData(requestStatus.data)
                 }
             })
+
     }
 
     override fun startLoadData() {
-        artifactCardViewModel.loadLocalDbArtifactCards(cardType)
         if (refreshPrefs.isRefreshNeeded() && cardType == HERO_CARD_TYPE) {
             artifactCardViewModel.getAllCards(cardType)
         }
+
+        artifactCardViewModel.loadLocalDbArtifactCards(cardType)
+
     }
 }

@@ -5,9 +5,11 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
+import com.noble.activity.artifactcards.App
 import com.noble.activity.artifactcards.ArtifactRepository
 import com.noble.activity.artifactcards.model.*
 import com.noble.activity.artifactcards.refreshPrefs
+import com.noble.activity.artifactcards.utils.showToast
 import com.ruzhan.lion.model.LoadStatus
 import com.ruzhan.lion.model.RequestStatus
 import com.ruzhan.lion.rx.Subscriber
@@ -26,6 +28,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
     val loadStatusLiveData: MutableLiveData<LoadStatus> = MutableLiveData()
     val requestStatusLiveData: MutableLiveData<RequestStatus<List<Card>>> = MutableLiveData()
 
+
     private var disposable: Disposable? = null
 
     init {
@@ -40,20 +43,20 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({
                 cardSets ->
-                loadStatusLiveData.value = LoadStatus.LOADED
+                //loadStatusLiveData.value = LoadStatus.LOADED
                 requestStatus.data = cardSets.cardSet.cardList.filter { it.cardType == type }
                 requestStatusLiveData.value = requestStatus
-                cardSets.cardSet.cardList?.let { saveArtifactCardsToLocalDb(it) }
+                cardSets.cardSet.cardList?.let { saveArtifactCardsToLocalDb(it, type) }
             },
             {
                 error ->
                 loadStatusLiveData.value = LoadStatus.LOADED
-                Log.d("Шляпа", "Ошибка")
+                App.get()!!.showToast("Error loading cards from official API...")
             })
     }
 
 
-    private fun getAllCardsFromRemote(): Single<CardSets> {
+    fun getAllCardsFromRemote(): Single<CardSets> {
         return Single.zip(
             getCardSetById("00"),
             getCardSetById("01"),
@@ -86,15 +89,18 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun loadLocalDbArtifactCards(type: String) {
-        if (requestStatusLiveData.value != null) {
+        if (requestStatusLiveData.value != null && !requestStatus.data.isEmpty()) {
             return
         }
+
         disposable = ArtifactRepository.get().loadArtifactCardListByType(type)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnError(Throwable::printStackTrace)
+            .doOnError {
+                App.get()!!.showToast("LOAD DB ERROR")
+            }
             .doOnNext { cardList ->
-                if (requestStatusLiveData.value == null) {
+                if (requestStatusLiveData.value == null || requestStatus.data.isEmpty()) {
                     requestStatus.refreshStatus = RequestStatus.REFRESH
                     requestStatus.data = cardList
                     requestStatusLiveData.value = requestStatus
@@ -104,7 +110,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe({ }, { })
     }
 
-    private fun saveArtifactCardsToLocalDb(localNewsList: List<Card>) {
+    fun saveArtifactCardsToLocalDb(localNewsList: List<Card>, type: String) {
         Flowable.create<Any>({ e ->
             ArtifactRepository.get().insertArtifactCardList(localNewsList)
             e.onComplete()
@@ -112,9 +118,13 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
         }, BackpressureStrategy.LATEST)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnError(Throwable::printStackTrace)
+            .doOnError {
+                loadStatusLiveData.value = LoadStatus.LOADED
+                App.get()!!.showToast("Error updating db...")
+            }
             .doOnComplete {
                 refreshPrefs.updateRefreshDay()
+                loadStatusLiveData.value = LoadStatus.LOADED
             }
             .subscribe(Subscriber.create())
     }

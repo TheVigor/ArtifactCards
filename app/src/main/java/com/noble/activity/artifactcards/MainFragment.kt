@@ -27,16 +27,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        bottom_navigation?.setTextVisibility(false)
-//        bottom_navigation?.enableAnimation(false)
-//
-//        bottom_navigation?.setOnNavigationItemSelectedListener {
-//            if (bottom_navigation.selectedItemId != it.itemId) {
-//                replaceFragment(it.itemId)
-//            }
-//            true
-//        }
-
         replaceFragment(R.id.artifact)
     }
 
@@ -53,7 +43,7 @@ class MainFragment : Fragment() {
 
         when (tabId) {
             R.id.artifact -> {
-                fragTag = "ArticleHomeFragment"
+                fragTag = "ArtifactHomeFragment"
                 frag = fragmentMap[fragTag]
 
                 if (frag == null) {

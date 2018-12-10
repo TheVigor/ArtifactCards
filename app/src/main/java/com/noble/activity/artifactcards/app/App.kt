@@ -1,6 +1,5 @@
 package com.noble.activity.artifactcards.app
 
-import android.content.Context
 import com.noble.activity.artifactcards.prefs.RefreshPrefs
 
 val refreshPrefs: RefreshPrefs by lazy {
@@ -19,9 +18,7 @@ class App : android.app.Application() {
     }
 
     companion object {
-
         var INSTANCE: App? = null
         var refreshPrefs: RefreshPrefs? = null
-
     }
 }

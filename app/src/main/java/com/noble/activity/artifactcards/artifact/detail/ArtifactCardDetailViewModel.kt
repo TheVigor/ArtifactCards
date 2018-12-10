@@ -7,11 +7,11 @@ import com.noble.activity.artifactcards.model.Card
 
 class ArtifactCardDetailViewModel(
     artifactRepository: ArtifactRepository,
-    private val cardId: String,
-    private val firstRefId: String,
-    private val secondRefId: String,
-    private val thirdRefId: String,
-    private val loc: String
+    cardId: String,
+    firstRefId: String,
+    secondRefId: String,
+    thirdRefId: String,
+    loc: String
 ) : ViewModel() {
     val card: LiveData<Card> = artifactRepository.getCardById(cardId)
     val locale: String = loc

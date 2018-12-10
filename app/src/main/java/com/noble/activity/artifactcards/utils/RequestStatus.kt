@@ -1,9 +1,6 @@
 package com.noble.activity.artifactcards.utils
 
-import android.media.AudioRecord.MetricsConstants.SOURCE
-import android.support.annotation.IntDef
 import com.noble.activity.artifactcards.model.Card
-
 
 class RequestStatus {
 

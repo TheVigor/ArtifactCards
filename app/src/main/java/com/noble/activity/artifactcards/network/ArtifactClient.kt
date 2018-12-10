@@ -19,7 +19,7 @@ object ArtifactClient {
                         .addConverterFactory(GsonConverterFactory.create())
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                         .build()
-                    api = client.create<ArtifactApi>(ArtifactApi::class.java!!)
+                    api = client.create<ArtifactApi>(ArtifactApi::class.java)
                 }
             }
         }

@@ -10,28 +10,21 @@ import com.noble.activity.artifactcards.R
 class ArtifactCardDetailActivity : AppCompatActivity() {
 
     companion object {
-
         private const val NEW_ID = "newId"
 
         private const val NEW_FIRST_REF = "firstRef"
         private const val NEW_SECOND_REF = "secondRef"
         private const val NEW_THIRD_REF = "thirdRef"
 
-        private const val NEW_URL = "newUrl"
-
         @JvmStatic
-        fun launch(activity: Activity,
-                   newId: String,
-                   firstRefId: String,
-                   secondRefId: String,
-                   thirdRefId: String,
-                   imageUrl: String) {
+        fun launch(activity: Activity, newId: String, firstRefId: String, secondRefId: String, thirdRefId: String) {
             val intent = Intent(activity, ArtifactCardDetailActivity::class.java)
+
             intent.putExtra(NEW_ID, newId)
             intent.putExtra(NEW_FIRST_REF, firstRefId)
             intent.putExtra(NEW_SECOND_REF, secondRefId)
             intent.putExtra(NEW_THIRD_REF, thirdRefId)
-            intent.putExtra(NEW_URL, imageUrl)
+
             activity.startActivity(intent)
         }
     }
@@ -41,8 +34,6 @@ class ArtifactCardDetailActivity : AppCompatActivity() {
     private lateinit var firstRefId: String
     private lateinit var secondRefId: String
     private lateinit var thirdRefId: String
-
-    private lateinit var imageUrl: String
 
     private var artifactCardDetailFragment: ArtifactCardDetailFragment? = null
 
@@ -57,16 +48,13 @@ class ArtifactCardDetailActivity : AppCompatActivity() {
         secondRefId = intent.getStringExtra(NEW_SECOND_REF)
         thirdRefId = intent.getStringExtra(NEW_THIRD_REF)
 
-        imageUrl = intent.getStringExtra(NEW_URL)
-
         if (artifactCardDetailFragment == null) {
             artifactCardDetailFragment=
                     ArtifactCardDetailFragment.newInstance(
                         newId,
                         firstRefId,
                         secondRefId,
-                        thirdRefId,
-                        imageUrl
+                        thirdRefId
                     )
             supportFragmentManager
                 .beginTransaction()

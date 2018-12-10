@@ -16,10 +16,6 @@ class ArtifactCardHolder(itemView: View, private var listener: OnItemClickListen
     private lateinit var card: Card
 
     init {
-        //itemView.card_name.typeface = FontHelper.get().getLightTypeface()
-        //itemView.card_color.typeface = FontHelper.get().getLightTypeface()
-        //itemView.card_rarity.typeface = FontHelper.get().getLightTypeface()
-
         itemView.root_cv.setOnClickListener { listener.onItemClick(adapterPosition, card, itemView) }
     }
 

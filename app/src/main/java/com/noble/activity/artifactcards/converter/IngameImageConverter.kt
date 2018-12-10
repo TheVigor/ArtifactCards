@@ -20,15 +20,18 @@ class IngameImageConverter {
 
         val langs = data.split(SEP)
 
-        if (langs.isEmpty())
+        if (langs.isEmpty()) {
             return IngameImage("", "")
+        }
 
-        if (langs.size == 1)
+        if (langs.size == 1) {
             return IngameImage(langs[0], "")
+        }
 
-        if (langs.size >= 2)
+        if (langs.size >= 2) {
             return IngameImage(langs[0], langs[1])
+        }
 
-        return IngameImage("", "")
+        return IngameImage(default = "", russian = "")
     }
 }

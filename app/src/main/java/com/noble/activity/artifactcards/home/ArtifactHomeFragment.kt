@@ -36,7 +36,6 @@ class ArtifactHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //card_name.typeface = FontHelper.get().getBoldTypeface()
         card_name.text = resources.getString(R.string.app_name)
         setToolbar(toolbar)
 
@@ -49,14 +48,8 @@ class ArtifactHomeFragment : Fragment() {
         tabs.setupWithViewPager(view_pager)
 
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
-            }
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
                 handler.removeCallbacks(fragmentLoadTask)
@@ -80,7 +73,6 @@ class ArtifactHomeFragment : Fragment() {
     }
 
     inner class FragmentLoadTask : Runnable {
-
         override fun run() {
             onFragmentLoadListener?.startLoadData()
         }

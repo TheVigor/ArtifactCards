@@ -31,4 +31,10 @@
     <string name="card_text">Card description</string>
     <string name="card_signature">Card signature</string>
     <string name="card_illustrator">Card illustrator</string>
+
+    <string name="loading">Loading…</string>
+    <string name="downloading_from_api">Downloading cards database from official API…</string>
+    <string name="error_loading_from_api">Error loading cards from official API… Please, check internet connection</string>
+    <string name="error_loading_local_db">Error loading local database...</string>
+    <string name="error_updating_local_db">Error updating local db...</string>
 </resources>

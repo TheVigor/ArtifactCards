@@ -20,15 +20,18 @@ class LargeImageConverter {
 
         val langs = data.split(SEP)
 
-        if (langs.isEmpty())
+        if (langs.isEmpty()) {
             return LargeImage("", "")
+        }
 
-        if (langs.size == 1)
+        if (langs.size == 1) {
             return LargeImage(langs[0], "")
+        }
 
-        if (langs.size >= 2)
+        if (langs.size >= 2) {
             return LargeImage(langs[0], langs[1])
+        }
 
-        return LargeImage("", "")
+        return LargeImage(default = "", russian = "")
     }
 }

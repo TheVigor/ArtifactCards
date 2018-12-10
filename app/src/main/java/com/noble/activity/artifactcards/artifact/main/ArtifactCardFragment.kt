@@ -19,11 +19,9 @@ import com.noble.activity.artifactcards.utils.OnItemClickListener
 import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailActivity
 import com.noble.activity.artifactcards.utils.OnFragmentLoadListener
 
-
 class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
     companion object {
-
         private const val CARD_TYPE = "CARD_TYPE"
 
         @JvmStatic
@@ -64,10 +62,6 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
         }
 
         artifactCardViewModel.loadLocalDbArtifactCards(cardType)
-
-        //artifactCardViewModel.getArtifactCardsList(RequestStatus.REFRESH, cardType)
-
-
     }
 
     private fun initRecyclerView() {
@@ -76,8 +70,6 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                     OnItemClickListener<Card> {
                     override fun onItemClick(position: Int, bean: Card, itemView: View) {
                         activity?.let {
-                            //val url = if (bean.cover_url == null) "" else bean.cover_url.ori
-
                             var firstRefId = 0
                             var secondRefId = 0
                             var thirdRefId = 0
@@ -102,8 +94,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                                 bean.cardId.toString(),
                                 firstRefId.toString(),
                                 secondRefId.toString(),
-                                thirdRefId.toString(),
-                                bean.cardId.toString()
+                                thirdRefId.toString()
                             )
                         }
                     }
@@ -119,21 +110,19 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
             }
         }
         recycler_view.layoutManager = manager
-
     }
 
     private fun initLiveData() {
 
         progressDialog = ProgressDialog(activity, R.style.DownloadDialog)
         progressDialog.max = 100
-        progressDialog.setMessage("Loading...")
-        progressDialog.setTitle("Downloading cards database from official API")
+        progressDialog.setMessage(getString(R.string.loading))
+        progressDialog.setTitle(getString(R.string.downloading_from_api))
         progressDialog.setCancelable(false)
 
         artifactCardViewModel.loadStatusLiveData.observe(this@ArtifactCardFragment,
             Observer { loadStatus ->
                 loadStatus?.let {
-
                     if (LoadStatus.LOADING == loadStatus) {
                         loadingProgressBar.visibility = View.VISIBLE
                         progressDialog?.show()
@@ -141,7 +130,6 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                         progressDialog?.dismiss()
                         loadingProgressBar.visibility = View.GONE
                     }
-
                 }
             })
 
@@ -151,15 +139,12 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                      artifactCardAdapter.setRefreshData(requestStatus.data)
                 }
             })
-
     }
 
     override fun startLoadData() {
         if (refreshPrefs.isRefreshNeeded() && cardType == HERO_CARD_TYPE) {
             artifactCardViewModel.getAllCards(cardType)
         }
-
         artifactCardViewModel.loadLocalDbArtifactCards(cardType)
-
     }
 }

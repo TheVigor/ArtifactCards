@@ -32,4 +32,10 @@
     <string name="card_signature">Именная карта</string>
     <string name="card_illustrator">Художник</string>
 
+    <string name="loading">Загрузка…</string>
+    <string name="downloading_from_api">Получение актуальной базы карт через официальное API…</string>
+    <string name="error_loading_from_api">Ошибка получения актуальной базы карт через официальное API… Проверьте интернет соединение</string>
+    <string name="error_loading_local_db">Ошибка загрузки локальной базы данных…</string>
+    <string name="error_updating_local_db">Ошибка обновления локальной базы данных…</string>
+
 </resources>

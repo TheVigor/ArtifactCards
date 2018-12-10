@@ -8,8 +8,9 @@ class MiniImageConverter {
     @TypeConverter
     fun fromMini(mini: MiniImage): String {
 
-        if (mini.default == null)
+        if (mini.default == null) {
             return ""
+        }
 
         return mini.default.toString()
     }
@@ -17,8 +18,9 @@ class MiniImageConverter {
     @TypeConverter
     fun toMini(data: String): MiniImage {
 
-        if (data == null)
+        if (data.isNullOrEmpty()) {
             return MiniImage("")
+        }
 
         return MiniImage(data)
     }

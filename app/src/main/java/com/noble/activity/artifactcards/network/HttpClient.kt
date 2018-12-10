@@ -4,11 +4,7 @@ import okhttp3.OkHttpClient
 
 class HttpClient private constructor() {
 
-    private val okHttpClient: OkHttpClient
-
-    init {
-        okHttpClient = OkHttpClient.Builder().build()
-    }
+    private val okHttpClient: OkHttpClient = OkHttpClient.Builder().build()
 
     companion object {
 

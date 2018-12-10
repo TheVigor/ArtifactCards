@@ -1,6 +1,5 @@
 package com.noble.activity.artifactcards
 
-import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.db.ArtifactAppDatabase
 import com.noble.activity.artifactcards.model.Card
@@ -44,9 +43,7 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
     fun getCardById(cardId: String) =
         artifactAppDatabase.cardDao().getCardById(cardId)
 
-
     companion object {
-
         private var INSTANCE: ArtifactRepository? = null
 
         fun get(): ArtifactRepository {

@@ -4,7 +4,6 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.graphics.Color
 import com.google.gson.annotations.SerializedName
-import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.utils.*
@@ -148,5 +147,4 @@ data class Card constructor(
     }
 
     fun getMiniImageByLocale() = miniImage.default
-
 }

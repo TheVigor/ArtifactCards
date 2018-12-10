@@ -6,6 +6,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.ArtifactRepository
+import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.utils.LoadStatus
 import com.noble.activity.artifactcards.utils.RequestStatus
@@ -29,7 +30,6 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
     val loadStatusLiveData: MutableLiveData<LoadStatus> = MutableLiveData()
     val requestStatusLiveData: MutableLiveData<RequestStatus> = MutableLiveData()
 
-
     private var disposable: Disposable? = null
 
     init {
@@ -52,12 +52,11 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             {
                 error ->
                 loadStatusLiveData.value = LoadStatus.LOADED
-                app.showToast("Error loading cards from official API...")
+                app.showToast(app.getString(R.string.error_loading_from_api))
             })
     }
 
-
-    fun getAllCardsFromRemote(): Single<CardSets> {
+    private fun getAllCardsFromRemote(): Single<CardSets> {
         return Single.zip(
             getCardSetById("00"),
             getCardSetById("01"),
@@ -89,7 +88,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun loadLocalDbArtifactCards(type: String) {
-        if (requestStatusLiveData.value != null && !requestStatus.data?.isEmpty()!!) {
+        if (requestStatusLiveData.value != null && !requestStatus.data.isEmpty()) {
             return
         }
 
@@ -97,12 +96,11 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError {
-                app.showToast("LOAD DB ERROR")
+                app.showToast(app.getString(R.string.error_loading_local_db))
             }
             .doOnNext { cardList ->
-                if (requestStatusLiveData.value == null || requestStatus.data?.isEmpty()!!) {
-                    requestStatus.refreshStatus =
-                            RequestStatus.REFRESH
+                if (requestStatusLiveData.value == null || requestStatus.data.isEmpty()) {
+                    requestStatus.refreshStatus = RequestStatus.REFRESH
                     requestStatus.data = cardList
                     requestStatusLiveData.value = requestStatus
                 }
@@ -111,7 +109,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe({ }, { })
     }
 
-    fun saveArtifactCardsToLocalDb(localNewsList: List<Card>) {
+    private fun saveArtifactCardsToLocalDb(localNewsList: List<Card>) {
         Flowable.create<Any>({ e ->
             ArtifactRepository.get().insertArtifactCardList(localNewsList)
             e.onComplete()
@@ -121,7 +119,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError {
                 loadStatusLiveData.value = LoadStatus.LOADED
-                app.showToast("Error updating db...")
+                app.showToast(app.getString(R.string.error_updating_local_db))
             }
             .doOnComplete {
                 refreshPrefs.updateRefreshDay(localNewsList.size)
@@ -129,5 +127,4 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             }
             .subscribe(Subscriber.create())
     }
-
 }

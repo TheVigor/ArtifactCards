@@ -21,14 +21,17 @@ class CardNameConverter {
 
         val langs = data.split(SEP)
 
-        if (langs.isEmpty())
+        if (langs.isEmpty()) {
             return CardName("", "")
+        }
 
-        if (langs.size == 1)
+        if (langs.size == 1) {
             return CardName(langs[0], "")
+        }
 
-        if (langs.size >= 2)
+        if (langs.size >= 2) {
             return CardName(langs[0], langs[1])
+        }
 
         return CardName("", "")
     }

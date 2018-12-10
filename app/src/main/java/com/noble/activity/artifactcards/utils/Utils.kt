@@ -7,22 +7,22 @@ import android.widget.TextView
 import android.widget.Toast
 
 
-val HERO_CARD_TYPE = "Hero"
-val SPELL_CARD_TYPE = "Spell"
-val ABILITY_CARD_TYPE = "Ability"
-val PASSIVE_ABILITY_CARD_TYPE = "Passive Ability"
-val ITEM_CARD_TYPE = "Item"
-val IMPROVEMENT_CARD_TYPE = "Improvement"
-val CREEP_CARD_TYPE = "Creep"
+const val HERO_CARD_TYPE = "Hero"
+const val SPELL_CARD_TYPE = "Spell"
+const val ABILITY_CARD_TYPE = "Ability"
+const val PASSIVE_ABILITY_CARD_TYPE = "Passive Ability"
+const val ITEM_CARD_TYPE = "Item"
+const val IMPROVEMENT_CARD_TYPE = "Improvement"
+const val CREEP_CARD_TYPE = "Creep"
 
-val SEP = ";;;"
+const val SEP = ";;;"
 
-val LOCALE_RU = "ru"
-val LOCALE_EN = "en"
+const val LOCALE_RU = "ru"
+const val LOCALE_EN = "en"
 
-val RARITY_COMMON = "Common"
-val RARITY_UNCOMMON = "Uncommon"
-val RARITY_RARE = "Rare"
+const val RARITY_COMMON = "Common"
+const val RARITY_UNCOMMON = "Uncommon"
+const val RARITY_RARE = "Rare"
 
 fun Context.showToast(text: String, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, text, duration).show()

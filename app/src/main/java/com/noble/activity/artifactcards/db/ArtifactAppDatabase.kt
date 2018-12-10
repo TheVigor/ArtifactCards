@@ -22,27 +22,13 @@ import com.noble.activity.artifactcards.db.dao.CardDao
     LargeImageConverter::class,
     IngameImageConverter::class)
 abstract class ArtifactAppDatabase : RoomDatabase() {
-
-    private val isDatabaseCreated = MutableLiveData<Boolean>()
-
-    val databaseCreated: LiveData<Boolean>
-        get() = isDatabaseCreated
-
     abstract fun cardDao(): CardDao
 
-    private fun updateDatabaseCreated(context: Context) {
-        if (context.getDatabasePath(DATABASE_NAME).exists()) {
-            isDatabaseCreated.postValue(true)
-        }
-    }
-
     companion object {
-
         @VisibleForTesting
         val DATABASE_NAME = "artifact-db"
 
         private var INSTANCE: ArtifactAppDatabase? = null
-
 
         operator fun get(context: App): ArtifactAppDatabase {
             if (INSTANCE == null) {
@@ -52,7 +38,6 @@ abstract class ArtifactAppDatabase : RoomDatabase() {
                             DATABASE_NAME
                         )
                             .build()
-                        INSTANCE!!.updateDatabaseCreated(context)
                     }
                 }
             }

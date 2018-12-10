@@ -24,4 +24,11 @@
     <string name="items">Items</string>
     <string name="improvements">Improvements</string>
     <string name="creeps">Creeps</string>
+
+    <string name="card_type">Card type</string>
+    <string name="card_rarity">Card rarirty</string>
+    <string name="card_color">Card color</string>
+    <string name="card_text">Card description</string>
+    <string name="card_signature">Card signature</string>
+    <string name="card_illustrator">Card illustrator</string>
 </resources>

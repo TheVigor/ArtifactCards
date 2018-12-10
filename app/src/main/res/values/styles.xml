@@ -70,6 +70,24 @@
         <item name="android:layout_marginTop">5dp</item>
     </style>
 
+    <style name="textview_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/artifact_text_color</item>
+    </style>
+
+    <style name="textview_label">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/artifact_color</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
 
 
 </resources>

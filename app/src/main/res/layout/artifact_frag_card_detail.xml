@@ -65,17 +65,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <ImageView
-                            android:id="@+id/card_image"
-                            android:layout_width="300dp"
-                            android:layout_height="500dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:imageFromUrl="@{viewModel.card.getLargeImageByLocale(viewModel.locale)}"/>
+                <ImageView
+                        android:id="@+id/card_image"
+                        android:layout_width="300dp"
+                        android:layout_height="500dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:imageFromUrl="@{viewModel.card.getLargeImageByLocale(viewModel.locale)}"/>
+
+                <TextView
+                        android:id="@+id/card_type_label"
+                        style="@style/textview_label"
+                        android:text="@string/card_type"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_image"/>
 
 
                 <android.support.v7.widget.CardView
@@ -86,17 +94,22 @@
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_image">
+                        app:layout_constraintTop_toBottomOf="@id/card_type_label">
 
                 <TextView
                         android:id="@+id/card_type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@{viewModel.card.getTypeByLocale()}"
-                        android:textColor="@color/artifact_text_color"/>
+                        style="@style/textview_text"
+                        android:text="@{viewModel.card.getTypeByLocale()}"/>
 
                 </android.support.v7.widget.CardView>
+
+                <TextView
+                        android:id="@+id/card_rarity_label"
+                        style="@style/textview_label"
+                        android:text="@string/card_rarity"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_view_type"/>
 
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -106,17 +119,22 @@
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_view_type">
+                        app:layout_constraintTop_toBottomOf="@id/card_rarity_label">
 
                     <TextView
                             android:id="@+id/card_rarity"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            app:textFromHtml="@{viewModel.card.getRarityByLocale()}"
-                            android:textColor="@color/artifact_text_color"/>
+                            style="@style/textview_text"
+                            app:textFromHtml="@{viewModel.card.getRarityByLocale()}"/>
 
                 </android.support.v7.widget.CardView>
+
+                <TextView
+                        android:id="@+id/card_color_label"
+                        style="@style/textview_label"
+                        android:text="@string/card_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_view_rarity"/>
 
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -126,17 +144,22 @@
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_view_rarity">
+                        app:layout_constraintTop_toBottomOf="@id/card_color_label">
 
                     <TextView
                             android:id="@+id/card_color"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            app:textFromHtml="@{viewModel.card.getColorName()}"
-                            android:textColor="@color/artifact_text_color"/>
+                            style="@style/textview_text"
+                            app:textFromHtml="@{viewModel.card.getColorName()}"/>
 
                 </android.support.v7.widget.CardView>
+
+                <TextView
+                        android:id="@+id/card_text_label"
+                        style="@style/textview_label"
+                        android:text="@string/card_text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_view_color"/>
 
 
                 <android.support.v7.widget.CardView
@@ -147,17 +170,23 @@
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_view_color">
+                        app:layout_constraintTop_toBottomOf="@id/card_text_label">
 
                 <TextView
                         android:id="@+id/card_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        app:textFromHtml="@{viewModel.card.getTextByLocale(viewModel.locale)}"
-                        android:textColor="@color/artifact_text_color"/>
+                        style="@style/textview_text"
+                        app:textFromHtml="@{viewModel.card.getTextByLocale(viewModel.locale)}"/>
 
                 </android.support.v7.widget.CardView>
+
+                <TextView
+                        android:id="@+id/card_ref_label"
+                        style="@style/textview_label"
+                        android:text="@string/card_signature"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_view_text"/>
+
 
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -167,48 +196,52 @@
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_view_text">
+                        app:layout_constraintTop_toBottomOf="@id/card_ref_label">
 
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                         <ImageView
                                 android:id="@+id/first_card_ref_image"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
+                                android:layout_gravity="center"
                                 android:gravity="center"
                                 android:padding="8dp"
                                 app:imageFromUrl="@{viewModel.firstRefCard.getMiniImageByLocale()}"/>
 
                         <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:orientation="vertical">
 
                             <TextView
                                     android:id="@+id/first_card_ref_name"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:textColor="@color/artifact_text_color"
+                                    style="@style/textview_text"
+                                    android:textStyle="bold"
                                     android:padding="3dp"
                                     app:textFromHtml="@{viewModel.firstRefCard.getNameByLocale(viewModel.locale)}"/>
 
                             <TextView
                                     android:id="@+id/first_card_ref_text"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:textColor="@color/artifact_text_color"
+                                    style="@style/textview_text"
                                     android:padding="3dp"
                                     app:textFromHtml="@{viewModel.firstRefCard.getTextByLocale(viewModel.locale)}"/>
 
                         </LinearLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
+                <TextView
+                        android:id="@+id/card_illustrator_label"
+                        style="@style/textview_label"
+                        android:text="@string/card_illustrator"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_view_first_ref"/>
 
 
                 <android.support.v7.widget.CardView
@@ -220,16 +253,13 @@
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_view_first_ref"
+                        app:layout_constraintTop_toBottomOf="@id/card_illustrator_label"
                         card_view:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
                         android:id="@+id/card_illustrator"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        app:textFromHtml="@{viewModel.card.illustrator}"
-                        android:textColor="@color/artifact_text_color"/>
+                        style="@style/textview_text"
+                        app:textFromHtml="@{viewModel.card.illustrator}"/>
 
                 </android.support.v7.widget.CardView>
 

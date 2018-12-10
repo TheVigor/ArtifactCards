@@ -24,4 +24,12 @@
     <string name="items">Предметы</string>
     <string name="improvements">Улучшения</string>
     <string name="creeps">Крипы</string>
+
+    <string name="card_type">Тип карты</string>
+    <string name="card_rarity">Редкость карты</string>
+    <string name="card_color">Цвет карты</string>
+    <string name="card_text">Описание карты</string>
+    <string name="card_signature">Именная карта</string>
+    <string name="card_illustrator">Художник</string>
+
 </resources>

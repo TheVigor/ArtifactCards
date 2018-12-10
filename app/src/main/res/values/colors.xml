@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#EEFAFAFA</color>
-    <color name="colorPrimaryDark">#66757575</color>
-    <color name="colorAccent">#FFFFAB40</color>
+    <color name="colorPrimary">#FAFAFA</color>
+    <color name="colorPrimaryDark">#757575</color>
+    <color name="colorAccent">#FFAB40</color>
 
     <color name="artifact_color">#FFFFAB40</color>
 

@@ -100,7 +100,7 @@
 
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/card_view_text"
+                        android:id="@+id/card_view_rarity"
                         style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
@@ -108,53 +108,13 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_view_type">
 
-                <TextView
-                        android:id="@+id/card_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        app:textFromHtml="@{viewModel.card.getTextByLocale(viewModel.locale)}"
-                        android:textColor="@color/artifact_text_color"/>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/card_view_illustrator"
-                        style="@style/cardview"
-                        card_view:cardCornerRadius="4dp"
-                        card_view:cardBackgroundColor="@color/artifact_white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_view_text">
-
-                <TextView
-                        android:id="@+id/card_illustrator"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        app:textFromHtml="@{viewModel.card.illustrator}"
-                        android:textColor="@color/artifact_text_color"/>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/card_view_rarity"
-                        style="@style/cardview"
-                        card_view:cardCornerRadius="4dp"
-                        card_view:cardBackgroundColor="@color/artifact_white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_view_illustrator">
-
-                <TextView
-                        android:id="@+id/card_rarity"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        app:textFromHtml="@{viewModel.card.getRarityByLocale()}"
-                        android:textColor="@color/artifact_text_color"/>
+                    <TextView
+                            android:id="@+id/card_rarity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            app:textFromHtml="@{viewModel.card.getRarityByLocale()}"
+                            android:textColor="@color/artifact_text_color"/>
 
                 </android.support.v7.widget.CardView>
 
@@ -168,12 +128,33 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_view_rarity">
 
+                    <TextView
+                            android:id="@+id/card_color"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            app:textFromHtml="@{viewModel.card.getColorName()}"
+                            android:textColor="@color/artifact_text_color"/>
+
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/card_view_text"
+                        style="@style/cardview"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:cardBackgroundColor="@color/artifact_white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/card_view_color">
+
                 <TextView
-                        android:id="@+id/card_color"
+                        android:id="@+id/card_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        app:textFromHtml="@{viewModel.card.getColorName()}"
+                        app:textFromHtml="@{viewModel.card.getTextByLocale(viewModel.locale)}"
                         android:textColor="@color/artifact_text_color"/>
 
                 </android.support.v7.widget.CardView>
@@ -182,56 +163,76 @@
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/card_view_first_ref"
                         style="@style/cardview"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:cardBackgroundColor="@color/artifact_white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/card_view_text">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                        <ImageView
+                                android:id="@+id/first_card_ref_image"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                app:imageFromUrl="@{viewModel.firstRefCard.getMiniImageByLocale()}"/>
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
+
+                            <TextView
+                                    android:id="@+id/first_card_ref_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@color/artifact_text_color"
+                                    android:padding="3dp"
+                                    app:textFromHtml="@{viewModel.firstRefCard.getNameByLocale(viewModel.locale)}"/>
+
+                            <TextView
+                                    android:id="@+id/first_card_ref_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@color/artifact_text_color"
+                                    android:padding="3dp"
+                                    app:textFromHtml="@{viewModel.firstRefCard.getTextByLocale(viewModel.locale)}"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/card_view_illustrator"
+                        style="@style/cardview"
                         android:layout_marginBottom="16dp"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_view_color"
+                        app:layout_constraintTop_toBottomOf="@id/card_view_first_ref"
                         card_view:layout_constraintBottom_toBottomOf="parent">
 
-                <LinearLayout
+                <TextView
+                        android:id="@+id/card_illustrator"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                    <ImageView
-                            android:id="@+id/first_card_ref_image"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            app:imageFromUrl="@{viewModel.firstRefCard.getMiniImageByLocale()}"/>
-
-                    <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:orientation="vertical">
-
-                        <TextView
-                                android:id="@+id/first_card_ref_name"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textColor="@color/artifact_text_color"
-                                android:padding="3dp"
-                                app:textFromHtml="@{viewModel.firstRefCard.getNameByLocale(viewModel.locale)}"/>
-
-                        <TextView
-                                android:id="@+id/first_card_ref_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textColor="@color/artifact_text_color"
-                                android:padding="3dp"
-                                app:textFromHtml="@{viewModel.firstRefCard.getTextByLocale(viewModel.locale)}"/>
-
-                    </LinearLayout>
-                </LinearLayout>
-
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        app:textFromHtml="@{viewModel.card.illustrator}"
+                        android:textColor="@color/artifact_text_color"/>
 
                 </android.support.v7.widget.CardView>
+
 
             </android.support.constraint.ConstraintLayout>
 

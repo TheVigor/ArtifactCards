@@ -81,6 +81,7 @@
                         android:id="@+id/card_type_label"
                         style="@style/textview_label"
                         android:text="@string/card_type"
+                        app:visibilityByValue="@{viewModel.card.getTypeByLocale()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_image"/>
@@ -92,6 +93,7 @@
                         style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
+                        app:visibilityByValue="@{viewModel.card.getTypeByLocale()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_type_label">
@@ -107,6 +109,7 @@
                         android:id="@+id/card_rarity_label"
                         style="@style/textview_label"
                         android:text="@string/card_rarity"
+                        app:visibilityByValue="@{viewModel.card.getRarityByLocale()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_view_type"/>
@@ -117,6 +120,7 @@
                         style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
+                        app:visibilityByValue="@{viewModel.card.getRarityByLocale()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_rarity_label">
@@ -132,6 +136,7 @@
                         android:id="@+id/card_color_label"
                         style="@style/textview_label"
                         android:text="@string/card_color"
+                        app:visibilityByValue="@{viewModel.card.getColorName()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_view_rarity"/>
@@ -142,6 +147,7 @@
                         style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
+                        app:visibilityByValue="@{viewModel.card.getColorName()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_color_label">
@@ -157,6 +163,7 @@
                         android:id="@+id/card_text_label"
                         style="@style/textview_label"
                         android:text="@string/card_text"
+                        app:visibilityByValue="@{viewModel.card.getTextByLocale(viewModel.locale)}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_view_color"/>
@@ -168,6 +175,7 @@
                         style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
+                        app:visibilityByValue="@{viewModel.card.getTextByLocale(viewModel.locale)}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_text_label">
@@ -183,6 +191,7 @@
                         android:id="@+id/card_ref_label"
                         style="@style/textview_label"
                         android:text="@string/card_signature"
+                        app:visibilityByValue="@{viewModel.firstRefCard.getMiniImageByLocale()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_view_text"/>
@@ -194,6 +203,7 @@
                         style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
+                        app:visibilityByValue="@{viewModel.firstRefCard.getMiniImageByLocale()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_ref_label">
@@ -239,6 +249,7 @@
                         android:id="@+id/card_illustrator_label"
                         style="@style/textview_label"
                         android:text="@string/card_illustrator"
+                        app:visibilityByValue="@{viewModel.card.illustrator}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_view_first_ref"/>
@@ -251,6 +262,7 @@
                         android:layout_marginBottom="16dp"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
+                        app:visibilityByValue="@{viewModel.card.illustrator}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_illustrator_label"

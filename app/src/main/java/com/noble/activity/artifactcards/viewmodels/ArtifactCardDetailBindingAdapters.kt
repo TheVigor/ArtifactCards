@@ -2,7 +2,9 @@ package com.noble.activity.artifactcards.viewmodels
 
 import android.databinding.BindingAdapter
 import android.os.Build
+import android.support.v7.widget.CardView
 import android.text.Html
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -20,5 +22,14 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
 @BindingAdapter("textFromHtml")
 fun bindTextFromHtml(view: TextView, htmlText: String?) {
     view.setTextFromHtml(htmlText)
+}
+
+@BindingAdapter("visibilityByValue")
+fun bindVisibilityByValue(view: View, value: String?) {
+    if (value.isNullOrEmpty()) {
+        view.visibility = View.GONE
+    } else {
+        view.visibility = View.VISIBLE
+    }
 }
 

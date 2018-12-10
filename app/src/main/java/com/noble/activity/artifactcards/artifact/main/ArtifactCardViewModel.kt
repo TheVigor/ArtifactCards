@@ -6,6 +6,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.ArtifactRepository
+import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.utils.LoadStatus
 import com.noble.activity.artifactcards.utils.RequestStatus
 import com.noble.activity.artifactcards.model.*
@@ -51,7 +52,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             {
                 error ->
                 loadStatusLiveData.value = LoadStatus.LOADED
-                App.get()!!.showToast("Error loading cards from official API...")
+                app.showToast("Error loading cards from official API...")
             })
     }
 
@@ -96,7 +97,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError {
-                App.get()!!.showToast("LOAD DB ERROR")
+                app.showToast("LOAD DB ERROR")
             }
             .doOnNext { cardList ->
                 if (requestStatusLiveData.value == null || requestStatus.data?.isEmpty()!!) {
@@ -120,7 +121,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError {
                 loadStatusLiveData.value = LoadStatus.LOADED
-                App.get()!!.showToast("Error updating db...")
+                app.showToast("Error updating db...")
             }
             .doOnComplete {
                 refreshPrefs.updateRefreshDay(localNewsList.size)

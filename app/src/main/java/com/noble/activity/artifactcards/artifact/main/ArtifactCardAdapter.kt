@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.utils.OnItemClickListener
 import com.noble.activity.artifactcards.model.Card
 import java.util.ArrayList
@@ -13,7 +14,7 @@ import java.util.ArrayList
 class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val locale: String = ConfigurationCompat.getLocales(App.get()?.resources?.configuration)[0].language
+    private val locale: String = ConfigurationCompat.getLocales(app.resources.configuration)[0].language
 
     companion object {
         private const val TYPE_NORMAL = 1000

@@ -3,6 +3,7 @@ package com.noble.activity.artifactcards.utils
 import android.support.v4.os.ConfigurationCompat
 import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.ArtifactRepository
+import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailViewModelFactory
 
 object InjectorUtils {
@@ -12,7 +13,7 @@ object InjectorUtils {
         secondRefId: String,
         thirdRefId: String
     ): ArtifactCardDetailViewModelFactory {
-        val locale = ConfigurationCompat.getLocales(App.get()?.resources?.configuration)[0]
+        val locale = ConfigurationCompat.getLocales(app.resources.configuration)[0]
         return ArtifactCardDetailViewModelFactory(
             ArtifactRepository.get(),
             cardId,

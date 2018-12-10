@@ -7,27 +7,21 @@ val refreshPrefs: RefreshPrefs by lazy {
     App.refreshPrefs!!
 }
 
+val app: App by lazy {
+    App.INSTANCE!!
+}
+
 class App : android.app.Application() {
-
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
-    }
-
     override fun onCreate() {
         refreshPrefs = RefreshPrefs(applicationContext)
         super.onCreate()
         INSTANCE = this
-
-
     }
 
     companion object {
 
-        private var INSTANCE: App? = null
+        var INSTANCE: App? = null
         var refreshPrefs: RefreshPrefs? = null
 
-        fun get(): App? {
-            return INSTANCE
-        }
     }
 }

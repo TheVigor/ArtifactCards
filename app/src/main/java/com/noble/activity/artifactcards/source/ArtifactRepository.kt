@@ -1,6 +1,7 @@
 package com.noble.activity.artifactcards
 
 import com.noble.activity.artifactcards.app.App
+import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.db.ArtifactAppDatabase
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.model.CardSetInfo
@@ -17,7 +18,7 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
 
     init {
         remoteDataSource = RemoteDataSourceImpl(ArtifactClient.get()!!)
-        artifactAppDatabase = ArtifactAppDatabase.get(App.get()!!)
+        artifactAppDatabase = ArtifactAppDatabase.get(app)
     }
 
     override fun getRemoteCardSetInfo(cardSetId: String): Single<CardSetInfo> {

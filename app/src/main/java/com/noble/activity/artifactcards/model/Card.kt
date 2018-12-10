@@ -6,6 +6,7 @@ import android.graphics.Color
 import com.google.gson.annotations.SerializedName
 import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.utils.*
 
 @Entity(tableName = "cards")
@@ -77,36 +78,36 @@ data class Card constructor(
 ) {
     fun getColorName(): String {
         if (isBlack != null){
-            return App.get()!!.getString(R.string.black_color)
+            return app.getString(R.string.black_color)
         }
         if (isBlue != null) {
-            return App.get()!!.getString(R.string.blue_color)
+            return app.getString(R.string.blue_color)
         }
         if (isGreen != null) {
-            return  App.get()!!.getString(R.string.green_color)
+            return  app.getString(R.string.green_color)
         }
         if (isRed != null) {
-            return App.get()!!.getString(R.string.red_color)
+            return app.getString(R.string.red_color)
         }
 
         return ""
     }
 
     fun getTypeByLocale() = when(cardType) {
-        HERO_CARD_TYPE -> App.get()!!.getString(R.string.hero_type)
-        SPELL_CARD_TYPE -> App.get()!!.getString(R.string.spell_type)
-        ABILITY_CARD_TYPE -> App.get()!!.getString(R.string.ability_type)
-        PASSIVE_ABILITY_CARD_TYPE -> App.get()!!.getString(R.string.passive_ability_type)
-        ITEM_CARD_TYPE -> App.get()!!.getString(R.string.item_type)
-        IMPROVEMENT_CARD_TYPE -> App.get()!!.getString(R.string.improvement_type)
-        CREEP_CARD_TYPE -> App.get()!!.getString(R.string.creep_type)
+        HERO_CARD_TYPE -> app.getString(R.string.hero_type)
+        SPELL_CARD_TYPE -> app.getString(R.string.spell_type)
+        ABILITY_CARD_TYPE -> app.getString(R.string.ability_type)
+        PASSIVE_ABILITY_CARD_TYPE -> app.getString(R.string.passive_ability_type)
+        ITEM_CARD_TYPE -> app.getString(R.string.item_type)
+        IMPROVEMENT_CARD_TYPE -> app.getString(R.string.improvement_type)
+        CREEP_CARD_TYPE -> app.getString(R.string.creep_type)
         else -> ""
     }
 
     fun getRarityByLocale() = when(rarity) {
-        RARITY_COMMON -> App.get()!!.getString(R.string.common_rarity)
-        RARITY_UNCOMMON -> App.get()!!.getString(R.string.uncommon_rarity)
-        RARITY_RARE -> App.get()!!.getString(R.string.rare_rarity)
+        RARITY_COMMON -> app.getString(R.string.common_rarity)
+        RARITY_UNCOMMON -> app.getString(R.string.uncommon_rarity)
+        RARITY_RARE -> app.getString(R.string.rare_rarity)
         else -> ""
     }
 

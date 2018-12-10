@@ -2,5 +2,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="@color/artifact_image_mark" />
+    <solid android:color="@color/artifact_normal_grey" />
 </shape>

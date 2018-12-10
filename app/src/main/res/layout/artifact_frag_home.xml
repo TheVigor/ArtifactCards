@@ -29,6 +29,7 @@
                 <TextView
                         android:id="@+id/card_name"
                         android:textColor="@color/artifact_text_color"
+                        android:text="@string/app_name"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:layout_gravity="center_vertical"

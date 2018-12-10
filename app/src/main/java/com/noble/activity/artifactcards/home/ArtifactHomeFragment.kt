@@ -35,8 +35,7 @@ class ArtifactHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        card_name.text = resources.getString(R.string.app_name)
+        
         setToolbar(toolbar)
 
         val titleList = getTitleList()

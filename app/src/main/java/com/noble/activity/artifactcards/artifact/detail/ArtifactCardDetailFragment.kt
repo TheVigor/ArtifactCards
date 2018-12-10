@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.artifact.detail
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -9,9 +9,9 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.databinding.ArtifactFragCardDetailBinding
 import com.noble.activity.artifactcards.utils.InjectorUtils
-import com.noble.activity.artifactcards.viewmodels.ArtifactCardDetailViewModel
 import kotlinx.android.synthetic.main.artifact_frag_card_detail.*
 
 

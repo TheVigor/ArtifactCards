@@ -1,11 +1,12 @@
-package com.noble.activity.artifactcards.artifact
+package com.noble.activity.artifactcards.artifact.main
 
 import android.support.v4.os.ConfigurationCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.noble.activity.artifactcards.App
+import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.utils.OnItemClickListener
 import com.noble.activity.artifactcards.model.Card
 import java.util.ArrayList
 
@@ -29,7 +30,7 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
     }
 
     override fun getItemViewType(position: Int): Int {
-        return  TYPE_NORMAL
+        return TYPE_NORMAL
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

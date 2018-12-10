@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards.artifact
+package com.noble.activity.artifactcards.artifact.main
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -11,12 +11,13 @@ import android.view.ViewGroup
 import com.noble.activity.artifactcards.*
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.utils.HERO_CARD_TYPE
-import com.noble.activity.artifactcards.utils.showToast
 import kotlinx.android.synthetic.main.artifact_frag_card.*
-import android.content.DialogInterface
-import android.content.DialogInterface.BUTTON_POSITIVE
 import android.app.ProgressDialog
-import android.view.WindowManager
+import com.noble.activity.artifactcards.app.refreshPrefs
+import com.noble.activity.artifactcards.utils.LoadStatus
+import com.noble.activity.artifactcards.utils.OnItemClickListener
+import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailActivity
+import com.noble.activity.artifactcards.utils.OnFragmentLoadListener
 
 
 class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
@@ -71,7 +72,8 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
     private fun initRecyclerView() {
         artifactCardAdapter =
-                ArtifactCardAdapter(object : OnItemClickListener<Card> {
+                ArtifactCardAdapter(object :
+                    OnItemClickListener<Card> {
                     override fun onItemClick(position: Int, bean: Card, itemView: View) {
                         activity?.let {
                             //val url = if (bean.cover_url == null) "" else bean.cover_url.ori
@@ -95,12 +97,14 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                                 firstRefId = bean.references[0].cardId
                             }
 
-                            ArtifactCardDetailActivity.launch(it,
+                            ArtifactCardDetailActivity.launch(
+                                it,
                                 bean.cardId.toString(),
                                 firstRefId.toString(),
                                 secondRefId.toString(),
                                 thirdRefId.toString(),
-                                bean.cardId.toString())
+                                bean.cardId.toString()
+                            )
                         }
                     }
                 })

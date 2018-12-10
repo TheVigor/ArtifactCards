@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards.artifact
+package com.noble.activity.artifactcards.utils
 
 import android.media.AudioRecord.MetricsConstants.SOURCE
 import android.support.annotation.IntDef

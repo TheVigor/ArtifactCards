@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.prefs
 
 import android.content.Context
 import android.content.SharedPreferences

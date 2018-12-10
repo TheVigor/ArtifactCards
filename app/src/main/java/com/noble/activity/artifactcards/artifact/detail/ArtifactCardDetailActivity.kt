@@ -1,10 +1,11 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.artifact.detail
 
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.noble.activity.artifactcards.R
 
 class ArtifactCardDetailActivity : AppCompatActivity() {
 
@@ -59,12 +60,14 @@ class ArtifactCardDetailActivity : AppCompatActivity() {
         imageUrl = intent.getStringExtra(NEW_URL)
 
         if (artifactCardDetailFragment == null) {
-            artifactCardDetailFragment= ArtifactCardDetailFragment.newInstance(
-                newId,
-                firstRefId,
-                secondRefId,
-                thirdRefId,
-                imageUrl)
+            artifactCardDetailFragment=
+                    ArtifactCardDetailFragment.newInstance(
+                        newId,
+                        firstRefId,
+                        secondRefId,
+                        thirdRefId,
+                        imageUrl
+                    )
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.container, artifactCardDetailFragment!!, "artifactCardDetailFragment")

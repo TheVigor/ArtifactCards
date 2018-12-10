@@ -1,13 +1,15 @@
-package com.noble.activity.artifactcards.artifact
+package com.noble.activity.artifactcards.artifact.main
 
 import android.annotation.SuppressLint
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import com.noble.activity.artifactcards.App
+import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.ArtifactRepository
+import com.noble.activity.artifactcards.utils.LoadStatus
+import com.noble.activity.artifactcards.utils.RequestStatus
 import com.noble.activity.artifactcards.model.*
-import com.noble.activity.artifactcards.refreshPrefs
+import com.noble.activity.artifactcards.app.refreshPrefs
 import com.noble.activity.artifactcards.rx.Subscriber
 import com.noble.activity.artifactcards.utils.showToast
 import io.reactivex.BackpressureStrategy
@@ -20,7 +22,8 @@ import io.reactivex.schedulers.Schedulers
 
 class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
 
-    private val requestStatus: RequestStatus = RequestStatus()
+    private val requestStatus: RequestStatus =
+        RequestStatus()
 
     val loadStatusLiveData: MutableLiveData<LoadStatus> = MutableLiveData()
     val requestStatusLiveData: MutableLiveData<RequestStatus> = MutableLiveData()
@@ -97,7 +100,8 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             }
             .doOnNext { cardList ->
                 if (requestStatusLiveData.value == null || requestStatus.data?.isEmpty()!!) {
-                    requestStatus.refreshStatus = RequestStatus.REFRESH
+                    requestStatus.refreshStatus =
+                            RequestStatus.REFRESH
                     requestStatus.data = cardList
                     requestStatusLiveData.value = requestStatus
                 }

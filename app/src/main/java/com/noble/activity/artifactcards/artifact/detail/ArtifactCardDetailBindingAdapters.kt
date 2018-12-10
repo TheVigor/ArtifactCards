@@ -1,14 +1,9 @@
-package com.noble.activity.artifactcards.viewmodels
+package com.noble.activity.artifactcards.artifact.detail
 
 import android.databinding.BindingAdapter
-import android.os.Build
-import android.support.v7.widget.CardView
-import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.noble.activity.artifactcards.imageloader.ImageLoader
 import com.noble.activity.artifactcards.utils.setTextFromHtml
 

@@ -1,17 +1,12 @@
 package com.noble.activity.artifactcards.model
 
-import android.app.Application
-import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.graphics.Color
-import android.support.v4.os.ConfigurationCompat
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.noble.activity.artifactcards.App
+import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.utils.*
-import io.reactivex.annotations.NonNull
 
 @Entity(tableName = "cards")
 data class Card constructor(

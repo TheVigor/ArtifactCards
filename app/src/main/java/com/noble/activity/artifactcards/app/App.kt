@@ -1,6 +1,7 @@
-package com.noble.activity.artifactcards
+package com.noble.activity.artifactcards.app
 
 import android.content.Context
+import com.noble.activity.artifactcards.prefs.RefreshPrefs
 
 val refreshPrefs: RefreshPrefs by lazy {
     App.refreshPrefs!!

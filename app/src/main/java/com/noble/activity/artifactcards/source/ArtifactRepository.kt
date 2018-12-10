@@ -1,5 +1,6 @@
 package com.noble.activity.artifactcards
 
+import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.db.ArtifactAppDatabase
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.model.CardSetInfo

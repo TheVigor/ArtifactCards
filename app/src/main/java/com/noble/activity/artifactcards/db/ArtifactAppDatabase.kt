@@ -8,12 +8,10 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import android.support.annotation.VisibleForTesting
-import com.noble.activity.artifactcards.App
+import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.converter.*
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.db.dao.CardDao
-import com.noble.activity.artifactcards.model.CardText
-import com.noble.activity.artifactcards.model.IngameImage
 
 @Database(entities = [Card::class], version = 1, exportSchema = false)
 @TypeConverters(

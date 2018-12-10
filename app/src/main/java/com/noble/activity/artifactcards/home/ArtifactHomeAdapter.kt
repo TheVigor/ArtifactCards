@@ -3,8 +3,8 @@ package com.noble.activity.artifactcards.home
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.noble.activity.artifactcards.OnFragmentLoadListener
-import com.noble.activity.artifactcards.artifact.ArtifactCardFragment
+import com.noble.activity.artifactcards.utils.OnFragmentLoadListener
+import com.noble.activity.artifactcards.artifact.main.ArtifactCardFragment
 import com.noble.activity.artifactcards.utils.*
 import java.lang.ref.WeakReference
 

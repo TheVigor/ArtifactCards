@@ -1,10 +1,9 @@
 package com.noble.activity.artifactcards.utils
 
-import android.content.Context
 import android.support.v4.os.ConfigurationCompat
-import com.noble.activity.artifactcards.App
+import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.ArtifactRepository
-import com.noble.activity.artifactcards.viewmodels.ArtifactCardDetailViewModelFactory
+import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailViewModelFactory
 
 object InjectorUtils {
     fun provideArtifactCardDetailViewModelFactory(
@@ -20,6 +19,7 @@ object InjectorUtils {
             firstRefId,
             secondRefId,
             thirdRefId,
-            locale.language)
+            locale.language
+        )
     }
 }

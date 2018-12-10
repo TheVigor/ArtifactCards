@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.noble.activity.artifactcards.OnFragmentLoadListener
+import com.noble.activity.artifactcards.utils.OnFragmentLoadListener
 import com.noble.activity.artifactcards.R
 import kotlinx.android.synthetic.main.artifact_frag_home.*
 

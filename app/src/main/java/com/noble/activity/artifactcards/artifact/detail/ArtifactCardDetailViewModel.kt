@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards.viewmodels
+package com.noble.activity.artifactcards.artifact.detail
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel

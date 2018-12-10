@@ -81,12 +81,7 @@
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/card_view_type"
-                        android:layout_gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
+                        style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -106,12 +101,7 @@
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/card_view_text"
-                        android:layout_gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
+                        style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -131,12 +121,7 @@
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/card_view_illustrator"
-                        android:layout_gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
+                        style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -156,12 +141,7 @@
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/card_view_rarity"
-                        android:layout_gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
+                        style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -181,12 +161,7 @@
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/card_view_color"
-                        android:layout_gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
+                        style="@style/cardview"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -206,24 +181,55 @@
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/card_view_first_ref"
-                        android:layout_gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
+                        style="@style/cardview"
+                        android:layout_marginBottom="16dp"
                         card_view:cardCornerRadius="4dp"
                         card_view:cardBackgroundColor="@color/artifact_white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_view_color">
+                        app:layout_constraintTop_toBottomOf="@id/card_view_color"
+                        card_view:layout_constraintBottom_toBottomOf="parent">
 
-                <ImageView
-                    android:id="@+id/first_card_ref"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:gravity="center"
-                    app:imageFromUrl="@{viewModel.firstRefCard.getMiniImageByLocale()}"/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:id="@+id/first_card_ref_image"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            app:imageFromUrl="@{viewModel.firstRefCard.getMiniImageByLocale()}"/>
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/first_card_ref_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/artifact_text_color"
+                                android:padding="3dp"
+                                app:textFromHtml="@{viewModel.firstRefCard.getNameByLocale(viewModel.locale)}"/>
+
+                        <TextView
+                                android:id="@+id/first_card_ref_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/artifact_text_color"
+                                android:padding="3dp"
+                                app:textFromHtml="@{viewModel.firstRefCard.getTextByLocale(viewModel.locale)}"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
 
                 </android.support.v7.widget.CardView>
 

@@ -36,6 +36,7 @@ class ArtifactHomeAdapter(fm: FragmentManager, private val titleList: List<Strin
         return titleList[position]
     }
 
+
     fun getOnFragmentLoadListener(position: Int): OnFragmentLoadListener? {
         var listener: OnFragmentLoadListener? = null
         val weakRefValue = fragMap[position]

@@ -35,7 +35,7 @@ class ArtifactHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         setToolbar(toolbar)
 
         val titleList = getTitleList()
@@ -43,8 +43,15 @@ class ArtifactHomeFragment : Fragment() {
         artifactHomeAdapter = ArtifactHomeAdapter(childFragmentManager, titleList)
         view_pager.adapter = artifactHomeAdapter
 
+
         tabs.tabMode = android.support.design.widget.TabLayout.MODE_SCROLLABLE
         tabs.setupWithViewPager(view_pager)
+
+        tabs.getTabAt(0)?.setIcon(R.drawable.ic_hero)
+        tabs.getTabAt(1)?.setIcon(R.drawable.ic_spell)
+        tabs.getTabAt(2)?.setIcon(R.drawable.ic_item)
+        tabs.getTabAt(3)?.setIcon(R.drawable.ic_improvement)
+        tabs.getTabAt(4)?.setIcon(R.drawable.ic_creep)
 
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}

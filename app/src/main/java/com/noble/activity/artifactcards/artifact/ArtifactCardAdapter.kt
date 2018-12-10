@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.noble.activity.artifactcards.App
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.model.Card
-import com.ruzhan.lion.listener.OnItemClickListener
 import java.util.ArrayList
 
 class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)

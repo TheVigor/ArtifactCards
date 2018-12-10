@@ -12,7 +12,6 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.imageloader.IImageLoader
-import com.ruzhan.lion.glide.GlideApp
 
 class GlideImpl : IImageLoader {
 

@@ -4,15 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import android.util.Log
 import com.noble.activity.artifactcards.App
 import com.noble.activity.artifactcards.ArtifactRepository
 import com.noble.activity.artifactcards.model.*
 import com.noble.activity.artifactcards.refreshPrefs
+import com.noble.activity.artifactcards.rx.Subscriber
 import com.noble.activity.artifactcards.utils.showToast
-import com.ruzhan.lion.model.LoadStatus
-import com.ruzhan.lion.model.RequestStatus
-import com.ruzhan.lion.rx.Subscriber
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -23,10 +20,10 @@ import io.reactivex.schedulers.Schedulers
 
 class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
 
-    private val requestStatus: RequestStatus<List<Card>> = RequestStatus()
+    private val requestStatus: RequestStatus = RequestStatus()
 
     val loadStatusLiveData: MutableLiveData<LoadStatus> = MutableLiveData()
-    val requestStatusLiveData: MutableLiveData<RequestStatus<List<Card>>> = MutableLiveData()
+    val requestStatusLiveData: MutableLiveData<RequestStatus> = MutableLiveData()
 
 
     private var disposable: Disposable? = null
@@ -46,7 +43,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
                 //loadStatusLiveData.value = LoadStatus.LOADED
                 requestStatus.data = cardSets.cardSet.cardList.filter { it.cardType == type }
                 requestStatusLiveData.value = requestStatus
-                cardSets.cardSet.cardList?.let { saveArtifactCardsToLocalDb(it, type) }
+                cardSets.cardSet.cardList?.let { saveArtifactCardsToLocalDb(it) }
             },
             {
                 error ->
@@ -73,7 +70,6 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
                                 Name("CardSet", "CardSet")),
                             result.toList())
                     )
-
             }
         )
 
@@ -89,7 +85,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun loadLocalDbArtifactCards(type: String) {
-        if (requestStatusLiveData.value != null && !requestStatus.data.isEmpty()) {
+        if (requestStatusLiveData.value != null && !requestStatus.data?.isEmpty()!!) {
             return
         }
 
@@ -100,7 +96,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
                 App.get()!!.showToast("LOAD DB ERROR")
             }
             .doOnNext { cardList ->
-                if (requestStatusLiveData.value == null || requestStatus.data.isEmpty()) {
+                if (requestStatusLiveData.value == null || requestStatus.data?.isEmpty()!!) {
                     requestStatus.refreshStatus = RequestStatus.REFRESH
                     requestStatus.data = cardList
                     requestStatusLiveData.value = requestStatus
@@ -110,7 +106,7 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe({ }, { })
     }
 
-    fun saveArtifactCardsToLocalDb(localNewsList: List<Card>, type: String) {
+    fun saveArtifactCardsToLocalDb(localNewsList: List<Card>) {
         Flowable.create<Any>({ e ->
             ArtifactRepository.get().insertArtifactCardList(localNewsList)
             e.onComplete()

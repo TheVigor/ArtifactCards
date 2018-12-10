@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.OnFragmentLoadListener
 import com.noble.activity.artifactcards.R
-import com.ruzhan.lion.helper.FontHelper
 import kotlinx.android.synthetic.main.artifact_frag_home.*
 
 class ArtifactHomeFragment : Fragment() {
@@ -37,7 +36,7 @@ class ArtifactHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        card_name.typeface = FontHelper.get().getBoldTypeface()
+        //card_name.typeface = FontHelper.get().getBoldTypeface()
         card_name.text = resources.getString(R.string.app_name)
         setToolbar(toolbar)
 

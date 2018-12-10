@@ -1,8 +1,6 @@
 package com.noble.activity.artifactcards
 
 import android.content.Context
-import android.support.multidex.MultiDex
-import com.blankj.utilcode.util.Utils
 
 val refreshPrefs: RefreshPrefs by lazy {
     App.refreshPrefs!!
@@ -12,7 +10,6 @@ class App : android.app.Application() {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
-        MultiDex.install(this)
     }
 
     override fun onCreate() {
@@ -20,8 +17,6 @@ class App : android.app.Application() {
         super.onCreate()
         INSTANCE = this
 
-        Utils.init(App.get()!!)
-        com.ruzhan.lion.App.setApp(this)
 
     }
 

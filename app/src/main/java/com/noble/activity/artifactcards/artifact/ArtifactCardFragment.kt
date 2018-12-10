@@ -12,8 +12,6 @@ import com.noble.activity.artifactcards.*
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.utils.HERO_CARD_TYPE
 import com.noble.activity.artifactcards.utils.showToast
-import com.ruzhan.lion.listener.OnItemClickListener
-import com.ruzhan.lion.model.LoadStatus
 import kotlinx.android.synthetic.main.artifact_frag_card.*
 import android.content.DialogInterface
 import android.content.DialogInterface.BUTTON_POSITIVE

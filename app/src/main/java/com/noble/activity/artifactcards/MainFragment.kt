@@ -17,7 +17,7 @@ class MainFragment : Fragment() {
 
     private val fragmentMap = HashMap<String, Fragment>()
 
-    private var artifactHomeFragment: ArtifactHomeFragment? = null
+    var artifactHomeFragment: ArtifactHomeFragment? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

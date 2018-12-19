@@ -119,6 +119,14 @@ class ArtifactHomeFragment : Fragment() {
         activity.setSupportActionBar(toolbar)
     }
 
+    fun isSearchViewClosed(): Boolean {
+        if (!search_view.isIconified) {
+            search_view.isIconified = true
+            return false
+        }
+
+        return true
+    }
 
     inner class FragmentLoadTask : Runnable {
         override fun run() {
@@ -130,4 +138,7 @@ class ArtifactHomeFragment : Fragment() {
         handler.removeCallbacks(fragmentLoadTask)
         super.onDestroy()
     }
+
+
+
 }

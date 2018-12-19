@@ -21,4 +21,15 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
+    override fun onBackPressed() {
+        var back = mainFragment?.artifactHomeFragment?.isSearchViewClosed()
+        if (back != null) {
+            if (!back) return
+        }
+
+        super.onBackPressed()
+
+
+    }
 }

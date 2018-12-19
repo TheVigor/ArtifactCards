@@ -78,17 +78,16 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(charSequence: CharSequence): Filter.FilterResults {
-                val charString = charSequence.toString()
-                if (charString.isEmpty()) {
+                val query = charSequence.toString()
+                if (query.isEmpty()) {
                     cardListFiltered = cardList
                 } else {
                     val filteredList = ArrayList<Card>()
                     for (card in cardList) {
-                        if (card.cardName.english!!.contains(charString, ignoreCase = true)) {
+                        if (card.isMatchQuery(query)) {
                             filteredList.add(card)
                         }
                     }
-
                     cardListFiltered = filteredList
                 }
 

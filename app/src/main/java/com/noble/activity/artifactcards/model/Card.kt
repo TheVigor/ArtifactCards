@@ -147,4 +147,13 @@ data class Card constructor(
     }
 
     fun getMiniImageByLocale() = miniImage.default
+
+    fun isMatchQuery(query: String): Boolean {
+        if (this.cardName.english == null) return false
+        if (this.cardName.russian == null) return false
+
+        return this.cardName.english!!.contains(query, true)
+                || this.cardName.russian!!.contains(query, true)
+
+    }
 }

@@ -25,8 +25,6 @@ class ArtifactHomeFragment : Fragment() {
         fun newInstance() = ArtifactHomeFragment()
     }
 
-
-
     private lateinit var artifactHomeAdapter: ArtifactHomeAdapter
 
     private var onFragmentLoadListener: OnFragmentLoadListener? = null
@@ -42,7 +40,49 @@ class ArtifactHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar(toolbar)
+        setupSearchView()
 
+        val titleList = getTitleList()
+
+        artifactHomeAdapter = ArtifactHomeAdapter(childFragmentManager, titleList)
+        view_pager.adapter = artifactHomeAdapter
+
+        tabs.tabMode = android.support.design.widget.TabLayout.MODE_SCROLLABLE
+        tabs.setupWithViewPager(view_pager)
+
+        tabs.getTabAt(0)?.setIcon(R.drawable.ic_hero)
+        tabs.getTabAt(1)?.setIcon(R.drawable.ic_spell)
+        tabs.getTabAt(2)?.setIcon(R.drawable.ic_item)
+        tabs.getTabAt(3)?.setIcon(R.drawable.ic_improvement)
+        tabs.getTabAt(4)?.setIcon(R.drawable.ic_creep)
+
+        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+            override fun onPageSelected(position: Int) {
+                search_view?.setQuery("", false)
+                handler.removeCallbacks(fragmentLoadTask)
+                onFragmentLoadListener = artifactHomeAdapter.getOnFragmentLoadListener(position)
+                handler.postDelayed(fragmentLoadTask, 600)
+            }
+        })
+    }
+
+    private fun getTitleList() = ArrayList<String>().apply {
+        add(getString(R.string.heroes))
+        add(getString(R.string.spells))
+        add(getString(R.string.items))
+        add(getString(R.string.improvements))
+        add(getString(R.string.creeps))
+    }
+
+    private fun setupToolbar(toolbar: Toolbar) {
+        val activity = activity as AppCompatActivity
+        activity.setSupportActionBar(toolbar)
+    }
+
+    private fun setupSearchView() {
         search_view.queryHint = getString(R.string.card_name)
         search_view.maxWidth = Integer.MAX_VALUE
 
@@ -77,46 +117,6 @@ class ArtifactHomeFragment : Fragment() {
                 return false
             }
         })
-
-
-        val titleList = getTitleList()
-
-        artifactHomeAdapter = ArtifactHomeAdapter(childFragmentManager, titleList)
-        view_pager.adapter = artifactHomeAdapter
-
-
-        tabs.tabMode = android.support.design.widget.TabLayout.MODE_SCROLLABLE
-        tabs.setupWithViewPager(view_pager)
-
-        tabs.getTabAt(0)?.setIcon(R.drawable.ic_hero)
-        tabs.getTabAt(1)?.setIcon(R.drawable.ic_spell)
-        tabs.getTabAt(2)?.setIcon(R.drawable.ic_item)
-        tabs.getTabAt(3)?.setIcon(R.drawable.ic_improvement)
-        tabs.getTabAt(4)?.setIcon(R.drawable.ic_creep)
-
-        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {}
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-
-            override fun onPageSelected(position: Int) {
-                handler.removeCallbacks(fragmentLoadTask)
-                onFragmentLoadListener = artifactHomeAdapter.getOnFragmentLoadListener(position)
-                handler.postDelayed(fragmentLoadTask, 600)
-            }
-        })
-    }
-
-    private fun getTitleList() = ArrayList<String>().apply {
-        add(getString(R.string.heroes))
-        add(getString(R.string.spells))
-        add(getString(R.string.items))
-        add(getString(R.string.improvements))
-        add(getString(R.string.creeps))
-    }
-
-    private fun setupToolbar(toolbar: Toolbar) {
-        val activity = activity as AppCompatActivity
-        activity.setSupportActionBar(toolbar)
     }
 
     fun isSearchViewClosed(): Boolean {
@@ -124,7 +124,6 @@ class ArtifactHomeFragment : Fragment() {
             search_view.isIconified = true
             return false
         }
-
         return true
     }
 
@@ -138,7 +137,5 @@ class ArtifactHomeFragment : Fragment() {
         handler.removeCallbacks(fragmentLoadTask)
         super.onDestroy()
     }
-
-
 
 }

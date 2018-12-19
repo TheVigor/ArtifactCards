@@ -116,7 +116,6 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
         searchData.observe(this@ArtifactCardFragment,
             Observer { query ->
                 query?.let {
-                    activity?.showToast("Observed")
                     artifactCardAdapter.filter.filter(query)
                 }
             })

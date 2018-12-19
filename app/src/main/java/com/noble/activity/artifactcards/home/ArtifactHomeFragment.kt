@@ -6,12 +6,15 @@ import android.os.Looper
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.noble.activity.artifactcards.utils.OnFragmentLoadListener
 import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.app.searchData
 import kotlinx.android.synthetic.main.artifact_frag_home.*
 
 class ArtifactHomeFragment : Fragment() {
@@ -21,6 +24,8 @@ class ArtifactHomeFragment : Fragment() {
         @JvmStatic
         fun newInstance() = ArtifactHomeFragment()
     }
+
+
 
     private lateinit var artifactHomeAdapter: ArtifactHomeAdapter
 
@@ -36,7 +41,43 @@ class ArtifactHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setToolbar(toolbar)
+        setupToolbar(toolbar)
+
+        search_view.queryHint = getString(R.string.card_name)
+        search_view.maxWidth = Integer.MAX_VALUE
+
+        search_view.setOnSearchClickListener {
+            card_name.visibility = View.GONE
+        }
+
+        search_view.setOnCloseListener {
+            card_name.visibility = View.VISIBLE
+            false
+        }
+
+        val searchButton = search_view.findViewById<ImageView>(android.support.v7.appcompat.R.id.search_button)
+        searchButton.setColorFilter(R.color.artifact_text_color)
+
+        val closeButton = search_view.findViewById<ImageView>(android.support.v7.appcompat.R.id.search_close_btn)
+        closeButton.setColorFilter(R.color.artifact_text_color)
+
+        val searchAutoComplete = search_view.
+            findViewById<SearchView.SearchAutoComplete>(android.support.v7.appcompat.R.id.search_src_text)
+        searchAutoComplete.setHintTextColor(resources.getColor(R.color.artifact_white_f5))
+        searchAutoComplete.setTextColor(resources.getColor(R.color.artifact_white_f5))
+
+        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                searchData.value = query
+                return false
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                searchData.value = query
+                return false
+            }
+        })
+
 
         val titleList = getTitleList()
 
@@ -73,10 +114,11 @@ class ArtifactHomeFragment : Fragment() {
         add(getString(R.string.creeps))
     }
 
-    private fun setToolbar(toolbar: Toolbar) {
+    private fun setupToolbar(toolbar: Toolbar) {
         val activity = activity as AppCompatActivity
         activity.setSupportActionBar(toolbar)
     }
+
 
     inner class FragmentLoadTask : Runnable {
         override fun run() {

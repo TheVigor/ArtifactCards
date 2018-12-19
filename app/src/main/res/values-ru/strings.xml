@@ -38,4 +38,5 @@
     <string name="error_loading_local_db">Ошибка загрузки локальной базы данных…</string>
     <string name="error_updating_local_db">Ошибка обновления локальной базы данных…</string>
 
+    <string name="card_name">Название карты</string>
 </resources>

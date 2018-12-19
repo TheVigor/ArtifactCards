@@ -37,4 +37,6 @@
     <string name="error_loading_from_api">Error loading cards from official API… Please, check internet connection</string>
     <string name="error_loading_local_db">Error loading local database...</string>
     <string name="error_updating_local_db">Error updating local db...</string>
+
+    <string name="card_name">Card name</string>
 </resources>

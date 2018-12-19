@@ -10,14 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.*
 import com.noble.activity.artifactcards.model.Card
-import com.noble.activity.artifactcards.utils.HERO_CARD_TYPE
 import kotlinx.android.synthetic.main.artifact_frag_card.*
 import android.app.ProgressDialog
 import com.noble.activity.artifactcards.app.refreshPrefs
-import com.noble.activity.artifactcards.utils.LoadStatus
-import com.noble.activity.artifactcards.utils.OnItemClickListener
+import com.noble.activity.artifactcards.app.searchData
 import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailActivity
-import com.noble.activity.artifactcards.utils.OnFragmentLoadListener
+import com.noble.activity.artifactcards.utils.*
 
 class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
@@ -51,6 +49,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
         arguments?.let {
             cardType = it.getString(CARD_TYPE)
         }
+
 
         initRecyclerView()
 
@@ -113,6 +112,14 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
     }
 
     private fun initLiveData() {
+
+        searchData.observe(this@ArtifactCardFragment,
+            Observer { query ->
+                query?.let {
+                    activity?.showToast("Observed")
+                    artifactCardAdapter.filter.filter(query)
+                }
+            })
 
         progressDialog = ProgressDialog(activity, R.style.DownloadDialog)
         progressDialog.max = 100

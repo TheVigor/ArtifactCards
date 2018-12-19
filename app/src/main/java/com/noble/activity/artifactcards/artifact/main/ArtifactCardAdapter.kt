@@ -4,7 +4,8 @@ import android.support.v4.os.ConfigurationCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.noble.activity.artifactcards.app.App
+import android.widget.Filter
+import android.widget.Filterable
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.utils.OnItemClickListener
@@ -12,7 +13,7 @@ import com.noble.activity.artifactcards.model.Card
 import java.util.ArrayList
 
 class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
     private val locale: String = ConfigurationCompat.getLocales(app.resources.configuration)[0].language
 
@@ -20,12 +21,17 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
         private const val TYPE_NORMAL = 1000
     }
 
-    private val dataList = ArrayList<Any>()
+    private val cardList = ArrayList<Card>()
+    private var cardListFiltered = ArrayList<Card>()
 
     fun setRefreshData(list: List<Card>) {
         if (list.isNotEmpty()) {
-            dataList.clear()
-            dataList.addAll(list)
+            cardList.clear()
+            cardList.addAll(list)
+
+            cardListFiltered.clear()
+            cardListFiltered.addAll(list)
+
             notifyDataSetChanged()
         }
     }
@@ -53,12 +59,12 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            TYPE_NORMAL -> (holder as ArtifactCardHolder).bind(dataList[position] as Card, locale)
+            TYPE_NORMAL -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
         }
     }
 
     override fun getItemCount(): Int {
-        return dataList.size
+        return cardListFiltered.size
     }
 
     fun getSpanSize(position: Int): Int {
@@ -68,4 +74,34 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
         }
         return spanSize
     }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(charSequence: CharSequence): Filter.FilterResults {
+                val charString = charSequence.toString()
+                if (charString.isEmpty()) {
+                    cardListFiltered = cardList
+                } else {
+                    val filteredList = ArrayList<Card>()
+                    for (card in cardList) {
+                        if (card.cardName.english!!.contains(charString, ignoreCase = true)) {
+                            filteredList.add(card)
+                        }
+                    }
+
+                    cardListFiltered = filteredList
+                }
+
+                val filterResults = Filter.FilterResults()
+                filterResults.values = cardListFiltered
+                return filterResults
+            }
+
+            override fun publishResults(charSequence: CharSequence, filterResults: Filter.FilterResults) {
+                cardListFiltered = filterResults.values as ArrayList<Card>
+                notifyDataSetChanged()
+            }
+        }
+    }
+
 }

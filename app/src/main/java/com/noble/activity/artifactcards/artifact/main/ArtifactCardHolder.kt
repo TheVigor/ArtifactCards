@@ -24,7 +24,7 @@ class ArtifactCardHolder(itemView: View, private var listener: OnItemClickListen
 
         itemView.card_name.setTextFromHtml(card.getNameByLocale(locale))
 
-        itemView.card_color.text = card.getColorName()
+        itemView.card_color.text = card.getColorNameWithTr()
         itemView.card_color.setTextColor(card.getTextColor())
 
         itemView.card_rarity.text = card.getRarityByLocale()

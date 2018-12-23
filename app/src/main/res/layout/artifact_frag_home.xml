@@ -2,7 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/coordinator"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/artifact_white_f5">
@@ -19,6 +19,7 @@
                 android:layout_height="48dp"
                 app:layout_scrollFlags="scroll|enterAlways"
                 android:background="@color/artifact_white"
+                app:contentInsetStart="0dp"
                 android:elevation="0dp">
 
             <android.support.constraint.ConstraintLayout
@@ -28,14 +29,63 @@
                 <TextView
                         android:id="@+id/card_name"
                         android:textColor="@color/artifact_text_color"
-                        android:text="@string/app_name"
+                        android:text="@string/cards_color"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:layout_gravity="center_vertical"
                         android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <CheckBox
+                    android:id="@+id/check_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:checked="true"
+                    android:shadowColor="@color/artifact_red"
+                    android:buttonTint="@color/artifact_red"
+                    app:layout_constraintStart_toEndOf="@+id/card_name"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <CheckBox
+                        android:id="@+id/check_green"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:checked="true"
+                        android:shadowColor="@color/artifact_green"
+                        android:buttonTint="@color/artifact_green"
+                        app:layout_constraintStart_toEndOf="@+id/check_red"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <CheckBox
+                        android:id="@+id/check_blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:checked="true"
+                        android:shadowColor="@color/artifact_blue"
+                        android:buttonTint="@color/artifact_blue"
+                        app:layout_constraintStart_toEndOf="@+id/check_green"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <CheckBox
+                        android:id="@+id/check_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:checked="true"
+                        android:shadowColor="@color/artifact_black"
+                        android:buttonTint="@color/artifact_black"
+                        app:layout_constraintStart_toEndOf="@+id/check_blue"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -46,12 +96,12 @@
                         android:iconifiedByDefault="false"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
+                        android:layout_margin="5dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
 
             </android.support.constraint.ConstraintLayout>
-
 
 
         </android.support.v7.widget.Toolbar>

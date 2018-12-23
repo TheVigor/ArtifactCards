@@ -6,6 +6,7 @@ import android.graphics.Color
 import com.google.gson.annotations.SerializedName
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.app.app
+import com.noble.activity.artifactcards.app.colorFilter
 import com.noble.activity.artifactcards.utils.*
 
 @Entity(tableName = "cards")
@@ -75,7 +76,7 @@ data class Card constructor(
     @SerializedName("is_red")
     var isRed: Boolean? = false
 ) {
-    fun getColorName(): String {
+    fun getColorNameWithTr(): String {
         if (isBlack != null){
             return app.getString(R.string.black_color)
         }
@@ -91,6 +92,24 @@ data class Card constructor(
 
         return ""
     }
+
+    fun getColorName(): String {
+        if (isBlack != null){
+            return COLOR_BLACK
+        }
+        if (isBlue != null) {
+            return COLOR_BLUE
+        }
+        if (isGreen != null) {
+            return  COLOR_GREEN
+        }
+        if (isRed != null) {
+            return COLOR_RED
+        }
+
+        return ""
+    }
+
 
     fun getTypeByLocale() = when(cardType) {
         HERO_CARD_TYPE -> app.getString(R.string.hero_type)
@@ -155,5 +174,13 @@ data class Card constructor(
         return this.cardName.english!!.contains(query, true)
                 || this.cardName.russian!!.contains(query, true)
 
+    }
+
+    fun isMatchColor(): Boolean {
+        if (this.cardType == ITEM_CARD_TYPE) {
+                return true
+        }
+
+        return colorFilter.contains(this.getColorName())
     }
 }

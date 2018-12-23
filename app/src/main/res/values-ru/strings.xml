@@ -39,4 +39,6 @@
     <string name="error_updating_local_db">Ошибка обновления локальной базы данных…</string>
 
     <string name="card_name">Название карты</string>
+
+    <string name="cards_color">Цвет карт:</string>
 </resources>

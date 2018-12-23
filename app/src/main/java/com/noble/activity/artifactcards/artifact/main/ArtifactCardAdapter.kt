@@ -8,6 +8,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.app.app
+import com.noble.activity.artifactcards.app.colorFilter
 import com.noble.activity.artifactcards.utils.OnItemClickListener
 import com.noble.activity.artifactcards.model.Card
 import java.util.ArrayList
@@ -30,7 +31,7 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
             cardList.addAll(list)
 
             cardListFiltered.clear()
-            cardListFiltered.addAll(list)
+            cardListFiltered.addAll(list.filter { it.isMatchColor() })
 
             notifyDataSetChanged()
         }
@@ -90,6 +91,9 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
                     }
                     cardListFiltered = filteredList
                 }
+
+                cardListFiltered =
+                        ArrayList(cardListFiltered.filter { it.isMatchColor() })
 
                 val filterResults = Filter.FilterResults()
                 filterResults.values = cardListFiltered

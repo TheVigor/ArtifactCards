@@ -12,6 +12,9 @@ import com.noble.activity.artifactcards.*
 import com.noble.activity.artifactcards.model.Card
 import kotlinx.android.synthetic.main.artifact_frag_card.*
 import android.app.ProgressDialog
+import android.util.Log
+import com.noble.activity.artifactcards.app.colorData
+import com.noble.activity.artifactcards.app.colorFilter
 import com.noble.activity.artifactcards.app.refreshPrefs
 import com.noble.activity.artifactcards.app.searchData
 import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailActivity
@@ -120,6 +123,14 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                 }
             })
 
+        colorData.observe(this@ArtifactCardFragment,
+            Observer { color ->
+                color?.let {
+                    artifactCardAdapter.filter.filter(searchData.value ?: "")
+                }
+            })
+
+
         progressDialog = ProgressDialog(activity, R.style.DownloadDialog)
         progressDialog.max = 100
         progressDialog.setMessage(getString(R.string.loading))
@@ -142,7 +153,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
         artifactCardViewModel.requestStatusLiveData.observe(this@ArtifactCardFragment,
             Observer { requestStatus ->
                 requestStatus?.let {
-                     artifactCardAdapter.setRefreshData(requestStatus.data)
+                    artifactCardAdapter.setRefreshData(requestStatus.data)
                 }
             })
     }

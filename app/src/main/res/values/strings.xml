@@ -39,4 +39,5 @@
     <string name="error_updating_local_db">Error updating local db...</string>
 
     <string name="card_name">Card name</string>
+    <string name="cards_color">Cards color:</string>
 </resources>

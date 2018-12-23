@@ -14,8 +14,13 @@
     <color name="artifact_text_grey">#99FF0000</color>
     <color name="artifact_text_grey33">#330000FF</color>
 
-
     <color name="artifact_image_mark">#FFE0E0E0</color>
     <color name="artifact_normal_grey">#FF757575</color>
+
+    <color name="artifact_red">#FF0000</color>
+    <color name="artifact_green">#2E7D32</color>
+    <color name="artifact_blue">#448AFF</color>
+    <color name="artifact_black">#000000</color>
+
 
 </resources>

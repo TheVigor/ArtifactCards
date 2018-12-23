@@ -24,6 +24,13 @@ const val RARITY_COMMON = "Common"
 const val RARITY_UNCOMMON = "Uncommon"
 const val RARITY_RARE = "Rare"
 
+const val COLOR_BLACK = "Black"
+const val COLOR_BLUE = "Blue"
+const val COLOR_GREEN = "Green"
+const val COLOR_RED = "Red"
+
+const val NOT = "Not"
+
 fun Context.showToast(text: String, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, text, duration).show()
 }

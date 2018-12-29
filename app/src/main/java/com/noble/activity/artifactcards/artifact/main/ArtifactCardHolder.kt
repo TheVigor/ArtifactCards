@@ -27,7 +27,12 @@ class ArtifactCardHolder(itemView: View, private var listener: OnItemClickListen
         itemView.card_color.text = card.getColorNameWithTr()
         itemView.card_color.setTextColor(card.getTextColor())
 
+        itemView.card_rarity_image.setImageDrawable(card.getRarityIcon())
         itemView.card_rarity.text = card.getRarityByLocale()
+
+        itemView.card_attack_value.text = card.getCardAttack()
+        itemView.card_armor_value.text = card.getCardArmor()
+        itemView.card_health_value.text = card.getCardHealth()
 
         card.getMiniImageByLocale()?.let {
             ImageLoader.get().load(itemView.icon_iv, it)

@@ -122,11 +122,32 @@ data class Card constructor(
         else -> ""
     }
 
+    fun getRarityIcon() = when(rarity) {
+        RARITY_COMMON -> app.getDrawable(R.drawable.ic_rarity_common)
+        RARITY_UNCOMMON -> app.getDrawable(R.drawable.ic_rarity_uncommon)
+        RARITY_RARE -> app.getDrawable(R.drawable.ic_rarity_rare)
+        else -> app.getDrawable(R.drawable.ic_rarity_common)
+    }
+
+
     fun getRarityByLocale() = when(rarity) {
         RARITY_COMMON -> app.getString(R.string.common_rarity)
         RARITY_UNCOMMON -> app.getString(R.string.uncommon_rarity)
         RARITY_RARE -> app.getString(R.string.rare_rarity)
         else -> ""
+    }
+
+    fun getCardAttack(): String {
+        return if (attack != null) attack.toString() else "0"
+    }
+
+    fun getCardArmor(): String {
+        return "0"
+    }
+
+
+    fun getCardHealth(): String {
+        return if (hitPoints != null) hitPoints.toString() else "0"
     }
 
 

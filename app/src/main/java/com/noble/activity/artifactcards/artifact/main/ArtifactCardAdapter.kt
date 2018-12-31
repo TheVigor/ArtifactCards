@@ -56,7 +56,7 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
             TYPE_SPELL -> viewHolder = ArtifactCardSpellHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_spell, parent, false), listener)
             TYPE_ITEM -> viewHolder = ArtifactCardItemHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_item, parent, false), listener)
             TYPE_IMPROVEMENT -> viewHolder = ArtifactCardSpellHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_spell, parent, false), listener)
-            TYPE_CREEP -> viewHolder = ArtifactCardHeroHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
+            TYPE_CREEP -> viewHolder = ArtifactCardCreepHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_creep, parent, false), listener)
         }
         return viewHolder
     }
@@ -67,7 +67,7 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
             TYPE_SPELL -> (holder as ArtifactCardSpellHolder).bind(cardListFiltered[position], locale)
             TYPE_ITEM -> (holder as ArtifactCardItemHolder).bind(cardListFiltered[position], locale)
             TYPE_IMPROVEMENT -> (holder as ArtifactCardSpellHolder).bind(cardListFiltered[position], locale)
-            TYPE_CREEP -> (holder as ArtifactCardHeroHolder).bind(cardListFiltered[position], locale)
+            TYPE_CREEP -> (holder as ArtifactCardCreepHolder).bind(cardListFiltered[position], locale)
         }
     }
 

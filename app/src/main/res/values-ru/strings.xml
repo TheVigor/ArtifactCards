@@ -41,4 +41,8 @@
     <string name="card_name">Название карты</string>
 
     <string name="cards_color">Цвет карт:</string>
+
+    <string name="card_mana">Мана</string>
+    <string name="card_gold">Золото</string>
+
 </resources>

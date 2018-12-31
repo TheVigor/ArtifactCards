@@ -22,5 +22,7 @@
     <color name="artifact_blue">#448AFF</color>
     <color name="artifact_black">#000000</color>
 
+    <color name="artifact_gold">#FFDF00</color>
+
 
 </resources>

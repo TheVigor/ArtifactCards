@@ -40,4 +40,7 @@
 
     <string name="card_name">Card name</string>
     <string name="cards_color">Cards color:</string>
+
+    <string name="card_mana">Mana</string>
+    <string name="card_gold">Gold</string>
 </resources>

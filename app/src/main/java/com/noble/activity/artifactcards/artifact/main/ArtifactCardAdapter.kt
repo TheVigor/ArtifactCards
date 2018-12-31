@@ -52,22 +52,22 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         lateinit var viewHolder: RecyclerView.ViewHolder
         when (viewType) {
-            TYPE_HERO -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
-            TYPE_SPELL -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
-            TYPE_ITEM -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
-            TYPE_IMPROVEMENT -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
-            TYPE_CREEP -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
+            TYPE_HERO -> viewHolder = ArtifactCardHeroHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
+            TYPE_SPELL -> viewHolder = ArtifactCardSpellHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_spell, parent, false), listener)
+            TYPE_ITEM -> viewHolder = ArtifactCardItemHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_item, parent, false), listener)
+            TYPE_IMPROVEMENT -> viewHolder = ArtifactCardSpellHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_spell, parent, false), listener)
+            TYPE_CREEP -> viewHolder = ArtifactCardHeroHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
         }
         return viewHolder
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            TYPE_HERO -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
-            TYPE_SPELL -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
-            TYPE_ITEM -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
-            TYPE_IMPROVEMENT -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
-            TYPE_CREEP -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
+            TYPE_HERO -> (holder as ArtifactCardHeroHolder).bind(cardListFiltered[position], locale)
+            TYPE_SPELL -> (holder as ArtifactCardSpellHolder).bind(cardListFiltered[position], locale)
+            TYPE_ITEM -> (holder as ArtifactCardItemHolder).bind(cardListFiltered[position], locale)
+            TYPE_IMPROVEMENT -> (holder as ArtifactCardSpellHolder).bind(cardListFiltered[position], locale)
+            TYPE_CREEP -> (holder as ArtifactCardHeroHolder).bind(cardListFiltered[position], locale)
         }
     }
 

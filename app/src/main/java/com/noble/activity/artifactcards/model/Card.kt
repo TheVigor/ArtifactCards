@@ -153,6 +153,14 @@ data class Card constructor(
         return if (hitPoints != null) hitPoints.toString() else "0"
     }
 
+    fun getMana(): String {
+        return if (manaCost != null) manaCost.toString() else "0"
+    }
+
+    fun getGold(): CharSequence? {
+        return if (goldCost != null) goldCost.toString() else "0"
+    }
+
 
     fun getTextColor(): Int {
         if (isBlack != null){
@@ -207,4 +215,5 @@ data class Card constructor(
 
         return colorFilter.contains(this.getColorName())
     }
+
 }

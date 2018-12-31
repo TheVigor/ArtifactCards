@@ -31,8 +31,17 @@ class ArtifactCardHolder(itemView: View, private var listener: OnItemClickListen
         itemView.card_rarity.text = card.getRarityByLocale()
 
         itemView.card_attack_value.text = card.getCardAttack()
-        itemView.card_armor_value.text = card.getCardArmor()
         itemView.card_health_value.text = card.getCardHealth()
+
+        itemView.card_armor_value.text = card.getCardArmor()
+        if (itemView.card_armor_value.text == "0") {
+            itemView.card_armor_value.visibility = View.GONE
+            itemView.card_armor_image.visibility = View.GONE
+        } else {
+            itemView.card_armor_value.visibility = View.VISIBLE
+            itemView.card_armor_image.visibility = View.VISIBLE
+        }
+
 
         card.getMiniImageByLocale()?.let {
             ImageLoader.get().load(itemView.icon_iv, it)

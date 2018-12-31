@@ -43,4 +43,8 @@
 
     <string name="card_mana">Mana</string>
     <string name="card_gold">Gold</string>
+
+    <string name="card_basic">Basic</string>
+    <string name="card_sign">Signature</string>
+    <string name="card_summon">Summon</string>
 </resources>

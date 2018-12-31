@@ -137,7 +137,14 @@ data class Card constructor(
         RARITY_COMMON -> app.getString(R.string.common_rarity)
         RARITY_UNCOMMON -> app.getString(R.string.uncommon_rarity)
         RARITY_RARE -> app.getString(R.string.rare_rarity)
-        else -> ""
+        else -> when (cardType) {
+            HERO_CARD_TYPE -> app.getString(R.string.card_basic)
+            SPELL_CARD_TYPE -> app.getString(R.string.card_sign)
+            ITEM_CARD_TYPE -> app.getString(R.string.card_basic)
+            IMPROVEMENT_CARD_TYPE -> app.getString(R.string.card_sign)
+            CREEP_CARD_TYPE -> app.getString(R.string.card_summon)
+            else -> app.getString(R.string.card_basic)
+        }
     }
 
     fun getCardAttack(): String {

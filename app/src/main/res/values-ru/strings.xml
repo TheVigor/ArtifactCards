@@ -45,4 +45,8 @@
     <string name="card_mana">Мана</string>
     <string name="card_gold">Золото</string>
 
+    <string name="card_basic">Базовая</string>
+    <string name="card_sign">Именная</string>
+    <string name="card_summon">Призыв</string>
+
 </resources>

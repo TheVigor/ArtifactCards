@@ -8,12 +8,10 @@ import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.ArtifactRepository
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.app.app
-import com.noble.activity.artifactcards.utils.LoadStatus
-import com.noble.activity.artifactcards.utils.RequestStatus
 import com.noble.activity.artifactcards.model.*
 import com.noble.activity.artifactcards.app.refreshPrefs
 import com.noble.activity.artifactcards.rx.Subscriber
-import com.noble.activity.artifactcards.utils.showToast
+import com.noble.activity.artifactcards.utils.*
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -45,7 +43,17 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             .subscribe ({
                 cardSets ->
                 //loadStatusLiveData.value = LoadStatus.LOADED
-                requestStatus.data = cardSets.cardSet.cardList.filter { it.cardType == type }
+                requestStatus.data = cardSets.cardSet.cardList.filter{it.cardType == type }
+                    .sortedBy {
+                        when (type) {
+                            HERO_CARD_TYPE -> it.attack
+                            SPELL_CARD_TYPE -> it.manaCost
+                            ITEM_CARD_TYPE -> it.goldCost
+                            IMPROVEMENT_CARD_TYPE -> it.manaCost
+                            CREEP_CARD_TYPE -> it.manaCost
+                            else -> it.attack
+                        }
+                    }
                 requestStatusLiveData.value = requestStatus
                 cardSets.cardSet.cardList?.let { saveArtifactCardsToLocalDb(it) }
             },
@@ -100,8 +108,18 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
             }
             .doOnNext { cardList ->
                 if (requestStatusLiveData.value == null || requestStatus.data.isEmpty()) {
+
                     requestStatus.refreshStatus = RequestStatus.REFRESH
-                    requestStatus.data = cardList
+                    requestStatus.data = cardList.sortedBy {
+                        when (type) {
+                            HERO_CARD_TYPE -> it.attack
+                            SPELL_CARD_TYPE -> it.manaCost
+                            ITEM_CARD_TYPE -> it.goldCost
+                            IMPROVEMENT_CARD_TYPE -> it.manaCost
+                            CREEP_CARD_TYPE -> it.manaCost
+                            else -> it.attack
+                        }
+                    }
                     requestStatusLiveData.value = requestStatus
                 }
                 disposable?.dispose()

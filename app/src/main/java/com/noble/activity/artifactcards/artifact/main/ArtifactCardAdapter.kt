@@ -8,9 +8,8 @@ import android.widget.Filter
 import android.widget.Filterable
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.app.app
-import com.noble.activity.artifactcards.app.colorFilter
-import com.noble.activity.artifactcards.utils.OnItemClickListener
 import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.utils.*
 import java.util.ArrayList
 
 class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
@@ -19,7 +18,11 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
     private val locale: String = ConfigurationCompat.getLocales(app.resources.configuration)[0].language
 
     companion object {
-        private const val TYPE_NORMAL = 1000
+        private const val TYPE_HERO = 1000
+        private const val TYPE_SPELL = 1001
+        private const val TYPE_ITEM = 1002
+        private const val TYPE_IMPROVEMENT = 1003
+        private const val TYPE_CREEP = 1004
     }
 
     private val cardList = ArrayList<Card>()
@@ -37,30 +40,34 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return TYPE_NORMAL
+    override fun getItemViewType(position: Int) =  when(cardListFiltered[position].cardType) {
+        HERO_CARD_TYPE -> TYPE_HERO
+        SPELL_CARD_TYPE -> TYPE_SPELL
+        ITEM_CARD_TYPE -> TYPE_ITEM
+        IMPROVEMENT_CARD_TYPE -> TYPE_IMPROVEMENT
+        CREEP_CARD_TYPE -> TYPE_CREEP
+        else -> TYPE_HERO
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         lateinit var viewHolder: RecyclerView.ViewHolder
         when (viewType) {
-            TYPE_NORMAL -> viewHolder =
-                    ArtifactCardHolder(
-                        LayoutInflater.from(parent.context)
-                            .inflate(
-                                R.layout.artifact_item_new_list_grid,
-                                parent,
-                                false
-                            ), listener
-                    )
-
+            TYPE_HERO -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
+            TYPE_SPELL -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
+            TYPE_ITEM -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
+            TYPE_IMPROVEMENT -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
+            TYPE_CREEP -> viewHolder = ArtifactCardHolder(LayoutInflater.from(parent.context).inflate(R.layout.artifact_item_hero, parent, false), listener)
         }
         return viewHolder
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            TYPE_NORMAL -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
+            TYPE_HERO -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
+            TYPE_SPELL -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
+            TYPE_ITEM -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
+            TYPE_IMPROVEMENT -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
+            TYPE_CREEP -> (holder as ArtifactCardHolder).bind(cardListFiltered[position], locale)
         }
     }
 
@@ -69,11 +76,7 @@ class ArtifactCardAdapter(private var listener: OnItemClickListener<Card>)
     }
 
     fun getSpanSize(position: Int): Int {
-        var spanSize = 1
-        when (getItemViewType(position)) {
-            TYPE_NORMAL -> spanSize = 1
-        }
-        return spanSize
+        return 1
     }
 
     override fun getFilter(): Filter {

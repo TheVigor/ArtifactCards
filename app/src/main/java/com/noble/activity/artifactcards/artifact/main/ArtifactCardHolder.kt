@@ -8,7 +8,7 @@ import com.noble.activity.artifactcards.imageloader.ImageLoader
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.utils.setTextFromHtml
 
-import kotlinx.android.synthetic.main.artifact_item_new_list_grid.view.*
+import kotlinx.android.synthetic.main.artifact_item_hero.view.*
 
 class ArtifactCardHolder(itemView: View, private var listener: OnItemClickListener<Card>)
     : RecyclerView.ViewHolder(itemView) {

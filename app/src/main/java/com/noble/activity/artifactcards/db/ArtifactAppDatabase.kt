@@ -13,7 +13,7 @@ import com.noble.activity.artifactcards.converter.*
 import com.noble.activity.artifactcards.model.Card
 import com.noble.activity.artifactcards.db.dao.CardDao
 
-@Database(entities = [Card::class], version = 1, exportSchema = false)
+@Database(entities = [Card::class], version = 2, exportSchema = false)
 @TypeConverters(
     ReferenceConverter::class,
     MiniImageConverter::class,
@@ -37,6 +37,7 @@ abstract class ArtifactAppDatabase : RoomDatabase() {
                         INSTANCE = Room.databaseBuilder(context, ArtifactAppDatabase::class.java,
                             DATABASE_NAME
                         )
+                            .fallbackToDestructiveMigration()
                             .build()
                     }
                 }

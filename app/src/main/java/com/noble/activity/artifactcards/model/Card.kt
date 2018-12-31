@@ -58,6 +58,9 @@ data class Card constructor(
     @SerializedName("attack")
     var attack: Int?,
 
+    @SerializedName("armor")
+    var armor: Int?,
+
     @SerializedName("sub_type")
     var subType: String?,
 
@@ -142,7 +145,7 @@ data class Card constructor(
     }
 
     fun getCardArmor(): String {
-        return "0"
+        return if (armor != null) armor.toString() else "0"
     }
 
 

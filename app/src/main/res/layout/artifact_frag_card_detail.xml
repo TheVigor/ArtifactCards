@@ -161,7 +161,7 @@
                         android:id="@+id/card_color_label"
                         style="@style/textview_label"
                         android:text="@string/card_color"
-                        app:visibilityByValue="@{viewModel.card.getColorNameWithTr()}"
+                        app:visibilityByValue="@{viewModel.card.getColorName()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/card_view_rarity"/>
@@ -180,7 +180,7 @@
                     <TextView
                             android:id="@+id/card_color"
                             style="@style/textview_text"
-                            app:textFromHtml="@{viewModel.card.getColorName()}"/>
+                            app:textFromHtml="@{viewModel.card.getColorNameWithTr()}"/>
 
                 </android.support.v7.widget.CardView>
 

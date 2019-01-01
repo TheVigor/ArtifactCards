@@ -5,7 +5,7 @@ import android.view.View
 import com.noble.activity.artifactcards.utils.OnItemClickListener
 
 import com.noble.activity.artifactcards.imageloader.ImageLoader
-import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.model.card.Card
 import com.noble.activity.artifactcards.utils.setTextFromHtml
 
 import kotlinx.android.synthetic.main.artifact_item_hero.view.*

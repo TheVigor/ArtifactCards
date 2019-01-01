@@ -11,16 +11,18 @@ class ArtifactCardDetailActivity : AppCompatActivity() {
 
     companion object {
         private const val NEW_ID = "newId"
+        private const val NEW_NAME = "newName"
 
         private const val NEW_FIRST_REF = "firstRef"
         private const val NEW_SECOND_REF = "secondRef"
         private const val NEW_THIRD_REF = "thirdRef"
 
         @JvmStatic
-        fun launch(activity: Activity, newId: String, firstRefId: String, secondRefId: String, thirdRefId: String) {
+        fun launch(activity: Activity, newId: String, newName: String, firstRefId: String, secondRefId: String, thirdRefId: String) {
             val intent = Intent(activity, ArtifactCardDetailActivity::class.java)
 
             intent.putExtra(NEW_ID, newId)
+            intent.putExtra(NEW_NAME, newName)
             intent.putExtra(NEW_FIRST_REF, firstRefId)
             intent.putExtra(NEW_SECOND_REF, secondRefId)
             intent.putExtra(NEW_THIRD_REF, thirdRefId)
@@ -29,7 +31,10 @@ class ArtifactCardDetailActivity : AppCompatActivity() {
         }
     }
 
+
+
     private lateinit var newId: String
+    private lateinit var newName: String
 
     private lateinit var firstRefId: String
     private lateinit var secondRefId: String
@@ -43,6 +48,7 @@ class ArtifactCardDetailActivity : AppCompatActivity() {
         setContentView(R.layout.container)
 
         newId = intent.getStringExtra(NEW_ID)
+        newName = intent.getStringExtra(NEW_NAME)
 
         firstRefId = intent.getStringExtra(NEW_FIRST_REF)
         secondRefId = intent.getStringExtra(NEW_SECOND_REF)
@@ -52,6 +58,7 @@ class ArtifactCardDetailActivity : AppCompatActivity() {
             artifactCardDetailFragment=
                     ArtifactCardDetailFragment.newInstance(
                         newId,
+                        newName,
                         firstRefId,
                         secondRefId,
                         thirdRefId

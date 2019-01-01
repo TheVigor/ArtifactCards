@@ -1,5 +1,6 @@
 package com.noble.activity.artifactcards.artifact.detail
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -12,12 +13,16 @@ import android.view.ViewGroup
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.databinding.ArtifactFragCardDetailBinding
 import com.noble.activity.artifactcards.utils.InjectorUtils
+import com.noble.activity.artifactcards.utils.LoadStatus
+import com.noble.activity.artifactcards.utils.showToast
 import kotlinx.android.synthetic.main.artifact_frag_card_detail.*
 
 class ArtifactCardDetailFragment : Fragment() {
 
     companion object {
+
         private const val NEW_ID = "newId"
+        private const val NEW_NAME = "newName"
 
         private const val NEW_FIRST_REF = "firstRef"
         private const val NEW_SECOND_REF = "secondRef"
@@ -25,12 +30,14 @@ class ArtifactCardDetailFragment : Fragment() {
 
         @JvmStatic
         fun newInstance(newId: String,
+                        newName: String,
                         firstRefId: String,
                         secondRefId: String,
                         thirdRefId: String): ArtifactCardDetailFragment {
             val args = Bundle()
 
             args.putString(NEW_ID, newId)
+            args.putString(NEW_NAME, newName)
             args.putString(NEW_FIRST_REF, firstRefId)
             args.putString(NEW_SECOND_REF, secondRefId)
             args.putString(NEW_THIRD_REF, thirdRefId)
@@ -42,25 +49,30 @@ class ArtifactCardDetailFragment : Fragment() {
     }
 
     private lateinit var newId: String
+    private lateinit var newName: String
 
     private lateinit var firstRefId: String
     private lateinit var secondRefId: String
     private lateinit var thirdRefId: String
 
+    private lateinit var artifactCardDetailViewModel: ArtifactCardDetailViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         arguments?.let {
             newId = it.getString(NEW_ID)
+            newName = it.getString(NEW_NAME)
 
             firstRefId = it.getString(NEW_FIRST_REF)
             secondRefId = it.getString(NEW_SECOND_REF)
             thirdRefId = it.getString(NEW_THIRD_REF)
         }
 
-        val factory = InjectorUtils.provideArtifactCardDetailViewModelFactory(newId, firstRefId, secondRefId, thirdRefId)
-        val artifactCardDetailViewModel = ViewModelProviders.of(this, factory)
+        val factory = InjectorUtils.provideArtifactCardDetailViewModelFactory(newId, newName, firstRefId, secondRefId, thirdRefId)
+        artifactCardDetailViewModel = ViewModelProviders.of(this, factory)
             .get(ArtifactCardDetailViewModel::class.java)
+        initLiveData()
+
 
 
         val binding = DataBindingUtil.inflate<ArtifactFragCardDetailBinding>(
@@ -68,6 +80,8 @@ class ArtifactCardDetailFragment : Fragment() {
             viewModel = artifactCardDetailViewModel
             setLifecycleOwner(this@ArtifactCardDetailFragment)
         }
+
+        artifactCardDetailViewModel.getCardPrice()
 
         return binding.root
     }
@@ -91,5 +105,26 @@ class ArtifactCardDetailFragment : Fragment() {
             actionBar.setHomeButtonEnabled(true)
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
+    }
+
+    private fun initLiveData() {
+
+        artifactCardDetailViewModel.loadStatusLiveData.observe(this@ArtifactCardDetailFragment,
+            Observer { loadStatus ->
+                loadStatus?.let {
+                    if (LoadStatus.LOADING == loadStatus) {
+                        //activity?.showToast("LOADING")
+                    } else {
+                        //activity?.showToast("LOADED")
+                    }
+                }
+            })
+
+        artifactCardDetailViewModel.priceLiveData.observe(this@ArtifactCardDetailFragment,
+            Observer { price ->
+                price?.let {
+                    card_price.text = price
+                }
+            })
     }
 }

@@ -8,7 +8,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.app.app
-import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.model.card.Card
 import com.noble.activity.artifactcards.utils.*
 import java.util.ArrayList
 

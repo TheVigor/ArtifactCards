@@ -49,4 +49,6 @@
     <string name="card_sign">Именная</string>
     <string name="card_summon">Призыв</string>
 
+    <string name="card_price">Цена карты</string>
+
 </resources>

@@ -1,7 +1,7 @@
 package com.noble.activity.artifactcards.converter
 
 import android.arch.persistence.room.TypeConverter
-import com.noble.activity.artifactcards.model.IngameImage
+import com.noble.activity.artifactcards.model.card.IngameImage
 import com.noble.activity.artifactcards.utils.SEP
 
 class IngameImageConverter {
@@ -14,7 +14,7 @@ class IngameImageConverter {
     }
 
     @TypeConverter
-    fun toIngameImage(data: String): IngameImage{
+    fun toIngameImage(data: String): IngameImage {
         if (data.isNullOrEmpty())
             return IngameImage("", "")
 

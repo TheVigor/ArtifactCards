@@ -1,4 +1,4 @@
-package com.noble.activity.artifactcards.model
+package com.noble.activity.artifactcards.model.card
 
 import com.google.gson.annotations.SerializedName
 

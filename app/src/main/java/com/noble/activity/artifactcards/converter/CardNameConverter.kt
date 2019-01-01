@@ -1,7 +1,7 @@
 package com.noble.activity.artifactcards.converter
 
 import android.arch.persistence.room.TypeConverter
-import com.noble.activity.artifactcards.model.CardName
+import com.noble.activity.artifactcards.model.card.CardName
 import com.noble.activity.artifactcards.utils.SEP
 
 class CardNameConverter {
@@ -15,7 +15,7 @@ class CardNameConverter {
     }
 
     @TypeConverter
-    fun toCardName(data: String): CardName{
+    fun toCardName(data: String): CardName {
         if (data.isNullOrEmpty())
             return CardName("", "")
 

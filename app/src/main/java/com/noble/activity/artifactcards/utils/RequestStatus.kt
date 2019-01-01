@@ -1,6 +1,6 @@
 package com.noble.activity.artifactcards.utils
 
-import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.model.card.Card
 
 class RequestStatus {
 

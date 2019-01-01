@@ -4,12 +4,11 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.ArtifactRepository
 import com.noble.activity.artifactcards.R
 import com.noble.activity.artifactcards.app.app
-import com.noble.activity.artifactcards.model.*
 import com.noble.activity.artifactcards.app.refreshPrefs
+import com.noble.activity.artifactcards.model.card.*
 import com.noble.activity.artifactcards.rx.Subscriber
 import com.noble.activity.artifactcards.utils.*
 import io.reactivex.BackpressureStrategy
@@ -74,13 +73,15 @@ class ArtifactCardViewModel(app: Application) : AndroidViewModel(app) {
                     val result = arrayListOf<Card>()
                     result.addAll(first.cardSet.cardList)
                     result.addAll(second.cardSet.cardList)
-                    CardSets(
-                        CardSet(
-                            "1", SetInfo(
-                                1, 1,
-                                Name("CardSet", "CardSet")),
-                            result.toList())
+                CardSets(
+                    CardSet(
+                        "1", SetInfo(
+                            1, 1,
+                            Name("CardSet", "CardSet")
+                        ),
+                        result.toList()
                     )
+                )
             }
         )
 

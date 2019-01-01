@@ -1,7 +1,8 @@
 package com.noble.activity.artifactcards.network
 
-import com.noble.activity.artifactcards.model.CardSetInfo
-import com.noble.activity.artifactcards.model.CardSets
+import com.noble.activity.artifactcards.model.card.CardSetInfo
+import com.noble.activity.artifactcards.model.card.CardSets
+import com.noble.activity.artifactcards.model.price.CardPrices
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,6 +15,9 @@ interface ArtifactApi {
 
     @GET
     fun getCardSet(@Url url: String): Single<CardSets>
+
+    @GET
+    fun getCardPrice(@Url url: String): Single<CardPrices>
 
 
 

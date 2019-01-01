@@ -47,4 +47,6 @@
     <string name="card_basic">Basic</string>
     <string name="card_sign">Signature</string>
     <string name="card_summon">Summon</string>
+
+    <string name="card_price">Card price</string>
 </resources>

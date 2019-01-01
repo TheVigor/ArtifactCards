@@ -1,7 +1,7 @@
 package com.noble.activity.artifactcards.converter
 
 import android.arch.persistence.room.TypeConverter
-import com.noble.activity.artifactcards.model.LargeImage
+import com.noble.activity.artifactcards.model.card.LargeImage
 import com.noble.activity.artifactcards.utils.SEP
 
 class LargeImageConverter {
@@ -14,7 +14,7 @@ class LargeImageConverter {
     }
 
     @TypeConverter
-    fun toLargeImage(data: String): LargeImage{
+    fun toLargeImage(data: String): LargeImage {
         if (data.isNullOrEmpty())
             return LargeImage("", "")
 

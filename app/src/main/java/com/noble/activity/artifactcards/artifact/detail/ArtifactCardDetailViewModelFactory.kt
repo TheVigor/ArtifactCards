@@ -7,6 +7,7 @@ import com.noble.activity.artifactcards.ArtifactRepository
 class ArtifactCardDetailViewModelFactory(
     private val artifactRepository: ArtifactRepository,
     private val cardId: String,
+    private val cardName: String,
     private val firstRefId: String,
     private val secondRefId: String,
     private val thirdRefId: String,
@@ -18,6 +19,7 @@ class ArtifactCardDetailViewModelFactory(
         return ArtifactCardDetailViewModel(
             artifactRepository,
             cardId,
+            cardName,
             firstRefId,
             secondRefId,
             thirdRefId,

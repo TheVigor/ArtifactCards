@@ -2,9 +2,10 @@ package com.noble.activity.artifactcards
 
 import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.db.ArtifactAppDatabase
-import com.noble.activity.artifactcards.model.Card
-import com.noble.activity.artifactcards.model.CardSetInfo
-import com.noble.activity.artifactcards.model.CardSets
+import com.noble.activity.artifactcards.model.card.Card
+import com.noble.activity.artifactcards.model.card.CardSetInfo
+import com.noble.activity.artifactcards.model.card.CardSets
+import com.noble.activity.artifactcards.model.price.CardPrices
 import com.noble.activity.artifactcards.network.ArtifactClient
 import com.noble.activity.artifactcards.source.remote.IRemoteDataSource
 import io.reactivex.Flowable
@@ -18,6 +19,10 @@ class ArtifactRepository private constructor() : IRemoteDataSource {
     init {
         remoteDataSource = RemoteDataSourceImpl(ArtifactClient.get()!!)
         artifactAppDatabase = ArtifactAppDatabase.get(app)
+    }
+
+    override fun getRemoteCardPrice(url: String): Single<CardPrices> {
+        return remoteDataSource.getRemoteCardPrice(url)
     }
 
     override fun getRemoteCardSetInfo(cardSetId: String): Single<CardSetInfo> {

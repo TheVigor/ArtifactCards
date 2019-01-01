@@ -5,7 +5,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.model.card.Card
 import io.reactivex.Flowable
 
 @Dao

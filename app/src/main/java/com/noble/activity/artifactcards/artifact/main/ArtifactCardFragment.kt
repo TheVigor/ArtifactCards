@@ -9,12 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.*
-import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.model.card.Card
 import kotlinx.android.synthetic.main.artifact_frag_card.*
 import android.app.ProgressDialog
-import android.util.Log
 import com.noble.activity.artifactcards.app.colorData
-import com.noble.activity.artifactcards.app.colorFilter
 import com.noble.activity.artifactcards.app.refreshPrefs
 import com.noble.activity.artifactcards.app.searchData
 import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailActivity
@@ -58,7 +56,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
         artifactCardViewModel = ViewModelProviders.of(this).get(ArtifactCardViewModel::class.java)
         initLiveData()
-
+        
         if (refreshPrefs.isRefreshNeeded() && cardType == HERO_CARD_TYPE) {
             artifactCardViewModel.getAllCards(cardType)
         }
@@ -94,6 +92,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
                             ArtifactCardDetailActivity.launch(
                                 it,
                                 bean.cardId.toString(),
+                                bean.cardName.english!!,
                                 firstRefId.toString(),
                                 secondRefId.toString(),
                                 thirdRefId.toString()

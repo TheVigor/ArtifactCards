@@ -1,7 +1,7 @@
 package com.noble.activity.artifactcards.converter
 
 import android.arch.persistence.room.TypeConverter
-import com.noble.activity.artifactcards.model.MiniImage
+import com.noble.activity.artifactcards.model.card.MiniImage
 
 class MiniImageConverter {
 

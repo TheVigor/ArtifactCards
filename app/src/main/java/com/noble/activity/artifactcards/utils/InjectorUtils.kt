@@ -8,6 +8,7 @@ import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailViewMo
 object InjectorUtils {
     fun provideArtifactCardDetailViewModelFactory(
         cardId: String,
+        cardName: String,
         firstRefId: String,
         secondRefId: String,
         thirdRefId: String
@@ -16,6 +17,7 @@ object InjectorUtils {
         return ArtifactCardDetailViewModelFactory(
             ArtifactRepository.get(),
             cardId,
+            cardName,
             firstRefId,
             secondRefId,
             thirdRefId,

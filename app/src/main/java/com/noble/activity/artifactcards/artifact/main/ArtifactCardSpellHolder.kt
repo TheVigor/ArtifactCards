@@ -3,7 +3,7 @@ package com.noble.activity.artifactcards.artifact.main
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.noble.activity.artifactcards.imageloader.ImageLoader
-import com.noble.activity.artifactcards.model.Card
+import com.noble.activity.artifactcards.model.card.Card
 import com.noble.activity.artifactcards.utils.OnItemClickListener
 import com.noble.activity.artifactcards.utils.setTextFromHtml
 import kotlinx.android.synthetic.main.artifact_item_spell.view.*

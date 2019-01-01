@@ -56,7 +56,7 @@ class ArtifactCardFragment : Fragment(), OnFragmentLoadListener {
 
         artifactCardViewModel = ViewModelProviders.of(this).get(ArtifactCardViewModel::class.java)
         initLiveData()
-        
+
         if (refreshPrefs.isRefreshNeeded() && cardType == HERO_CARD_TYPE) {
             artifactCardViewModel.getAllCards(cardType)
         }

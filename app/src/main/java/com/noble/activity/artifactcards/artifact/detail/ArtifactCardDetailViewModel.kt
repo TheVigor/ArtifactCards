@@ -8,7 +8,6 @@ import com.noble.activity.artifactcards.ArtifactRepository
 import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.model.card.Card
 import com.noble.activity.artifactcards.utils.LoadStatus
-import com.noble.activity.artifactcards.utils.RequestStatus
 import com.noble.activity.artifactcards.utils.showToast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -35,16 +34,11 @@ class ArtifactCardDetailViewModel(
     val secondRefCard: LiveData<Card> = artifactRepository.getCardById(secondRefId)
     val thirdRefCard: LiveData<Card> = artifactRepository.getCardById(thirdRefId)
 
-    val loadStatusLiveData: MutableLiveData<LoadStatus> = MutableLiveData()
     val priceLiveData: MutableLiveData<String> = MutableLiveData()
 
     @SuppressLint("CheckResult")
     fun getCardPrice() {
-        loadStatusLiveData.value = LoadStatus.LOADING
-
-        val url = STEAM_COMMUNITY_URL + cardName
-
-        ArtifactRepository.get().getRemoteCardPrice(url)
+        ArtifactRepository.get().getRemoteCardPrice(STEAM_COMMUNITY_URL + cardName)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ cardPrices ->
@@ -53,12 +47,9 @@ class ArtifactCardDetailViewModel(
                 } else {
                     priceLiveData.value = cardPrices.results.first().sellPriceText
                 }
-                loadStatusLiveData.value = LoadStatus.LOADED
             },
-            { error ->
+            { _ ->
                 priceLiveData.value = "N/A"
-                loadStatusLiveData.value = LoadStatus.LOADED
-                app.showToast("XXX")
             })
     }
 

@@ -73,8 +73,6 @@ class ArtifactCardDetailFragment : Fragment() {
             .get(ArtifactCardDetailViewModel::class.java)
         initLiveData()
 
-
-
         val binding = DataBindingUtil.inflate<ArtifactFragCardDetailBinding>(
             inflater, R.layout.artifact_frag_card_detail, container, false).apply {
             viewModel = artifactCardDetailViewModel
@@ -108,18 +106,7 @@ class ArtifactCardDetailFragment : Fragment() {
     }
 
     private fun initLiveData() {
-
-        artifactCardDetailViewModel.loadStatusLiveData.observe(this@ArtifactCardDetailFragment,
-            Observer { loadStatus ->
-                loadStatus?.let {
-                    if (LoadStatus.LOADING == loadStatus) {
-                        //activity?.showToast("LOADING")
-                    } else {
-                        //activity?.showToast("LOADED")
-                    }
-                }
-            })
-
+        
         artifactCardDetailViewModel.priceLiveData.observe(this@ArtifactCardDetailFragment,
             Observer { price ->
                 price?.let {

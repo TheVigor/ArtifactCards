@@ -39,7 +39,7 @@ class ArtifactCardDetailViewModel(
     @SuppressLint("CheckResult")
     fun getCardPrice() {
         ArtifactRepository.get().getRemoteCardPrice(STEAM_COMMUNITY_URL + cardName)
-            .subscribeOn(Schedulers.newThread())
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ cardPrices ->
                 if (cardPrices.totalCount != 1) {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.home.ArtifactHomeFragment
+import kotlinx.android.synthetic.main.frag_main.*
 
 class MainFragment : Fragment() {
 
@@ -27,7 +28,17 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        replaceFragment(R.id.artifact)
+        bottom_navigation.setTextVisibility(false)
+        bottom_navigation.enableAnimation(false)
+
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            if (bottom_navigation.selectedItemId != it.itemId) {
+                replaceFragment(it.itemId)
+            }
+            true
+        }
+
+        replaceFragment(R.id.artifact_home)
     }
 
     private fun replaceFragment(tabId: Int) {
@@ -42,7 +53,7 @@ class MainFragment : Fragment() {
         var frag: Fragment? = null
 
         when (tabId) {
-            R.id.artifact -> {
+            R.id.artifact_home -> {
                 fragTag = "ArtifactHomeFragment"
                 frag = fragmentMap[fragTag]
 
@@ -54,8 +65,20 @@ class MainFragment : Fragment() {
                 } else {
                     transaction.show(frag)
                 }
-
             }
+
+            R.id.artifact_settings -> {
+                fragTag = "ArtifactSettingsFragment"
+                frag = fragmentMap[fragTag]
+
+                if (frag == null) {
+                    frag = ArtifactHomeFragment.newInstance()
+                    transaction.add(R.id.container, frag, fragTag)
+                } else {
+                    transaction.show(frag)
+                }
+            }
+
         }
         if (fragTag != null && frag != null) {
             fragmentMap[fragTag] = frag

@@ -2,7 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/artifact"
-            android:icon="@mipmap/ic_launcher" />
+        android:id="@+id/artifact_home"
+        android:title=""
+        android:icon="@android:drawable/ic_btn_speak_now" />
+
+    <item
+        android:id="@+id/artifact_settings"
+        android:title=""
+        android:icon="@android:drawable/ic_menu_mapmode" />
 
 </menu>

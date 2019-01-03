@@ -49,4 +49,6 @@
     <string name="card_summon">Summon</string>
 
     <string name="card_price">Card price</string>
+
+    <string name="settings">Settings</string>
 </resources>

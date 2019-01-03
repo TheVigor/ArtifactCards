@@ -3,6 +3,8 @@ package com.noble.activity.artifactcards
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import com.noble.activity.artifactcards.utils.showToast
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +31,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         super.onBackPressed()
+    }
 
-
+    fun updateCards(view: View) {
+        showToast("Clicked")
     }
 }

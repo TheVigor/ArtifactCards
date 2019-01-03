@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.home.ArtifactHomeFragment
+import com.noble.activity.artifactcards.settings.ArtifactSettingsFragment
 import kotlinx.android.synthetic.main.frag_main.*
 
 class MainFragment : Fragment() {
@@ -19,6 +20,7 @@ class MainFragment : Fragment() {
     private val fragmentMap = HashMap<String, Fragment>()
 
     var artifactHomeFragment: ArtifactHomeFragment? = null
+    var artifactSettingsFragment: ArtifactSettingsFragment? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -72,7 +74,8 @@ class MainFragment : Fragment() {
                 frag = fragmentMap[fragTag]
 
                 if (frag == null) {
-                    frag = ArtifactHomeFragment.newInstance()
+                    frag = ArtifactSettingsFragment.newInstance()
+                    artifactSettingsFragment = frag
                     transaction.add(R.id.container, frag, fragTag)
                 } else {
                     transaction.show(frag)

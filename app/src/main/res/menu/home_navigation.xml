@@ -4,7 +4,7 @@
     <item
         android:id="@+id/artifact_home"
         android:title=""
-        android:icon="@android:drawable/ic_btn_speak_now" />
+        android:icon="@mipmap/ic_artifact_cards" />
 
     <item
         android:id="@+id/artifact_settings"

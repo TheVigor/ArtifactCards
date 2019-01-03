@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
         <Preference
-                android:icon="@android:drawable/ic_menu_camera"
+                android:icon="@mipmap/ic_update_database"
                 android:key="cardDatabase"
                 android:title="@string/cards_database"
                 android:summary="@string/update_cards_database"

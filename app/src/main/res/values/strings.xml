@@ -51,4 +51,7 @@
     <string name="card_price">Card price</string>
 
     <string name="settings">Settings</string>
+    <string name="update">Update</string>
+    <string name="cards_database">Card database</string>
+    <string name="update_cards_database">Update card database (via API)</string>
 </resources>

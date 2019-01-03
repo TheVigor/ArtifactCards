@@ -52,5 +52,8 @@
     <string name="card_price">Цена карты</string>
 
     <string name="settings">Настройки</string>
+    <string name="update">Обновить</string>
+    <string name="cards_database">База данных карт</string>
+    <string name="update_cards_database">Обновить базу данных карт (через API)</string>
 
 </resources>

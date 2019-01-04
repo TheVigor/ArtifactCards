@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.noble.activity.artifactcards.about.ArtifactAboutFragment
 import com.noble.activity.artifactcards.home.ArtifactHomeFragment
 import com.noble.activity.artifactcards.settings.ArtifactSettingsFragment
 import kotlinx.android.synthetic.main.frag_main.*
@@ -21,6 +22,7 @@ class MainFragment : Fragment() {
 
     var artifactHomeFragment: ArtifactHomeFragment? = null
     var artifactSettingsFragment: ArtifactSettingsFragment? = null
+    var artifactAboutFragment: ArtifactAboutFragment? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -76,6 +78,19 @@ class MainFragment : Fragment() {
                 if (frag == null) {
                     frag = ArtifactSettingsFragment.newInstance()
                     artifactSettingsFragment = frag
+                    transaction.add(R.id.container, frag, fragTag)
+                } else {
+                    transaction.show(frag)
+                }
+            }
+
+            R.id.artifact_about -> {
+                fragTag = "ArtifactAboutFragment"
+                frag = fragmentMap[fragTag]
+
+                if (frag == null) {
+                    frag = ArtifactAboutFragment.newInstance()
+                    artifactAboutFragment = frag
                     transaction.add(R.id.container, frag, fragTag)
                 } else {
                     transaction.show(frag)

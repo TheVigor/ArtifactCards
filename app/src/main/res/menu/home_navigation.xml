@@ -11,4 +11,9 @@
         android:title=""
         android:icon="@mipmap/ic_settings" />
 
+    <item
+        android:id="@+id/artifact_about"
+        android:title=""
+        android:icon="@mipmap/ic_artifact_about"/>
+
 </menu>

@@ -56,4 +56,7 @@
     <string name="cards_database">База данных карт</string>
     <string name="update_cards_database">Обновить базу данных карт (через API)</string>
 
+    <string name="sub_title">Неофициальное приложение по карточной игре Artifact, основанной по миру DOTA. </string>
+    <string name="brief">База данных карт обновляется при помощи официального API, предоставленного разработчиками Valve.</string>
+
 </resources>

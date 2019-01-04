@@ -54,4 +54,7 @@
     <string name="update">Update</string>
     <string name="cards_database">Card database</string>
     <string name="update_cards_database">Update card database (via API)</string>
+
+    <string name="sub_title">The unofficial app for the Artifact card game based on the DOTA world. </string>
+    <string name="brief">The card database is updated using the official API provided by the Valve developers.</string>
 </resources>

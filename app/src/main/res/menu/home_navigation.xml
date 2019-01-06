@@ -7,6 +7,11 @@
         android:icon="@mipmap/ic_artifact_cards" />
 
     <item
+        android:id="@+id/artifact_deck"
+        android:title=""
+        android:icon="@mipmap/ic_artifact_cards" />
+
+    <item
         android:id="@+id/artifact_settings"
         android:title=""
         android:icon="@mipmap/ic_settings" />

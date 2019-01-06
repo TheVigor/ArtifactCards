@@ -59,4 +59,6 @@
     <string name="sub_title">Неофициальное приложение по карточной игре Artifact, основанной по миру DOTA. </string>
     <string name="brief">База данных карт обновляется при помощи официального API, предоставленного разработчиками Valve.</string>
 
+    <string name="decks">Колоды</string>
+
 </resources>

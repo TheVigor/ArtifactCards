@@ -57,4 +57,6 @@
 
     <string name="sub_title">The unofficial app for the Artifact card game based on the DOTA world. </string>
     <string name="brief">The card database is updated using the official API provided by the Valve developers.</string>
+
+    <string name="decks">Decks</string>
 </resources>

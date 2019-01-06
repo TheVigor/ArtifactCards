@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.about.ArtifactAboutFragment
+import com.noble.activity.artifactcards.deck.ArtifactDeckFragment
 import com.noble.activity.artifactcards.home.ArtifactHomeFragment
 import com.noble.activity.artifactcards.settings.ArtifactSettingsFragment
 import kotlinx.android.synthetic.main.frag_main.*
@@ -21,6 +22,7 @@ class MainFragment : Fragment() {
     private val fragmentMap = HashMap<String, Fragment>()
 
     var artifactHomeFragment: ArtifactHomeFragment? = null
+    var artifactDeckFragment: ArtifactDeckFragment? = null
     var artifactSettingsFragment: ArtifactSettingsFragment? = null
     var artifactAboutFragment: ArtifactAboutFragment? = null
 
@@ -64,6 +66,20 @@ class MainFragment : Fragment() {
                 if (frag == null) {
                     frag = ArtifactHomeFragment.newInstance()
                     artifactHomeFragment = frag
+                    transaction.add(R.id.container, frag, fragTag)
+
+                } else {
+                    transaction.show(frag)
+                }
+            }
+
+            R.id.artifact_deck -> {
+                fragTag = "ArtifactDeckFragment"
+                frag = fragmentMap[fragTag]
+
+                if (frag == null) {
+                    frag = ArtifactDeckFragment.newInstance()
+                    artifactDeckFragment = frag
                     transaction.add(R.id.container, frag, fragTag)
 
                 } else {

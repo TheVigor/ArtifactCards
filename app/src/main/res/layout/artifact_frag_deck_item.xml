@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_marginTop="5dp">
+
+    <data>
+        <variable
+                name="clickListener"
+                type="android.view.View.OnClickListener"/>
+        <variable
+                name="card"
+                type="com.noble.activity.artifactcards.model.card.Card"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{clickListener}">
+
+        <ImageView
+                android:id="@+id/drill_doc_item_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_hero"
+                android:padding="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/drill_doc_item_title"/>
+
+        <TextView
+                android:id="@+id/drill_doc_item_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{card.cardName.english}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/drill_doc_item_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Tomato"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

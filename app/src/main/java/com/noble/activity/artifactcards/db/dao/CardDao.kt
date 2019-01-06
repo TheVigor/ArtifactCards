@@ -22,4 +22,7 @@ interface CardDao {
 
     @Query("SELECT * FROM cards WHERE cardId = :cardId")
     fun getCardById(cardId: String): LiveData<Card>
+
+    @Query("SELECT * FROM cards ORDER BY cardId DESC")
+    fun getCards(): LiveData<List<Card>>
 }

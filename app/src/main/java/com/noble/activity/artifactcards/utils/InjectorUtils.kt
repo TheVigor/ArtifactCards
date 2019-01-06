@@ -4,6 +4,7 @@ import android.support.v4.os.ConfigurationCompat
 import com.noble.activity.artifactcards.ArtifactRepository
 import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailViewModelFactory
+import com.noble.activity.artifactcards.deck.ArtifactDeckViewModelFactory
 
 object InjectorUtils {
     fun provideArtifactCardDetailViewModelFactory(
@@ -24,4 +25,10 @@ object InjectorUtils {
             locale.language
         )
     }
+
+    fun provideArtifactDeckViewModelFactory(): ArtifactDeckViewModelFactory {
+        return ArtifactDeckViewModelFactory(ArtifactRepository.get())
+    }
+
+
 }

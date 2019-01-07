@@ -168,6 +168,18 @@ data class Card constructor(
         return if (goldCost != null) goldCost.toString() else "0"
     }
 
+    fun getManaOrGold(): String {
+        if (manaCost != null) {
+            return manaCost.toString()
+        }
+
+        if (goldCost != null) {
+            return goldCost.toString()
+        }
+
+        return ""
+    }
+
 
     fun getTextColor(): Int {
         if (isBlack != null){

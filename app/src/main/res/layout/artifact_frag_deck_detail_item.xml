@@ -12,12 +12,15 @@
         <variable
                 name="card"
                 type="com.noble.activity.artifactcards.model.card.Card"/>
+
     </data>
 
     <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view_deck"
             style="@style/cardview"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
             card_view:cardCornerRadius="4dp"
             card_view:cardBackgroundColor="@color/artifact_white"
             android:onClick="@{clickListener}">
@@ -33,22 +36,47 @@
                     android:layout_margin="5dp"
 
                     card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintEnd_toStartOf="@id/card_name"
+                    card_view:layout_constraintEnd_toStartOf="@id/card_mana"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintBottom_toBottomOf="parent"
 
                     app:imageFromUrl="@{card.getMiniImageByLocale()}"/>
-
 
             <TextView
                     android:id="@+id/card_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/textview_text"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="15sp"
                     android:text="@{card.cardName.russian}"
                     card_view:layout_constraintStart_toEndOf="@id/card_image"
                     card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"/>
+
+
+            <TextView
+                    android:id="@+id/card_mana"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/textview_text"
+                    android:text="@{card.getManaOrGold()}"
+                    card_view:layout_constraintStart_toStartOf="@id/card_name"
+                    card_view:layout_constraintEnd_toStartOf="@id/card_count"
+                    card_view:layout_constraintTop_toBottomOf="@id/card_name"
+                    card_view:layout_constraintBottom_toBottomOf="parent"/>
+
+
+            <TextView
+                    android:id="@+id/card_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/textview_text"
+                    android:text="x3"
+                    card_view:layout_constraintStart_toEndOf="@id/card_mana"
+                    card_view:layout_constraintEnd_toEndOf="@id/card_name"
+                    card_view:layout_constraintTop_toBottomOf="@id/card_name"
                     card_view:layout_constraintBottom_toBottomOf="parent"/>
 
 

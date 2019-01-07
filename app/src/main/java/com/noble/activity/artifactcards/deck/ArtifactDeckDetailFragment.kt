@@ -31,9 +31,10 @@ class ArtifactDeckDetailFragment : Fragment() {
         val binding = ArtifactFragDeckDetailBinding.inflate(inflater, container, false)
         binding.cardDeck = App.cardDeck
 
+
         val adapter = ArtifactDeckDetailAdapter()
         binding.recyclerView.adapter = adapter
-        adapter.submitList(App.cardDeck.cards)
+        adapter.submitList(App.cardDeck.cards.sortedBy { it.manaCost })
 
 
         return binding.root

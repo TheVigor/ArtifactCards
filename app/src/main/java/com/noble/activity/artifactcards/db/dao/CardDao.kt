@@ -25,4 +25,7 @@ interface CardDao {
 
     @Query("SELECT * FROM cards ORDER BY cardId DESC")
     fun getCards(): LiveData<List<Card>>
+
+    @Query("SELECT * FROM cards WHERE cardId IN (:ids)")
+    fun getDeck(ids: List<Int>): LiveData<List<Card>>
 }

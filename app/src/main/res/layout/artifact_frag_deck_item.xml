@@ -10,8 +10,8 @@
                 name="clickListener"
                 type="android.view.View.OnClickListener"/>
         <variable
-                name="card"
-                type="com.noble.activity.artifactcards.model.card.Card"/>
+                name="cardDeck"
+                type="com.noble.activity.artifactcards.deck.model.CardDeck"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -33,7 +33,7 @@
                 android:id="@+id/drill_doc_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{card.cardName.english}"
+                android:text="@{cardDeck.name}"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/drill_doc_item_image"

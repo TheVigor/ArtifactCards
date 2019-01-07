@@ -1,10 +1,14 @@
 package com.noble.activity.artifactcards.deck
 
+import android.app.Activity
+import android.content.Context
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.noble.activity.artifactcards.app.App
+import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailActivity
 import com.noble.activity.artifactcards.databinding.ArtifactFragDeckItemBinding
 import com.noble.activity.artifactcards.deck.model.CardDeck
 import com.noble.activity.artifactcards.deck.model.Deck
@@ -16,7 +20,7 @@ class ArtifactDeckAdapter : ListAdapter<CardDeck,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val cardDeck = getItem(position)
         holder.apply {
-            bind(createOnClickListener(cardDeck.name), cardDeck)
+            bind(createOnClickListener(cardDeck, holder.itemView.context), cardDeck)
             //itemView.tag = plant
         }
     }
@@ -29,10 +33,9 @@ class ArtifactDeckAdapter : ListAdapter<CardDeck,
         )
     }
 
-    private fun createOnClickListener(drillDocId: String): View.OnClickListener {
+    private fun createOnClickListener(cardDeck: CardDeck, context: Context): View.OnClickListener {
         return View.OnClickListener {
-            //val direction = DrillDocFragmentDirections.ActionDrillDocFragmentToDrillDocDetailFragment(drillDocId)
-            //it.findNavController().navigate(direction)
+            ArtifactDeckDetailActivity.launch(context as Activity, cardDeck)
         }
     }
 

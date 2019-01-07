@@ -59,4 +59,6 @@
     <string name="brief">The card database is updated using the official API provided by the Valve developers.</string>
 
     <string name="decks">Decks</string>
+    <string name="cards">Cards</string>
+    <string name="all_items">Items</string>
 </resources>

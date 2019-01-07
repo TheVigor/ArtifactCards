@@ -60,5 +60,7 @@
     <string name="brief">База данных карт обновляется при помощи официального API, предоставленного разработчиками Valve.</string>
 
     <string name="decks">Колоды</string>
+    <string name="cards">Карт</string>
+    <string name="all_items">Предметов</string>
 
 </resources>

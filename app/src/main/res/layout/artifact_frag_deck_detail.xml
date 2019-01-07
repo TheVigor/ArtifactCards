@@ -1,0 +1,207 @@
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_marginTop="5dp">
+
+    <data>
+        <variable
+                name="cardDeck"
+                type="com.noble.activity.artifactcards.deck.model.CardDeck" />
+    </data>
+
+
+    <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/coordinator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/artifact_white_f5">
+
+            <android.support.design.widget.AppBarLayout
+                    android:id="@+id/appbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp">
+
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar_settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        android:textColor="@color/artifact_text_color"
+                        android:background="@color/artifact_white"
+                        app:contentInsetStart="0dp"
+                        android:elevation="0dp">
+
+                    <TextView
+                            android:id="@+id/settings_name"
+                            android:textColor="@color/artifact_text_color"
+                            android:text="@{cardDeck.name}"
+                            android:layout_gravity="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textSize="20sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"/>
+
+
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.AppBarLayout>
+
+        <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/appbar"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view_deck"
+                    style="@style/cardview"
+                    card_view:cardCornerRadius="4dp"
+                    card_view:cardBackgroundColor="@color/artifact_white"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                            android:id="@+id/first_hero"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+
+                            card_view:layout_constraintStart_toStartOf="parent"
+                            card_view:layout_constraintEnd_toStartOf="@id/second_hero"
+                            card_view:layout_constraintTop_toTopOf="parent"
+
+                            app:imageFromUrl="@{cardDeck.heroes[0].getMiniImageByLocale()}"/>
+
+                    <ImageView
+                            android:id="@+id/second_hero"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+
+                            card_view:layout_constraintStart_toEndOf="@id/first_hero"
+                            card_view:layout_constraintEnd_toStartOf="@id/third_hero"
+                            card_view:layout_constraintTop_toTopOf="parent"
+
+                            app:imageFromUrl="@{cardDeck.heroes[1].getMiniImageByLocale()}"/>
+
+                    <ImageView
+                            android:id="@+id/third_hero"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+
+                            card_view:layout_constraintStart_toEndOf="@id/second_hero"
+                            card_view:layout_constraintEnd_toStartOf="@id/fourth_hero"
+                            card_view:layout_constraintTop_toTopOf="parent"
+
+                            app:imageFromUrl="@{cardDeck.heroes[2].getMiniImageByLocale()}"/>
+
+                    <ImageView
+                            android:id="@+id/fourth_hero"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+
+                            card_view:layout_constraintStart_toEndOf="@id/third_hero"
+                            card_view:layout_constraintEnd_toStartOf="@id/fifth_hero"
+                            card_view:layout_constraintTop_toTopOf="parent"
+
+                            app:imageFromUrl="@{cardDeck.heroes[3].getMiniImageByLocale()}"/>
+
+                    <ImageView
+                            android:id="@+id/fifth_hero"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+
+                            card_view:layout_constraintStart_toEndOf="@id/fourth_hero"
+                            card_view:layout_constraintEnd_toEndOf="parent"
+                            card_view:layout_constraintTop_toTopOf="parent"
+
+                            app:imageFromUrl="@{cardDeck.heroes[4].getMiniImageByLocale()}"/>
+
+                    <TextView
+                            android:id="@+id/deck_count_cards"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            style="@style/textview_text"
+                            android:text="@{cardDeck.getCountCards()}"
+                            card_view:layout_constraintStart_toStartOf="parent"
+                            card_view:layout_constraintEnd_toStartOf="@id/deck_count_items"
+                            card_view:layout_constraintTop_toBottomOf="@id/fifth_hero"/>
+
+                    <TextView
+                            android:id="@+id/deck_count_cards_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            style="@style/textview_text"
+                            android:text="@string/cards"
+                            card_view:layout_constraintStart_toStartOf="@id/deck_count_cards"
+                            card_view:layout_constraintEnd_toEndOf="@id/deck_count_cards"
+                            card_view:layout_constraintTop_toBottomOf="@id/deck_count_cards"
+                            card_view:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <TextView
+                            android:id="@+id/deck_count_items"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            style="@style/textview_text"
+                            android:text="@{cardDeck.getCountItems()}"
+                            card_view:layout_constraintStart_toEndOf="@id/deck_count_cards"
+                            card_view:layout_constraintEnd_toEndOf="parent"
+                            card_view:layout_constraintTop_toBottomOf="@id/fifth_hero"/>
+
+                    <TextView
+                            android:id="@+id/deck_count_items_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            style="@style/textview_text"
+                            android:text="@string/all_items"
+                            card_view:layout_constraintStart_toStartOf="@id/deck_count_items"
+                            card_view:layout_constraintEnd_toEndOf="@id/deck_count_items"
+                            card_view:layout_constraintTop_toBottomOf="@id/deck_count_items"
+                            card_view:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    tools:listitem="@layout/artifact_frag_deck_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_view_deck"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+
+
+
+        </android.support.design.widget.CoordinatorLayout>
+
+    </layout>

@@ -2,6 +2,7 @@ package com.noble.activity.artifactcards.app
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModelProviders
+import com.noble.activity.artifactcards.deck.model.CardDeck
 import com.noble.activity.artifactcards.prefs.RefreshPrefs
 import com.noble.activity.artifactcards.utils.COLOR_BLACK
 import com.noble.activity.artifactcards.utils.COLOR_BLUE
@@ -28,12 +29,21 @@ val colorFilter: MutableList<String> by lazy {
     App.colorFilter
 }
 
+val cardDeck: CardDeck by lazy {
+    App.cardDeck
+}
+
+
 class App : android.app.Application() {
     override fun onCreate() {
         refreshPrefs = RefreshPrefs(applicationContext)
         colorFilter = mutableListOf(COLOR_RED, COLOR_GREEN, COLOR_BLUE, COLOR_BLACK)
         searchData = MutableLiveData()
         colorData = MutableLiveData()
+
+        cardDeck = CardDeck("", listOf(), listOf(), mutableMapOf())
+
+
         super.onCreate()
         INSTANCE = this
     }
@@ -46,6 +56,8 @@ class App : android.app.Application() {
         lateinit var colorData: MutableLiveData<String>
 
         lateinit var colorFilter: MutableList<String>
+
+        lateinit var cardDeck: CardDeck
 
     }
 }

@@ -66,14 +66,24 @@ class ArtifactDeckFragment : Fragment() {
                             val heroes = deck.filter { it.cardType == HERO_CARD_TYPE }
                             val notHeroes = deck.filter { it.cardType != HERO_CARD_TYPE}
 
-
                             val references: List<Int> = heroes.map { it.references[0].cardId }
+
+                            val mapTurnCount = decodedDeck.getMap()
+                            references.forEach { mapTurnCount[it] = 3 }
 
                             val refCards = artifactDeckViewModel.getDeck(references)
                             refCards.observe(viewLifecycleOwner, Observer { refs ->
                                 if (refs != null) {
-                                    artifactDeckViewModel.artifactDeckList.value?.add(CardDeck(decodedDeck.name, heroes, notHeroes + refs))
-                                    artifactDeckViewModel.artifactDeckList.postValue(artifactDeckViewModel.artifactDeckList.value)
+                                    artifactDeckViewModel
+                                        .artifactDeckList.value?.add(
+                                            CardDeck(
+                                                decodedDeck.name,
+                                                heroes,
+                                                notHeroes + refs,
+                                                mapTurnCount))
+
+                                    artifactDeckViewModel.artifactDeckList
+                                        .postValue(artifactDeckViewModel.artifactDeckList.value)
                                 }
                             })
                         }

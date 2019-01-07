@@ -8,6 +8,15 @@ data class Deck constructor(var name: String, var heroes: List<HeroRef>, var car
         cards.forEach { result.add(it.id) }
 
         return result
-
     }
+
+    fun getMap(): MutableMap<Int, Int> {
+        val result = mutableMapOf<Int, Int>()
+
+        heroes.forEach { result[it.id] = it.turn }
+        cards.forEach { result[it.id] = it.count }
+
+        return result
+    }
+
 }

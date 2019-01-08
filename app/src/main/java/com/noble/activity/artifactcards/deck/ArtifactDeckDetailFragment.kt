@@ -1,6 +1,8 @@
 package com.noble.activity.artifactcards.deck
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,8 +12,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.app.App
+import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailActivity
 import com.noble.activity.artifactcards.databinding.ArtifactFragDeckBinding
 import com.noble.activity.artifactcards.databinding.ArtifactFragDeckDetailBinding
+import com.noble.activity.artifactcards.model.card.Card
 
 class ArtifactDeckDetailFragment : Fragment() {
 
@@ -30,6 +34,27 @@ class ArtifactDeckDetailFragment : Fragment() {
 
         val binding = ArtifactFragDeckDetailBinding.inflate(inflater, container, false)
         binding.cardDeck = App.cardDeck
+
+        binding.firstHero.setOnClickListener {
+            clickByHero(App.cardDeck.heroes[0])
+        }
+
+        binding.secondHero.setOnClickListener {
+            clickByHero(App.cardDeck.heroes[1])
+        }
+
+        binding.thirdHero.setOnClickListener {
+            clickByHero(App.cardDeck.heroes[2])
+        }
+
+        binding.fourthHero.setOnClickListener {
+            clickByHero(App.cardDeck.heroes[3])
+        }
+
+        binding.fifthHero.setOnClickListener {
+            clickByHero(App.cardDeck.heroes[4])
+        }
+
 
 
         val adapter = ArtifactDeckDetailAdapter()
@@ -55,6 +80,22 @@ class ArtifactDeckDetailFragment : Fragment() {
 //        return binding.root
     }
 
+    private fun clickByHero(cardDeck: Card) {
+            var firstRef = 0
+            if (cardDeck.references.isNotEmpty()) {
+                firstRef = cardDeck.references[0].cardId
+            }
+
+            ArtifactCardDetailActivity.launch(activity!!,
+                cardDeck.cardId.toString(),
+                cardDeck.cardName.english!!,
+                firstRef.toString(),
+                0.toString(),
+                0.toString())
+    }
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -75,14 +116,4 @@ class ArtifactDeckDetailFragment : Fragment() {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
     }
-
-//    private fun initLiveData() {
-//
-//        artifactCardDetailViewModel.priceLiveData.observe(this@ArtifactCardDetailFragment,
-//            Observer { price ->
-//                price?.let {
-//                    card_price.text = price
-//                }
-//            })
-//    }
 }

@@ -64,4 +64,6 @@
 
     <string name="enter_deck_code">Enter deck code</string>
     <string name="deck_code_starts_with_adc">Deck code (starts with ADC)…</string>
+    <string name="invalid_deck_code">Invalid deck code</string>
+    <string name="deck_parsing_error">Deck code parsing error</string>
 </resources>

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.deck.coder.ArtifactDeckDecoder
+import com.noble.activity.artifactcards.utils.showToast
 import kotlinx.android.synthetic.main.deck_dialog.view.*
 
 
@@ -25,7 +27,12 @@ class DeckDialog: DialogFragment() {
         return AlertDialog.Builder(context!!)
             .setView(view)
             .setPositiveButton(android.R.string.ok) { _, _ ->
-                mListener.onDeckConfirm(view.deck_input.text.toString())
+                val deckCode = view.deck_input.text.trim().toString()
+                if (deckCode.startsWith(ArtifactDeckDecoder.encodePrefix)) {
+                    mListener.onDeckConfirm(deckCode)
+                } else {
+                    activity?.showToast(getString(R.string.invalid_deck_code))
+                }
             }
             .setNegativeButton(android.R.string.cancel) { _, _ ->
 

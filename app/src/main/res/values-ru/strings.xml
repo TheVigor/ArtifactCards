@@ -65,5 +65,7 @@
 
     <string name="enter_deck_code">Введите код колоды</string>
     <string name="deck_code_starts_with_adc">Код колоды (начинается с ADC)…</string>
+    <string name="invalid_deck_code">Невалидный код колоды</string>
+    <string name="deck_parsing_error">Ошибка при обработке кода колоды</string>
 
 </resources>

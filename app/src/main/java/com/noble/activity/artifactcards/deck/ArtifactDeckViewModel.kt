@@ -3,6 +3,8 @@ package com.noble.activity.artifactcards.deck
 import android.arch.lifecycle.*
 import com.noble.activity.artifactcards.ArtifactRepository
 import com.noble.activity.artifactcards.MainActivity
+import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.app.app
 import com.noble.activity.artifactcards.app.decksPrefs
 import com.noble.activity.artifactcards.deck.coder.ArtifactDeckDecoder
 import com.noble.activity.artifactcards.deck.model.CardDeck
@@ -10,6 +12,7 @@ import com.noble.activity.artifactcards.deck.model.Deck
 import com.noble.activity.artifactcards.model.card.Card
 import com.noble.activity.artifactcards.utils.HERO_CARD_TYPE
 import com.noble.activity.artifactcards.utils.runOnIoThread
+import com.noble.activity.artifactcards.utils.showToast
 import java.lang.Exception
 
 class ArtifactDeckViewModel internal constructor(
@@ -67,6 +70,8 @@ class ArtifactDeckViewModel internal constructor(
 
                             }
                         })
+                    } else {
+                        app.showToast(app.getString(R.string.deck_parsing_error))
                     }
                 }
             })

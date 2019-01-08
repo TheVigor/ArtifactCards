@@ -13,7 +13,7 @@ class ArtifactDeckDecoder {
 
     companion object {
         private const val currentVersion = 2
-        private const val encodePrefix = "ADC"
+        const val encodePrefix = "ADC"
     }
 
     fun decode(deckCode: String): Deck {

@@ -61,4 +61,7 @@
     <string name="decks">Decks</string>
     <string name="cards">Cards</string>
     <string name="all_items">Items</string>
+
+    <string name="enter_deck_code">Enter deck code</string>
+    <string name="deck_code_starts_with_adc">Deck code (starts with ADC)…</string>
 </resources>

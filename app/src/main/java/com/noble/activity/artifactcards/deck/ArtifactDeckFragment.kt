@@ -23,7 +23,10 @@ import com.noble.activity.artifactcards.utils.showToast
 import kotlinx.android.synthetic.main.artifact_frag_deck.*
 import java.lang.Exception
 
-class ArtifactDeckFragment : Fragment() {
+class ArtifactDeckFragment : Fragment(), DeckDialog.Listener  {
+    override fun onDeckConfirm(deckCode: String) {
+        artifactDeckViewModel.loadDeckByCode(deckCode, viewLifecycleOwner)
+    }
 
     companion object {
         @JvmStatic
@@ -47,58 +50,18 @@ class ArtifactDeckFragment : Fragment() {
             .get(ArtifactDeckViewModel::class.java)
 
         binding.addDeckView.setOnClickListener {
-            activity?.showToast("Clicked")
+            val deckDialog = DeckDialog()
+            deckDialog.setListener(this)
+            deckDialog.show(activity!!.supportFragmentManager, "deck_dialog")
         }
 
         val adapter = ArtifactDeckAdapter()
         binding.recyclerView.adapter = adapter
         subscribeUi(adapter)
 
-
         runOnIoThread {
             decksPrefs.refreshCards.forEach {
-                runOnIoThread {
-
-                    var decodedDeck = Deck(name = "", heroes = listOf(), cards = listOf())
-                    try {
-                        val decoder = ArtifactDeckDecoder()
-                        decodedDeck = decoder.decode(it)
-                    } catch (e: Exception) {}
-
-                    val cardDeck = artifactDeckViewModel.getDeck(decodedDeck.getIds())
-                    cardDeck.observe(viewLifecycleOwner, Observer { deck ->
-                        if (deck != null) {
-
-                            val heroes = deck.filter { it.cardType == HERO_CARD_TYPE }
-                            val notHeroes = deck.filter { it.cardType != HERO_CARD_TYPE }
-
-                            if (heroes.size == 5) {
-                                val references: List<Int> = heroes.map { it.references[0].cardId }
-
-                                val mapTurnCount = decodedDeck.getMap()
-                                references.forEach { mapTurnCount[it] = 3 }
-
-                                val refCards = artifactDeckViewModel.getDeck(references)
-                                refCards.observe(viewLifecycleOwner, Observer { refs ->
-                                    if (refs != null) {
-                                        artifactDeckViewModel
-                                            .artifactDeckList.value?.add(
-                                            CardDeck(
-                                                decodedDeck.name,
-                                                heroes,
-                                                notHeroes + refs,
-                                                mapTurnCount
-                                            )
-                                        )
-
-                                        artifactDeckViewModel.artifactDeckList
-                                            .postValue(artifactDeckViewModel.artifactDeckList.value)
-                                    }
-                                })
-                            }
-                        }
-                    })
-                }
+                   artifactDeckViewModel.loadDeckByCode(it, viewLifecycleOwner)
             }
         }
 

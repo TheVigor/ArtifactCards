@@ -113,6 +113,17 @@ data class Card constructor(
         return ""
     }
 
+    fun getColorByCardType() = when(cardType) {
+        HERO_CARD_TYPE -> Color.parseColor("#448AFF")
+        SPELL_CARD_TYPE -> Color.parseColor("#448AFF")
+        ABILITY_CARD_TYPE -> Color.parseColor("#448AFF")
+        PASSIVE_ABILITY_CARD_TYPE -> Color.parseColor("#448AFF")
+        ITEM_CARD_TYPE -> Color.parseColor("#FFDF00")
+        IMPROVEMENT_CARD_TYPE -> Color.parseColor("#448AFF")
+        CREEP_CARD_TYPE -> Color.parseColor("#448AFF")
+        else -> Color.parseColor("#448AFF")
+    }
+
 
     fun getTypeByLocale() = when(cardType) {
         HERO_CARD_TYPE -> app.getString(R.string.hero_type)

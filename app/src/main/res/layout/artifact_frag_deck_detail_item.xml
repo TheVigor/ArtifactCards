@@ -50,7 +50,6 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textSize="15sp"
-                    android:text="@{card.cardName.russian}"
                     card_view:layout_constraintStart_toEndOf="@id/card_image"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"/>
@@ -73,7 +72,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     style="@style/textview_text"
-                    android:text="x3"
                     card_view:layout_constraintStart_toEndOf="@id/card_mana"
                     card_view:layout_constraintEnd_toEndOf="@id/card_name"
                     card_view:layout_constraintTop_toBottomOf="@id/card_name"

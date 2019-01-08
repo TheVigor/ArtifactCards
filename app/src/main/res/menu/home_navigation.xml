@@ -9,7 +9,7 @@
     <item
         android:id="@+id/artifact_deck"
         android:title=""
-        android:icon="@mipmap/ic_artifact_cards" />
+        android:icon="@mipmap/ic_deck_menu" />
 
     <item
         android:id="@+id/artifact_settings"

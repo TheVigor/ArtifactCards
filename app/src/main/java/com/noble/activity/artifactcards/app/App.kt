@@ -3,6 +3,7 @@ package com.noble.activity.artifactcards.app
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModelProviders
 import com.noble.activity.artifactcards.deck.model.CardDeck
+import com.noble.activity.artifactcards.prefs.DecksPrefs
 import com.noble.activity.artifactcards.prefs.RefreshPrefs
 import com.noble.activity.artifactcards.utils.COLOR_BLACK
 import com.noble.activity.artifactcards.utils.COLOR_BLUE
@@ -10,11 +11,17 @@ import com.noble.activity.artifactcards.utils.COLOR_GREEN
 import com.noble.activity.artifactcards.utils.COLOR_RED
 
 val refreshPrefs: RefreshPrefs by lazy {
-    App.refreshPrefs!!
+    App.refreshPrefs
+}
+
+val decksPrefs: DecksPrefs by lazy {
+    App.decksPrefs
 }
 
 val app: App by lazy {
-    App.INSTANCE!!
+    App.INSTANCE
+}
+
 }
 
 val searchData: MutableLiveData<String> by lazy {
@@ -37,6 +44,8 @@ val cardDeck: CardDeck by lazy {
 class App : android.app.Application() {
     override fun onCreate() {
         refreshPrefs = RefreshPrefs(applicationContext)
+        decksPrefs = DecksPrefs(applicationContext)
+
         colorFilter = mutableListOf(COLOR_RED, COLOR_GREEN, COLOR_BLUE, COLOR_BLACK)
         searchData = MutableLiveData()
         colorData = MutableLiveData()
@@ -49,8 +58,12 @@ class App : android.app.Application() {
     }
 
     companion object {
-        var INSTANCE: App? = null
-        var refreshPrefs: RefreshPrefs? = null
+        lateinit var INSTANCE: App
+
+        lateinit var refreshPrefs: RefreshPrefs
+        lateinit var decksPrefs: DecksPrefs
+
+        lateinit var mInterstitialAd: InterstitialAd
 
         lateinit var searchData: MutableLiveData<String>
         lateinit var colorData: MutableLiveData<String>

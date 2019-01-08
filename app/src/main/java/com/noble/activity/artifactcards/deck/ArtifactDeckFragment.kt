@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.R
+import com.noble.activity.artifactcards.app.App
+import com.noble.activity.artifactcards.app.decksPrefs
 import com.noble.activity.artifactcards.databinding.ArtifactFragDeckBinding
 import com.noble.activity.artifactcards.deck.coder.ArtifactDeckDecoder
 import com.noble.activity.artifactcards.deck.model.CardDeck
@@ -25,16 +27,6 @@ class ArtifactDeckFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = ArtifactDeckFragment()
-
-        private val deckCodes = listOf<String>(
-            "ADCJQUQI30zuwEYg2ABeF1Bu94BmWIBTEkLtAKlAZakAYmHh0JsdWUvUmVkIEV4YW1wbGU_",
-            "ADCJRwSJX2Dc7wBEAN4XUFBcN0BQmQBQWABRCgBCgN0AWUBbQFDbwEISEJsdWUvQmxhY2sgQ29udHJvbA__",
-            "ADCJcURIH0De7sBKAGQeF1BQWbdAVhHRwFIMQIECG0CTgIfRlBCdQFSZWQvR3JlZW4gQnJhd2xlcg__",
-            "ADCJY8UNrgC0QVIh8kEubwCZQKTkBasAYgHhpmmAZOBKEJsYWNrL0JsdWUpIFBheWJhY2s_",
-            "ADCJRkQfrgCCQ0LlHpdpt0BhoaPhJGgAo1SU6UCowNCL0cgUGF1cGVyIEFnZ3Jv",
-            "ADCJQUQI30zuwEYg2ABeF1Bu94BmWIBTEkLtAKlAZakAYmHh0JsdWUvUmVkIEV4YW1wbGU_",
-            "ADCJQUQI30zuwEYg2ABeF1Bu94BmWIBTEkLtAKlAZakAYmHh0JsdWUvUmVkIEV4YW1wbGU_"
-        )
 
     }
 
@@ -59,7 +51,7 @@ class ArtifactDeckFragment : Fragment() {
 
 
         runOnIoThread {
-            deckCodes.forEach {
+            decksPrefs.refreshCards.forEach {
                 runOnIoThread {
 
                     var decodedDeck = Deck(name = "", heroes = listOf(), cards = listOf())

@@ -136,6 +136,18 @@ data class Card constructor(
         else -> ""
     }
 
+    fun getTypeIcon() = when(cardType) {
+        HERO_CARD_TYPE -> app.getDrawable(R.drawable.ic_hero)
+        SPELL_CARD_TYPE -> app.getDrawable(R.drawable.ic_spell)
+        ABILITY_CARD_TYPE -> app.getDrawable(R.drawable.ic_spell)
+        PASSIVE_ABILITY_CARD_TYPE -> app.getDrawable(R.drawable.ic_spell)
+        ITEM_CARD_TYPE -> app.getDrawable(R.drawable.ic_item)
+        IMPROVEMENT_CARD_TYPE -> app.getDrawable(R.drawable.ic_improvement)
+        CREEP_CARD_TYPE -> app.getDrawable(R.drawable.ic_creep)
+        else -> app.getDrawable(R.drawable.ic_spell)
+    }
+
+
     fun getRarityIcon() = when(rarity) {
         RARITY_COMMON -> app.getDrawable(R.drawable.ic_rarity_common)
         RARITY_UNCOMMON -> app.getDrawable(R.drawable.ic_rarity_uncommon)

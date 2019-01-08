@@ -36,11 +36,25 @@
                     android:layout_margin="5dp"
 
                     card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintEnd_toStartOf="@id/card_mana"
+                    card_view:layout_constraintEnd_toStartOf="@id/card_icon"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintBottom_toBottomOf="parent"
 
                     app:imageFromUrl="@{card.getMiniImageByLocale()}"/>
+
+            <ImageView
+                    android:id="@+id/card_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+
+                    android:src="@{card.getTypeIcon()}"
+
+                    card_view:layout_constraintStart_toEndOf="@id/card_image"
+                    card_view:layout_constraintEnd_toStartOf="@id/card_mana"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintBottom_toBottomOf="parent"/>
+
 
             <TextView
                     android:id="@+id/card_name"
@@ -50,7 +64,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textSize="15sp"
-                    card_view:layout_constraintStart_toEndOf="@id/card_image"
+                    card_view:layout_constraintStart_toEndOf="@id/card_icon"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"/>
 

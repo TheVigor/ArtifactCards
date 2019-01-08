@@ -7,7 +7,8 @@ class DecksPrefs(context: Context) {
 
     companion object {
         private val deckCodes = mutableSetOf(
-            "ADCJSIMJLkCChFLi3hdQqzdAUGFgoqbaAJDBH8BdQFCKgEvAUZhY2UgU21hc2hlcg__"
+            "ADCJSIMJLkCChFLi3hdQqzdAUGFgoqbaAJDBH8BdQFCKgEvAUZhY2UgU21hc2hlcg__",
+            "ADCJSYJNrgCWQyTAy29ApIMkkFBQ6EDiEQiAYKTkZSNTW9ubyBCbHVl"
         )
     }
 

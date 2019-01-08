@@ -16,6 +16,7 @@ import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailActivi
 import com.noble.activity.artifactcards.databinding.ArtifactFragDeckBinding
 import com.noble.activity.artifactcards.databinding.ArtifactFragDeckDetailBinding
 import com.noble.activity.artifactcards.model.card.Card
+import kotlinx.android.synthetic.main.artifact_frag_deck_detail.*
 
 class ArtifactDeckDetailFragment : Fragment() {
 
@@ -64,20 +65,6 @@ class ArtifactDeckDetailFragment : Fragment() {
 
         return binding.root
 
-//        val factory = InjectorUtils.provideArtifactCardDetailViewModelFactory(newId, newName, firstRefId, secondRefId, thirdRefId)
-//        artifactCardDetailViewModel = ViewModelProviders.of(this, factory)
-//            .get(ArtifactCardDetailViewModel::class.java)
-//        initLiveData()
-
-//        val binding = DataBindingUtil.inflate<ArtifactFragCardDetailBinding>(
-//            inflater, R.layout.artifact_frag_card_detail, container, false).apply {
-//            viewModel = artifactCardDetailViewModel
-//            setLifecycleOwner(this@ArtifactCardDetailFragment)
-//        }
-//
-//        artifactCardDetailViewModel.getCardPrice()
-
-//        return binding.root
     }
 
     private fun clickByHero(cardDeck: Card) {
@@ -99,7 +86,7 @@ class ArtifactDeckDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //setToolbar(detail_toolbar)
+        setToolbar(toolbar_settings)
     }
 
     private fun setToolbar(toolbar: Toolbar?) {

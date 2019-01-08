@@ -28,17 +28,36 @@
                         app:contentInsetStart="0dp"
                         android:elevation="0dp">
 
-                    <TextView
-                            android:id="@+id/settings_name"
-                            android:textColor="@color/artifact_text_color"
-                            android:text="@string/decks"
-                            android:layout_gravity="center"
-                            android:maxLines="1"
-                            android:ellipsize="end"
-                            android:textSize="20sp"
+                    <android.support.constraint.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"/>
+                            android:layout_height="match_parent">
+
+                        <TextView
+                                android:id="@+id/settings_name"
+                                android:textColor="@color/artifact_text_color"
+                                android:text="@string/decks"
+                                android:layout_gravity="center"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:textSize="20sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <ImageView
+                                android:id="@+id/add_deck_view"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:padding="10dp"
+                                android:src="@mipmap/ic_add_deck"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    </android.support.constraint.ConstraintLayout>
 
 
                 </android.support.v7.widget.Toolbar>

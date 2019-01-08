@@ -20,6 +20,7 @@ import com.noble.activity.artifactcards.utils.HERO_CARD_TYPE
 import com.noble.activity.artifactcards.utils.InjectorUtils
 import com.noble.activity.artifactcards.utils.runOnIoThread
 import com.noble.activity.artifactcards.utils.showToast
+import kotlinx.android.synthetic.main.artifact_frag_deck.*
 import java.lang.Exception
 
 class ArtifactDeckFragment : Fragment() {
@@ -44,6 +45,10 @@ class ArtifactDeckFragment : Fragment() {
         artifactDeckViewModel = ViewModelProviders
             .of(this, factory)
             .get(ArtifactDeckViewModel::class.java)
+
+        binding.addDeckView.setOnClickListener {
+            activity?.showToast("Clicked")
+        }
 
         val adapter = ArtifactDeckAdapter()
         binding.recyclerView.adapter = adapter

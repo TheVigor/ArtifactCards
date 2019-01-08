@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.noble.activity.artifactcards.app.App
 import com.noble.activity.artifactcards.app.app
+import com.noble.activity.artifactcards.artifact.detail.ArtifactCardDetailActivity
 import com.noble.activity.artifactcards.databinding.ArtifactFragDeckDetailItemBinding
 import com.noble.activity.artifactcards.model.card.Card
 
@@ -36,7 +37,18 @@ class ArtifactDeckDetailAdapter : ListAdapter<Card,
 
     private fun createOnClickListener(cardDeck: Card, context: Context): View.OnClickListener {
         return View.OnClickListener {
-            //ArtifactDeckDetailActivity.launch(context as Activity, cardDeck)
+
+            var firstRef = 0
+            if (cardDeck.references.isNotEmpty()) {
+                firstRef = cardDeck.references[0].cardId
+            }
+
+            ArtifactCardDetailActivity.launch(context as Activity,
+                cardDeck.cardId.toString(),
+                cardDeck.cardName.english!!,
+                firstRef.toString(),
+                0.toString(),
+                0.toString())
         }
     }
 

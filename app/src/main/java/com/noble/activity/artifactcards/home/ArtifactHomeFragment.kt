@@ -67,7 +67,7 @@ class ArtifactHomeFragment : Fragment() {
                 search_view?.setQuery("", false)
                 handler.removeCallbacks(fragmentLoadTask)
                 onFragmentLoadListener = artifactHomeAdapter.getOnFragmentLoadListener(position)
-                handler.postDelayed(fragmentLoadTask, 200)
+                handler.postDelayed(fragmentLoadTask, 5)
             }
         })
     }

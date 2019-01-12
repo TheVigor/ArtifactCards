@@ -25,7 +25,7 @@ import java.lang.Exception
 
 class ArtifactDeckFragment : Fragment(), DeckDialog.Listener  {
     override fun onDeckConfirm(deckCode: String) {
-        artifactDeckViewModel.loadDeckByCode(deckCode, viewLifecycleOwner)
+        artifactDeckViewModel.loadDeckByCode(deckCode, viewLifecycleOwner, true)
     }
 
     companion object {
@@ -61,7 +61,7 @@ class ArtifactDeckFragment : Fragment(), DeckDialog.Listener  {
 
         runOnIoThread {
             decksPrefs.refreshCards.forEach {
-                   artifactDeckViewModel.loadDeckByCode(it, viewLifecycleOwner)
+                   artifactDeckViewModel.loadDeckByCode(it, viewLifecycleOwner, false)
             }
         }
 

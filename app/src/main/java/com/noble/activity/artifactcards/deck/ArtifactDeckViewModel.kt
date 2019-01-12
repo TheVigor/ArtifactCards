@@ -27,7 +27,7 @@ class ArtifactDeckViewModel internal constructor(
     fun getDecks() = artifactRepository.getCards()
     fun getDeck(ids: List<Int>) = artifactRepository.getDeck(ids)
 
-    fun loadDeckByCode(deckCode: String, lifecycleOwner: LifecycleOwner) {
+    fun loadDeckByCode(deckCode: String, lifecycleOwner: LifecycleOwner, needSave: Boolean) {
         runOnIoThread {
             var decodedDeck = Deck(name = "", heroes = listOf(), cards = listOf())
             try {
@@ -62,10 +62,12 @@ class ArtifactDeckViewModel internal constructor(
 
                                 artifactDeckList.postValue(artifactDeckList.value)
 
-                                val decks = decksPrefs.refreshCards
-                                decks.add(deckCode)
-                                decksPrefs.refreshCards = mutableSetOf()
-                                decksPrefs.refreshCards = decks
+                                if (needSave) {
+                                    val decks = decksPrefs.refreshCards
+                                    decks.add(deckCode)
+                                    decksPrefs.refreshCards = mutableSetOf()
+                                    decksPrefs.refreshCards = decks
+                                }
 
 
                             }

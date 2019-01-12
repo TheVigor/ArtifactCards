@@ -60,7 +60,7 @@ class ArtifactDeckDetailFragment : Fragment() {
 
         val adapter = ArtifactDeckDetailAdapter()
         binding.recyclerView.adapter = adapter
-        adapter.submitList(App.cardDeck.cards.sortedBy { it.manaCost })
+        adapter.submitList(App.cardDeck.cards.sortedBy { it.manaCost }.sortedBy { it.goldCost })
 
 
         return binding.root

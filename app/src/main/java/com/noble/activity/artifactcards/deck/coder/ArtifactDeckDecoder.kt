@@ -122,9 +122,9 @@ class ArtifactDeckDecoder {
         var updatedOutCount = outCount
 
         if (hasExtendedCount) {
-            val chunk = readVarEncodedUint32(0, 0, data, chunk.indexStart, indexEnd, outCount)
+            val chunkExtended = readVarEncodedUint32(0, 0, data, chunk.indexStart, indexEnd, outCount)
 
-            if (!chunk.result) {
+            if (!chunkExtended.result) {
                 return CardState(
                     result = false,
                     indexStart = chunk.indexStart,
@@ -133,6 +133,15 @@ class ArtifactDeckDecoder {
                     outCardId = updatedOutCardId
                 )
             }
+
+            return CardState(
+                result = true,
+                indexStart = chunkExtended.indexStart,
+                prevCardBase = updatedOutCardId,
+                outCount = chunkExtended.outValue,
+                outCardId = updatedOutCardId
+            )
+
         } else {
             updatedOutCount = (header shr 6) + 1
         }

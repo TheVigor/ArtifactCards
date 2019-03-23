@@ -30,3 +30,6 @@ Libraries
  * Glide - https://github.com/bumptech/glide
  * RxJava - https://github.com/ReactiveX/RxJava
  * RxAndroid - https://github.com/ReactiveX/RxAndroid
+---------
+Fuck you Valve
+Fuck you Artifact
